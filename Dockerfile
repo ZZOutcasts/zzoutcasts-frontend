@@ -1,17 +1,33 @@
-FROM node:18-alpine
+FROM node:18-alpine AS builder-deps
+
+WORKDIR /home/app
+
+COPY ./package*.json ./
+RUN npm ci
+
+FROM builder-deps AS builder
+
+COPY . .
+
+RUN npm run build
+
+FROM node:18-alpine AS runtime
+
+WORKDIR /home/app
+
+RUN addgroup --system --gid 1001 app
+RUN adduser --system --uid 1001 app
+
+COPY --from=builder /home/app/next.config.js ./
+COPY --from=builder /home/app/public ./public
+COPY --from=builder /home/app/.next/standalone ./
+COPY --from=builder /home/app/.next/static ./.next/static
+
+USER app
 
 EXPOSE 3000
 
-RUN mkdir /home/app
-COPY . /home/app
-WORKDIR /home/app
-
-RUN npm install --omit=optional
-
-ENV NODE_ENV=production
+ENV NODE_ENV production
 ENV PORT 3000
 
-RUN npx next telemetry disable
-
-RUN npm run build
-CMD ["npm","run","start"]
+CMD ["node","server.js"]
