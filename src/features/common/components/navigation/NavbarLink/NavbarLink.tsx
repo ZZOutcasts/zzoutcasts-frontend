@@ -9,7 +9,7 @@ import {
 import Link from 'next/link'
 import { ReactNode } from 'react'
 
-interface INavbarItemProps {
+interface NavbarItemProps {
   icon: ReactNode
   children: ReactNode
   color: keyof MantineTheme['colors']
@@ -21,7 +21,7 @@ export const NavbarLink = ({
   children,
   color,
   href = ''
-}: INavbarItemProps) => {
+}: NavbarItemProps) => {
   const theme = useMantineTheme()
 
   return (
