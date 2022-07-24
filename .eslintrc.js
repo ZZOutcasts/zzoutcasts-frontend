@@ -1,15 +1,15 @@
 module.exports = {
-  env: {
-    browser: true,
-    es2021: true
-  },
   extends: [
     'eslint:recommended',
-    'plugin:react/recommended',
+    'next/core-web-vitals',
+    'plugin:import/warnings',
+    'plugin:import/errors',
     'plugin:@typescript-eslint/recommended',
-    'plugin:prettier/recommended',
-    'next/core-web-vitals'
+    'plugin:jsx-a11y/recommended',
+    'airbnb',
+    'plugin:prettier/recommended'
   ],
+  plugins: ['react', 'unused-imports', '@typescript-eslint'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
@@ -18,13 +18,32 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module'
   },
-  plugins: ['react', 'react-hooks', '@typescript-eslint'],
   rules: {
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
+    'react/jsx-filename-extension': 'off',
     'react/prop-types': 'off',
     'react/react-in-jsx-scope': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    'react/function-component-definition': [
+      1,
+      {
+        namedComponents: ['arrow-function'],
+        unnamedComponents: ['arrow-function']
+      }
+    ],
     '@typescript-eslint/explicit-module-boundary-types': 'off',
-    '@typescript-eslint/no-non-null-assertion': 'off'
+    '@typescript-eslint/no-non-null-assertion': 'off',
+    'no-unused-vars': 'off', // or "@typescript-eslint/no-unused-vars": "off",
+    'unused-imports/no-unused-imports': 'error',
+    'unused-imports/no-unused-vars': [
+      'warn',
+      {
+        vars: 'all',
+        varsIgnorePattern: '^_',
+        args: 'after-used',
+        argsIgnorePattern: '^_'
+      }
+    ]
   }
 }
