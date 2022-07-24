@@ -28,6 +28,7 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'import/extensions': 'off',
     'react/jsx-no-constructed-context-values': 'warn',
+    'react/require-default-props': 'off',
     'react/function-component-definition': [
       1,
       {

@@ -13,14 +13,14 @@ interface INavbarItemProps {
   icon: ReactNode
   children: ReactNode
   color: keyof MantineTheme['colors']
-  href: string
+  href?: string
 }
 
 export const NavbarLink = ({
   icon,
   children,
   color,
-  href
+  href = ''
 }: INavbarItemProps) => {
   const theme = useMantineTheme()
 
