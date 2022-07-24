@@ -1,18 +1,11 @@
 import type { NextPage } from 'next'
-import Link from 'next/link'
+import { Layout } from '../features/common/components/navigation/Layout'
 
 const Home: NextPage = () => {
   return (
-    <div
-      style={{
-        width: '100vw',
-        height: '100vh'
-      }}
-    >
-      <Link href="/hello" passHref>
-        test
-      </Link>
-    </div>
+    <Layout>
+      <h1>hello world</h1>
+    </Layout>
   )
 }
 

@@ -1,19 +1,11 @@
-import { MantineProvider } from '@mantine/core'
+import { ThemeProvider } from '@features/common/components/providers/ThemeProvider'
 import type { AppProps } from 'next/app'
-import '../../styles/global.scss'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
-    <MantineProvider
-      withGlobalStyles
-      withNormalizeCSS
-      theme={{
-        /** Put your mantine theme override here */
-        colorScheme: 'light'
-      }}
-    >
+    <ThemeProvider>
       <Component {...pageProps} />
-    </MantineProvider>
+    </ThemeProvider>
   )
 }
 

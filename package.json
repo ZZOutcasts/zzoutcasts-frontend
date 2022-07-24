@@ -10,6 +10,8 @@
     "test": "jest"
   },
   "dependencies": {
+    "@dicebear/avatars": "^4.10.3",
+    "@dicebear/avatars-bottts-sprites": "^4.10.3",
     "@mantine/core": "^4.2.12",
     "@mantine/form": "^4.2.12",
     "@mantine/hooks": "^4.2.12",
@@ -17,7 +19,8 @@
     "eslint-config-airbnb": "19.0.4",
     "next": "12.2.2",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-icons": "^4.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.18.9",
