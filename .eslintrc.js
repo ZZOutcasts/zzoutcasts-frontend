@@ -25,6 +25,10 @@ module.exports = {
     'react/prop-types': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/jsx-props-no-spreading': 'off',
+    'import/prefer-default-export': 'off',
+    'import/extensions': 'off',
+    'react/jsx-no-constructed-context-values': 'warn',
+    'react/require-default-props': 'off',
     'react/function-component-definition': [
       1,
       {
