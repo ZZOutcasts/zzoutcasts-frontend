@@ -22,7 +22,11 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
       colorScheme={colorScheme}
       toggleColorScheme={toggleColorScheme}
     >
-      <MantineProvider withGlobalStyles withNormalizeCSS>
+      <MantineProvider
+        withGlobalStyles
+        withNormalizeCSS
+        theme={{ colorScheme }}
+      >
         {children}
       </MantineProvider>
     </ColorSchemeProvider>
