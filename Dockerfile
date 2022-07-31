@@ -3,13 +3,15 @@ FROM node:18-alpine AS builder-deps
 WORKDIR /home/app
 
 COPY ./package*.json ./
-RUN npm ci
+COPY ./yarn.lock ./
+RUN yarn install --frozen-lockfile
+
 
 FROM builder-deps AS builder
 
 COPY . .
 
-RUN npm run build
+RUN yarn run build
 
 FROM node:18-alpine AS runtime
 
