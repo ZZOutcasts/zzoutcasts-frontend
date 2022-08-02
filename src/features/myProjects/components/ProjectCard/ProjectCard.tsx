@@ -1,10 +1,10 @@
-import { UserProject } from '@features/myProjects/interfaces/UserProject'
 import { Card, Group, Image, Text } from '@mantine/core'
 import { StatusBadge } from '@features/myProjects/components/StatusBadge'
 import { useStyles } from '@features/myProjects/components/ProjectCard/ProjectCard.styles'
-import { shortenText } from '@features/common/utils/shortenText'
+import { shortenText } from '@features/common/utils/string.utils'
 import { routes } from '@config/routes'
-import { CardContainer } from '@features/myProjects/components/CardContainer'
+import { ProjectCardContainer } from '@features/myProjects/components/ProjectCardContainer'
+import { UserProject } from '@features/myProjects/types/project'
 
 const MAX_PROJECT_NAME_LENGTH = 34
 
@@ -16,7 +16,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
   const { classes } = useStyles()
 
   return (
-    <CardContainer link={routes.myProject(project.id)}>
+    <ProjectCardContainer link={routes.project(project.id)}>
       <Card.Section>
         <Image src={project.imageUrl} alt={project.name} height={200} />
       </Card.Section>
@@ -24,11 +24,11 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
       <Card.Section className={classes.cardContent} mt="md">
         <Group position="apart">
           <Text size="md" weight={500}>
-            {shortenText(MAX_PROJECT_NAME_LENGTH)(project.name)}
+            {shortenText(MAX_PROJECT_NAME_LENGTH, project.name)}
           </Text>
           <StatusBadge status={project.status} />
         </Group>
       </Card.Section>
-    </CardContainer>
+    </ProjectCardContainer>
   )
 }

@@ -1,7 +1,7 @@
 const allowedEndCharacters =
   'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
 
-export const shortenText = (maxCharacters: number) => (str: string) => {
+export const shortenText = (maxCharacters: number, str: string) => {
   const strArray = str.slice(0, maxCharacters).split('')
 
   while (

@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { Text } from '@mantine/core'
 import Link from 'next/link'
 import { routes } from '@config/routes'

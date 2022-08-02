@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import { CardContainer } from './CardContainer'
+import { ProjectCardContainer } from './ProjectCardContainer'
 import '@testing-library/jest-dom'
 
 describe('CardContainer', () => {
@@ -8,7 +8,11 @@ describe('CardContainer', () => {
     let testId = 'test_id'
     const testChildren = <div data-testid={testId}>Test</div>
 
-    render(<CardContainer link={testLink}>{testChildren}</CardContainer>)
+    render(
+      <ProjectCardContainer link={testLink}>
+        {testChildren}
+      </ProjectCardContainer>
+    )
 
     expect(screen.getByTestId(testId)).toBeDefined()
     expect(screen.getByRole('link')).toHaveAttribute('href', testLink)

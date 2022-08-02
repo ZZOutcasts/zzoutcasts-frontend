@@ -1,5 +1,5 @@
 import { Badge } from '@mantine/core'
-import { ProjectStatus } from '@features/myProjects/interfaces/ProjectStatus'
+import { ProjectStatus } from '@features/myProjects/types/project'
 
 interface StatusBadgeProps {
   status: ProjectStatus

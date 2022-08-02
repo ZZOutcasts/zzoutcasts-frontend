@@ -1,4 +1,7 @@
-import { ProjectStatus } from '@features/myProjects/interfaces/ProjectStatus'
+export interface ProjectStatus {
+  text: string
+  color: string
+}
 
 export interface UserProject {
   id: string

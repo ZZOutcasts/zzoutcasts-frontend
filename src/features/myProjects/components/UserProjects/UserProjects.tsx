@@ -12,12 +12,12 @@ export const UserProjects = () => {
 
   return (
     <Group className={classes.container} position="center">
-      {projects.length > 0 &&
+      {projects &&
         projects.map((project) => (
           <ProjectCard key={project.id} project={project} />
         ))}
-      {projects.length > 0 && <CreateProjectCard />}
-      {projects.length === 0 && <NoProjectsInfo />}
+      {projects && <CreateProjectCard />}
+      {!projects && <NoProjectsInfo />}
     </Group>
   )
 }
