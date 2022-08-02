@@ -1,8 +1,8 @@
-const allowedEndCharacters =
-  'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
+export const removeUnwantedEndCharacters = (str: string) => {
+  const allowedEndCharacters =
+    'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
 
-export const shortenText = (maxCharacters: number, str: string) => {
-  const strArray = str.slice(0, maxCharacters).split('')
+  const strArray = str.split('')
 
   while (
     !allowedEndCharacters.includes(strArray[strArray.length - 1]) &&
@@ -11,8 +11,14 @@ export const shortenText = (maxCharacters: number, str: string) => {
     strArray.pop()
   }
 
-  return (
-    strArray.join('') +
-    (strArray.length > 0 && str.length > maxCharacters ? '...' : '')
-  )
+  return strArray.join('')
+}
+
+export const shortenText = (maxCharacters: number, str: string) => {
+  const newStr = removeUnwantedEndCharacters(str.slice(0, maxCharacters))
+
+  if (newStr.length > 0 && str.length > maxCharacters) {
+    return `${newStr}...`
+  }
+  return newStr
 }
