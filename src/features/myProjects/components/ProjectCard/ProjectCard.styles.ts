@@ -9,5 +9,8 @@ export const useStyles = createStyles((theme) => ({
     paddingRight: 14,
     paddingBottom: 14,
     height: `calc( 100% - 200px)`
+  },
+  imageContainer: {
+    height: 200
   }
 }))
