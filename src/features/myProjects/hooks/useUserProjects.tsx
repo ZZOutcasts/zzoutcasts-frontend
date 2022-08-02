@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { UserProject } from '@features/myProjects/types/project'
+import { UserProject } from '@features/myProjects/types'
 
 export const useUserProjects = () => {
   const userData = useMemo<UserProject[]>(

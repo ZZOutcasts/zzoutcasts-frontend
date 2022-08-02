@@ -1,12 +1,12 @@
 import { render } from '@testing-library/react'
 import { UserProjects } from '@features/myProjects/components/UserProjects/UserProjects'
-import { useUserProjects } from '@features/myProjects/hooks/useUserProjects'
 import { ProjectCard } from '@features/myProjects/components/ProjectCard'
 import { CreateProjectCard } from '@features/myProjects/components/CreateProjectCard'
 import { NoProjectsInfo } from '@features/myProjects/components/NoProjectsInfo'
-import { UserProject } from '@features/myProjects/types/project'
+import { UserProject } from '@features/myProjects/types'
+import { useUserProjects } from '@features/myProjects/hooks'
 
-jest.mock('@features/myProjects/hooks/useUserProjects')
+jest.mock('@features/myProjects/hooks')
 
 describe('UserProjects', () => {
   describe('Data case - array with one project', () => {
