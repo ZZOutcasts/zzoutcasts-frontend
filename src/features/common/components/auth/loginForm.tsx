@@ -19,10 +19,11 @@ import {
   Anchor,
   Stack
 } from '@mantine/core'
+import { ReactNode } from 'react'
 //import { GoogleButton, TwitterButton } from '../SocialButtons/SocialButtons';
 
-export function LoginForm(props: PaperProps) {
-  // const [type, toggle] = useToggle(['login', 'register'])
+export function LoginForm(props: PaperProps<any>) {
+  const [type, toggle]: any = useToggle(['login', 'register'])
   const form = useForm({
     initialValues: {
       email: '',
@@ -41,7 +42,7 @@ export function LoginForm(props: PaperProps) {
   return (
     <Paper radius="md" p="xl" withBorder {...props}>
       <Text size="lg" weight={500}>
-        Welcome to Mantine, Login with
+        Welcome to Projectly, Login with
       </Text>
 
       <Group grow mb="md" mt="md">
@@ -105,14 +106,14 @@ export function LoginForm(props: PaperProps) {
             component="button"
             type="button"
             color="dimmed"
-            // onClick={() => toggle()}
+            onClick={() => toggle()}
             size="xs"
           >
-            {/*} {type === 'register'
+            {type === 'register'
               ? 'Already have an account? Login'
-            : "Don't have an account? Register"} */}
+              : "Don't have an account? Register"}
           </Anchor>
-          {/*<Button type="submit">{upperFirst(type)}</Button>*/}
+          {<Button type="submit">{upperFirst(type)}</Button>}
         </Group>
       </form>
     </Paper>
