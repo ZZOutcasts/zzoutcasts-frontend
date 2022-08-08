@@ -19,6 +19,7 @@ module.exports = {
     sourceType: 'module'
   },
   rules: {
+    'jsx-a11y/anchor-is-valid': 'off',
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
     'react/jsx-filename-extension': 'off',
