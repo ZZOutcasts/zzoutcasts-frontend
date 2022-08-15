@@ -19,6 +19,8 @@ module.exports = {
     sourceType: 'module'
   },
   rules: {
+    'no-unused-expressions': 'off',
+    'consistent-return': 'off',
     'jsx-a11y/anchor-is-valid': 'off',
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
@@ -50,5 +52,8 @@ module.exports = {
         argsIgnorePattern: '^_'
       }
     ]
+  },
+  globals: {
+    JSX: true
   }
 }
