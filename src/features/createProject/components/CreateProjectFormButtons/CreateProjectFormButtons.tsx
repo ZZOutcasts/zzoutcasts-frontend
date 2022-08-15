@@ -25,7 +25,7 @@ export const CreateProjectFormButtons = ({
     currentStep > 0 && currentStep < completedStepIndex
 
   const BackButton = (
-    <Button variant="default" onClick={prevStep}>
+    <Button variant="default" onClick={prevStep} disabled={isSubmitted}>
       Back
     </Button>
   )
