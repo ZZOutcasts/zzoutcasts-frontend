@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import { Layout } from '@features/common/components/navigation/Layout'
-import { CreateProjectFormContainer } from '@features/createProject/components/CreateProjectFormContainer'
+import { CreateProjectFormContainer } from '@features/createProject/components'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 const queryClient = new QueryClient()

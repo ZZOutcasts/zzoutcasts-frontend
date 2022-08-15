@@ -1,8 +1,8 @@
 import { UseFormReturnType } from '@mantine/form'
 import { NumberInput } from '@mantine/core'
-import { CreateProjectFormValues } from '@features/createProject/types/createProject'
+import { CreateProjectFormValues } from '@features/createProject/types'
 import { ApiMultiSelect } from '@features/common/components/customInputs/ApiMultiSelect'
-import { useFetchMembersByUsername } from '@features/createProject/hooks/useFetchMembersByUsername'
+import { useFetchMembersByUsername } from '@features/createProject/hooks'
 import { useState } from 'react'
 
 export const CreateProjectMembersStep = ({

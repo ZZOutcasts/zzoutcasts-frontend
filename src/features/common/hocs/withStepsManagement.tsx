@@ -1,5 +1,8 @@
-import { ComponentType, useState } from 'react'
-import { StepsManagementContext } from '../contexts/StepsManagementContext'
+import { ComponentType, useMemo, useState } from 'react'
+import {
+  StepsManagementContext,
+  WithStepManagementContextProps
+} from '../contexts/StepsManagementContext'
 
 export const withStepsManagement =
   <T extends object>(WrappedComponent: ComponentType<T>, stepsCount: number) =>
@@ -18,14 +21,17 @@ export const withStepsManagement =
 
     const completedStepIndex = stepsCount
 
-    const contextObject = {
-      prevStep,
-      nextStep,
-      currentStep,
-      stepsCount,
-      lastStepIndex,
-      completedStepIndex
-    } //TODO: add usememo
+    const contextObject = useMemo<WithStepManagementContextProps>(
+      () => ({
+        prevStep,
+        nextStep,
+        currentStep,
+        stepsCount,
+        lastStepIndex,
+        completedStepIndex
+      }),
+      [currentStep, stepsCount]
+    )
 
     return (
       <StepsManagementContext.Provider value={contextObject}>

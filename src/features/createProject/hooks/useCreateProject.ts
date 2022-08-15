@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { CreateProjectFormValues } from '@features/createProject/types/createProject'
+import { CreateProjectFormValues } from '@features/createProject/types'
 
 export const useCreateProject = (data: CreateProjectFormValues | undefined) => {
   return useQuery<any>(

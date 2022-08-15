@@ -1,6 +1,6 @@
 import { createContext } from 'react'
 
-interface WithStepManagementContextProps {
+export interface WithStepManagementContextProps {
   prevStep: () => void
   nextStep: () => void
   currentStep: number

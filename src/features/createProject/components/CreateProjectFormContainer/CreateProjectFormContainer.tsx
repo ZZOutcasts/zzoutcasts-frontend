@@ -10,10 +10,10 @@ import {
   CreateProjectFormValues,
   CreateProjectFormValuesValidation,
   Step
-} from '@features/createProject/types/createProject'
+} from '@features/createProject/types'
 import { CompletedStep } from '@features/createProject/components/CompletedStep'
-import { useCreateProject } from '@features/createProject/hooks/useCreateProject'
-import { withStepsManagement } from '@features/common/hoc/withStepsManagement'
+import { useCreateProject } from '@features/createProject/hooks'
+import { withStepsManagement } from '@features/common/hocs/withStepsManagement'
 import { CreateProjectFormButtons } from '@features/createProject/components/CreateProjectFormButtons'
 import { StepsManagementContext } from '@features/common/contexts/StepsManagementContext'
 import { ApiMultiSelectItem } from '@features/common/types/ApiMultiSelect'

@@ -1,6 +1,6 @@
 import { FileInput, TextInput } from '@mantine/core'
 import { UseFormReturnType } from '@mantine/form'
-import { CreateProjectFormValues } from '@features/createProject/types/createProject'
+import { CreateProjectFormValues } from '@features/createProject/types'
 
 export const CreateProjectBasicInfoStep = ({
   form
