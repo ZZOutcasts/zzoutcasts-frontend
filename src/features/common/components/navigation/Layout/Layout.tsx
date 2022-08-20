@@ -43,6 +43,13 @@ const DefaultNavItems = () => (
     <NavbarLink icon={<TbBrandTinder />} color="red" href={routes.myProjects()}>
       My projects
     </NavbarLink>
+    <NavbarLink
+      icon={<TbBrandTinder />}
+      color="red"
+      href={routes.recruitmentForm()}
+    >
+      RecruitmentForm
+    </NavbarLink>
   </>
 )
 
