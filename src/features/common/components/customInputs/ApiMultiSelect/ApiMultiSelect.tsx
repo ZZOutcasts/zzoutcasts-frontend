@@ -29,7 +29,7 @@ export const ApiMultiSelect = ({
 
   const [searchValue, setSearchValue] = useState('')
 
-  const [chosenMembers, setChosenMembers] =
+  const [chosenItems, setChosenItems] =
     useState<ApiMultiSelectItem[]>(defaultValue)
 
   useEffect(() => {
@@ -39,31 +39,31 @@ export const ApiMultiSelect = ({
   }, [data])
 
   useEffect(() => {
-    if (chosenMembers === defaultValue) return
-    onChange(chosenMembers)
-  }, [chosenMembers])
+    if (chosenItems === defaultValue) return
+    onChange(chosenItems)
+  }, [chosenItems])
 
-  const getDisabledItemMessageWithChosenMembers = (
+  const getDisabledItemMessageWithChosenItems = (
     value: string,
     optionalArgs?: any
   ) => {
-    return [{ value, disabled: true, ...optionalArgs }, ...chosenMembers]
+    return [{ value, disabled: true, ...optionalArgs }, ...chosenItems]
   }
 
   const getData = (): ApiMultiSelectItem[] & SelectItem[] => {
     if (shouldReFetchOnSearchChange && searchValue === '')
-      return getDisabledItemMessageWithChosenMembers(noDataMessage || '', {
+      return getDisabledItemMessageWithChosenItems(noDataMessage || '', {
         center: true
       })
 
     if ((!shouldReFetchOnSearchChange || currentData.length === 0) && isLoading)
-      return getDisabledItemMessageWithChosenMembers('Loading...')
+      return getDisabledItemMessageWithChosenItems('Loading...')
 
     if (error) return []
 
-    if (currentData.length !== 0) return [...currentData, ...chosenMembers]
+    if (currentData.length !== 0) return [...currentData, ...chosenItems]
 
-    return getDisabledItemMessageWithChosenMembers('')
+    return getDisabledItemMessageWithChosenItems('')
   }
 
   const handleSearchChange = (value: string) => {
@@ -72,7 +72,7 @@ export const ApiMultiSelect = ({
   }
 
   const handleAddItem = (value: string) => {
-    setChosenMembers((prevState) => {
+    setChosenItems((prevState) => {
       const newElement =
         currentData && currentData.find((item) => item.value === value)
 
@@ -81,13 +81,13 @@ export const ApiMultiSelect = ({
   }
 
   const handleRemoveItem = (values: string[]) => {
-    setChosenMembers((prevState) =>
+    setChosenItems((prevState) =>
       prevState.filter((element) => values.includes(element.value))
     )
   }
 
   const handleChange = async (values: string[]) => {
-    if (values.length > chosenMembers.length) {
+    if (values.length > chosenItems.length) {
       return handleAddItem(values.at(values.length - 1) || '')
     }
     handleRemoveItem(values)
@@ -104,7 +104,7 @@ export const ApiMultiSelect = ({
       {...props}
       onSearchChange={handleSearchChange}
       onChange={handleChange}
-      value={chosenMembers.map((x) => x.value)}
+      value={chosenItems.map((x) => x.value)}
       error={getErrorMessage()}
       data={getData().map(({ label, value, ...item }) => ({
         label: label || value,
