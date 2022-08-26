@@ -6,25 +6,19 @@ import { CreateProjectDescriptionStep } from '@features/createProject/components
 import { CreateProjectTechnologiesAndRolesStep } from '@features/createProject/components/CreateProjectTechnologiesAndRolesStep'
 import { CreateProjectMembersStep } from '@features/createProject/components/CreateProjectMembersStep'
 import { CreateProjectBasicInfoStep } from '@features/createProject/components/CreateProjectBasicInfoStep'
-import {
-  CreateProjectFormValues,
-  CreateProjectFormValuesValidation,
-  Step
-} from '@features/createProject/types'
+import { CreateProjectFormValues, Step } from '@features/createProject/types'
 import { CompletedStep } from '@features/createProject/components/CompletedStep'
 import { useCreateProject } from '@features/createProject/hooks'
 import { withStepsManagement } from '@features/common/hocs/withStepsManagement'
 import { CreateProjectFormButtons } from '@features/createProject/components/CreateProjectFormButtons'
 import { StepsManagementContext } from '@features/common/contexts/StepsManagementContext'
-import { ApiMultiSelectItem } from '@features/common/types/ApiMultiSelect'
-import { ObjectEntries } from '@features/common/types/types'
 import { useWindowSize } from '@features/common/hooks/useWIndowSize'
 
 const stepElementsArray: Step[] = [
   {
     description: 'Basic information',
     node: CreateProjectBasicInfoStep,
-    joiValidation: {
+    validate: () => ({
       name: Joi.string()
         .min(5)
         .message('Project name must be at least 5 characters long')
@@ -38,12 +32,12 @@ const stepElementsArray: Step[] = [
       avatar: Joi.any().required().messages({
         'any.required': 'Project avatar is required'
       })
-    }
+    })
   },
   {
     description: 'Description',
     node: CreateProjectDescriptionStep,
-    joiValidation: {
+    validate: () => ({
       description: Joi.string()
         .min(20)
         .message('Project description must be at least 20 characters long')
@@ -54,38 +48,31 @@ const stepElementsArray: Step[] = [
         .messages({
           'string.empty': 'Project description is required'
         })
-    }
+    })
   },
   {
     description: 'Technologies and roles',
     node: CreateProjectTechnologiesAndRolesStep,
-    joiValidation: {
+    validate: () => ({
       technologies: Joi.array()
         .min(1)
         .message('Choose at least one technology'),
       roles: Joi.array().min(1).message('Choose at least one role')
-    }
+    })
   },
   {
     description: 'Members',
     node: CreateProjectMembersStep,
-    joiValidation: {
+    validate: (values: CreateProjectFormValues) => ({
       capacity: Joi.number()
         .min(1)
         .message('Project capacity must be greater than or equal to 1')
         .max(100)
-        .message('Project capacity must be less than or equal to 100')
-    },
-    validation: {
-      member_ids: (
-        value: ApiMultiSelectItem[],
-        values: CreateProjectFormValues
-      ) => {
-        if (value.length > values.capacity)
-          return 'You cannot add more members than the capacity of the project'
-        return null
-      }
-    }
+        .message('Project capacity must be less than or equal to 100'),
+      member_ids: Joi.array()
+        .max(values.capacity > 0 ? values.capacity : 0)
+        .message('You cannot add more members than the capacity of the project')
+    })
   }
 ]
 
@@ -99,7 +86,7 @@ const CreateProjectForm = () => {
   )
 
   const [windowWidth] = useWindowSize()
-  const SWITCH_TO_HORIZONTAL_WINDOW_WIDTH = 1000
+  const SWITCH_TO_MOBILE_VIEW_WINDOW_WIDTH = 1000
 
   const [isSubmitted, setIsSubmitted] = useState(false)
 
@@ -113,22 +100,9 @@ const CreateProjectForm = () => {
 
       const currentStepObj = stepElementsArray[currentStep]
 
-      const schema = Joi.object<CreateProjectFormValues>(
-        currentStepObj.joiValidation || {}
-      )
+      const schema = Joi.object(currentStepObj.validate(values))
 
-      const validationResult = (
-        Object.entries(currentStepObj.validation || {}) as ObjectEntries<
-          Required<CreateProjectFormValuesValidation>
-        >
-      ).reduce((acc, [key, validationFunction]) => {
-        return { ...acc, ...{ [key]: validationFunction(values[key], values) } }
-      }, {})
-
-      return {
-        ...joiResolver(schema.options({ allowUnknown: true }))(values),
-        ...validationResult
-      }
+      return joiResolver(schema.options({ allowUnknown: true }))(values)
     },
     initialValues: {
       name: '',
@@ -159,7 +133,7 @@ const CreateProjectForm = () => {
       <Stepper
         active={currentStep}
         orientation={
-          windowWidth > SWITCH_TO_HORIZONTAL_WINDOW_WIDTH
+          windowWidth > SWITCH_TO_MOBILE_VIEW_WINDOW_WIDTH
             ? 'horizontal'
             : 'vertical'
         }

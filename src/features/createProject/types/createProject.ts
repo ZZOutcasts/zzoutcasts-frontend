@@ -1,9 +1,10 @@
 import { ApiMultiSelectItem } from '@features/common/types/ApiMultiSelect'
 import { UseFormReturnType } from '@mantine/form'
+import { AnySchema } from 'joi'
 
 export interface CreateProjectFormValues {
   name: string
-  avatar: File | undefined
+  avatar?: File
   description: string
   technologies: ApiMultiSelectItem[]
   roles: ApiMultiSelectItem[]
@@ -12,10 +13,7 @@ export interface CreateProjectFormValues {
 }
 
 export type CreateProjectFormValuesValidation = {
-  [key in keyof CreateProjectFormValues]?: (
-    value: any,
-    values: CreateProjectFormValues
-  ) => string | null
+  [key in keyof CreateProjectFormValues]?: AnySchema
 }
 
 export interface Step {
@@ -25,6 +23,7 @@ export interface Step {
   }: {
     form: UseFormReturnType<CreateProjectFormValues>
   }) => JSX.Element
-  validation?: CreateProjectFormValuesValidation
-  joiValidation?: any
+  validate: (
+    values: CreateProjectFormValues
+  ) => CreateProjectFormValuesValidation
 }

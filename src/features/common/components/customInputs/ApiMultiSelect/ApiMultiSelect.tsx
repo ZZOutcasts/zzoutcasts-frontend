@@ -21,6 +21,7 @@ export const ApiMultiSelect = ({
   noDataMessage,
   value: defaultValue = [],
   error: givenError,
+  placeholder,
   ...props
 }: ApiSearchableMultiSelectProps) => {
   const { isLoading, error, data } = query
@@ -46,13 +47,11 @@ export const ApiMultiSelect = ({
   const getDisabledItemMessageWithChosenItems = (
     value: string,
     optionalArgs?: any
-  ) => {
-    return [{ value, disabled: true, ...optionalArgs }, ...chosenItems]
-  }
+  ) => [{ value, disabled: true, ...optionalArgs }, ...chosenItems]
 
   const getData = (): ApiMultiSelectItem[] & SelectItem[] => {
     if (shouldReFetchOnSearchChange && searchValue === '')
-      return getDisabledItemMessageWithChosenItems(noDataMessage || '', {
+      return getDisabledItemMessageWithChosenItems(placeholder || '', {
         center: true
       })
 
@@ -111,6 +110,7 @@ export const ApiMultiSelect = ({
         value,
         ...item
       }))}
+      placeholder={placeholder}
       nothingFound={noDataMessage}
       valueComponent={ApiMultiSelectElementComponent}
       itemComponent={ApiMultiSelectItemComponent}
