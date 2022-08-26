@@ -1,6 +1,6 @@
 import { ApiMultiSelectItem } from '@features/common/types/ApiMultiSelect'
 import { UseFormReturnType } from '@mantine/form'
-import { AnySchema } from 'joi'
+import { ZodTypeAny } from 'zod'
 
 export interface CreateProjectFormValues {
   name: string
@@ -13,7 +13,7 @@ export interface CreateProjectFormValues {
 }
 
 export type CreateProjectFormValuesValidation = {
-  [key in keyof CreateProjectFormValues]?: AnySchema
+  [key in keyof CreateProjectFormValues]?: ZodTypeAny
 }
 
 export interface Step {

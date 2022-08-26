@@ -1,7 +1,7 @@
-import Joi from 'joi'
+import { z as zod } from 'zod'
 import { useContext, useState } from 'react'
 import { Stepper } from '@mantine/core'
-import { joiResolver, useForm } from '@mantine/form'
+import { useForm, zodResolver } from '@mantine/form'
 import { DescriptionStep } from '@features/createProject/components/DescriptionStep'
 import { TechnologiesAndRolesStep } from '@features/createProject/components/TechnologiesAndRolesStep'
 import { MembersStep } from '@features/createProject/components/MembersStep'
@@ -14,39 +14,47 @@ import { FormButtons } from '@features/createProject/components/FormButtons'
 import { StepsManagementContext } from '@features/common/contexts/StepsManagementContext'
 import { useWindowSize } from '@features/common/hooks/useWIndowSize'
 
+const ALLOWED_AVATAR_EXTENSIONS = [
+  'image/jpeg',
+  'image/jpg',
+  'image/png',
+  'image/webp'
+]
+
 const stepElementsArray: Step[] = [
   {
     description: 'Basic information',
     node: BasicInfoStep,
     validate: () => ({
-      name: Joi.string()
-        .min(5)
-        .message('Project name must be at least 5 characters long')
-        .max(100)
-        .message(
-          'Project name must be less than or equal to 100 characters long'
-        )
-        .messages({
-          'string.empty': 'Project name is required'
+      name: zod
+        .string()
+        .min(5, { message: 'Project name must be at least 5 characters long' })
+        .max(100, {
+          message:
+            'Project name must be less than or equal to 100 characters long'
         }),
-      avatar: Joi.any().required().messages({
-        'any.required': 'Project avatar is required'
-      })
+      avatar: zod
+        .any()
+
+        .refine(
+          (file) => file && ALLOWED_AVATAR_EXTENSIONS.includes(file.type),
+          'The avatar file should have an extension of .png, .jpg, .jpeg or .webp'
+        )
+        .refine((file) => !!file, 'Project avatar is required')
     })
   },
   {
     description: 'Description',
     node: DescriptionStep,
     validate: () => ({
-      description: Joi.string()
-        .min(20)
-        .message('Project description must be at least 20 characters long')
-        .max(100_000)
-        .message(
-          'Project description must be less than or equal to 100 000 characters long'
-        )
-        .messages({
-          'string.empty': 'Project description is required'
+      description: zod
+        .string()
+        .min(20, {
+          message: 'Project description must be at least 20 characters long'
+        })
+        .max(100_000, {
+          message:
+            'Project description must be less than or equal to 100 000 characters long'
         })
     })
   },
@@ -54,24 +62,32 @@ const stepElementsArray: Step[] = [
     description: 'Technologies and roles',
     node: TechnologiesAndRolesStep,
     validate: () => ({
-      technologies: Joi.array()
-        .min(1)
-        .message('Choose at least one technology'),
-      roles: Joi.array().min(1).message('Choose at least one role')
+      technologies: zod
+        .array(zod.unknown())
+        .min(1, { message: 'Choose at least one technology' }),
+      roles: zod
+        .array(zod.unknown())
+        .min(1, { message: 'Choose at least one role' })
     })
   },
   {
     description: 'Members',
     node: MembersStep,
     validate: (values: CreateProjectFormValues) => ({
-      capacity: Joi.number()
-        .min(1)
-        .message('Project capacity must be greater than or equal to 1')
-        .max(100)
-        .message('Project capacity must be less than or equal to 100'),
-      member_ids: Joi.array()
-        .max(values.capacity > 0 ? values.capacity : 0)
-        .message('You cannot add more members than the capacity of the project')
+      capacity: zod
+        .number()
+        .min(1, {
+          message: 'Project capacity must be greater than or equal to 1'
+        })
+        .max(100, {
+          message: 'Project capacity must be less than or equal to 100'
+        }),
+      member_ids: zod
+        .array(zod.unknown())
+        .max(values.capacity > 0 ? values.capacity : 0, {
+          message:
+            'You cannot add more members than the capacity of the project'
+        })
     })
   }
 ]
@@ -100,9 +116,9 @@ const CreateProjectForm = () => {
 
       const currentStepObj = stepElementsArray[currentStep]
 
-      const schema = Joi.object(currentStepObj.validate(values))
+      const schema = zod.object(currentStepObj.validate(values))
 
-      return joiResolver(schema.options({ allowUnknown: true }))(values)
+      return zodResolver(schema)(values)
     },
     initialValues: {
       name: '',
