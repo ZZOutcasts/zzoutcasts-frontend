@@ -2,22 +2,22 @@ import Joi from 'joi'
 import { useContext, useState } from 'react'
 import { Stepper } from '@mantine/core'
 import { joiResolver, useForm } from '@mantine/form'
-import { CreateProjectDescriptionStep } from '@features/createProject/components/CreateProjectDescriptionStep'
-import { CreateProjectTechnologiesAndRolesStep } from '@features/createProject/components/CreateProjectTechnologiesAndRolesStep'
-import { CreateProjectMembersStep } from '@features/createProject/components/CreateProjectMembersStep'
-import { CreateProjectBasicInfoStep } from '@features/createProject/components/CreateProjectBasicInfoStep'
+import { DescriptionStep } from '@features/createProject/components/DescriptionStep'
+import { TechnologiesAndRolesStep } from '@features/createProject/components/TechnologiesAndRolesStep'
+import { MembersStep } from '@features/createProject/components/MembersStep'
+import { BasicInfoStep } from '@features/createProject/components/BasicInfoStep'
 import { CreateProjectFormValues, Step } from '@features/createProject/types'
 import { CompletedStep } from '@features/createProject/components/CompletedStep'
 import { useCreateProject } from '@features/createProject/hooks'
 import { withStepsManagement } from '@features/common/hocs/withStepsManagement'
-import { CreateProjectFormButtons } from '@features/createProject/components/CreateProjectFormButtons'
+import { FormButtons } from '@features/createProject/components/FormButtons'
 import { StepsManagementContext } from '@features/common/contexts/StepsManagementContext'
 import { useWindowSize } from '@features/common/hooks/useWIndowSize'
 
 const stepElementsArray: Step[] = [
   {
     description: 'Basic information',
-    node: CreateProjectBasicInfoStep,
+    node: BasicInfoStep,
     validate: () => ({
       name: Joi.string()
         .min(5)
@@ -36,7 +36,7 @@ const stepElementsArray: Step[] = [
   },
   {
     description: 'Description',
-    node: CreateProjectDescriptionStep,
+    node: DescriptionStep,
     validate: () => ({
       description: Joi.string()
         .min(20)
@@ -52,7 +52,7 @@ const stepElementsArray: Step[] = [
   },
   {
     description: 'Technologies and roles',
-    node: CreateProjectTechnologiesAndRolesStep,
+    node: TechnologiesAndRolesStep,
     validate: () => ({
       technologies: Joi.array()
         .min(1)
@@ -62,7 +62,7 @@ const stepElementsArray: Step[] = [
   },
   {
     description: 'Members',
-    node: CreateProjectMembersStep,
+    node: MembersStep,
     validate: (values: CreateProjectFormValues) => ({
       capacity: Joi.number()
         .min(1)
@@ -152,7 +152,7 @@ const CreateProjectForm = () => {
         </Stepper.Completed>
       </Stepper>
 
-      <CreateProjectFormButtons
+      <FormButtons
         isSubmitted={isSubmitted}
         nextStepIfNoErrors={nextStepIfNoErrors}
         error={error}

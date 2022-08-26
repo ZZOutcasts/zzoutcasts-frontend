@@ -4,7 +4,7 @@ import { CreateProjectFormValues } from '@features/createProject/types'
 import { useFetchTechnologies } from '@features/createProject/hooks/useFetchTechnologies'
 import { useFetchRoles } from '@features/createProject/hooks'
 
-export const CreateProjectTechnologiesAndRolesStep = ({
+export const TechnologiesAndRolesStep = ({
   form
 }: {
   form: UseFormReturnType<CreateProjectFormValues>

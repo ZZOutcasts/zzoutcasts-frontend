@@ -2,7 +2,7 @@ import { UseFormReturnType } from '@mantine/form'
 import { CreateProjectFormValues } from '@features/createProject/types/createProject'
 import { CreateProjectFormRichText } from '../CreateProjectFormRichText'
 
-export const CreateProjectDescriptionStep = ({
+export const DescriptionStep = ({
   form
 }: {
   form: UseFormReturnType<CreateProjectFormValues>

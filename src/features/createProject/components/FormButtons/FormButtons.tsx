@@ -25,7 +25,7 @@ const BackButton = ({ isSubmitted }: BackButtonProps) => {
   )
 }
 
-export const CreateProjectFormButtons = ({
+export const FormButtons = ({
   isSubmitted,
   nextStepIfNoErrors,
   error

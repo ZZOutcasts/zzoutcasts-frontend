@@ -5,7 +5,7 @@ import { ApiMultiSelect } from '@features/common/components/customInputs/ApiMult
 import { useFetchMembersByUsername } from '@features/createProject/hooks'
 import { useState } from 'react'
 
-export const CreateProjectMembersStep = ({
+export const MembersStep = ({
   form
 }: {
   form: UseFormReturnType<CreateProjectFormValues>
