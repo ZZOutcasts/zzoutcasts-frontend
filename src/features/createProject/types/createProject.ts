@@ -1,5 +1,4 @@
 import { ApiMultiSelectItem } from '@features/common/types/ApiMultiSelect'
-import { UseFormReturnType } from '@mantine/form'
 import { ZodTypeAny } from 'zod'
 
 export interface CreateProjectFormValues {
@@ -16,14 +15,6 @@ export type CreateProjectFormValuesValidation = {
   [key in keyof CreateProjectFormValues]?: ZodTypeAny
 }
 
-export interface Step {
-  description: string
-  node: ({
-    form
-  }: {
-    form: UseFormReturnType<CreateProjectFormValues>
-  }) => JSX.Element
-  validate: (
-    values: CreateProjectFormValues
-  ) => CreateProjectFormValuesValidation
-}
+export type StepValidation = (
+  values: CreateProjectFormValues
+) => CreateProjectFormValuesValidation
