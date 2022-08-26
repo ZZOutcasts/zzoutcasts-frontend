@@ -11,6 +11,20 @@ interface CreateProjectFormButtonsProps {
   error: unknown
 }
 
+interface BackButtonProps {
+  isSubmitted?: boolean
+}
+
+const BackButton = ({ isSubmitted }: BackButtonProps) => {
+  const { prevStep } = useContext(StepsManagementContext)
+
+  return (
+    <Button variant="default" onClick={prevStep} disabled={isSubmitted}>
+      Back
+    </Button>
+  )
+}
+
 export const CreateProjectFormButtons = ({
   isSubmitted,
   nextStepIfNoErrors,
@@ -18,36 +32,44 @@ export const CreateProjectFormButtons = ({
 }: CreateProjectFormButtonsProps) => {
   const router = useRouter()
 
-  const { completedStepIndex, currentStep, prevStep, lastStepIndex } =
-    useContext(StepsManagementContext)
-
-  const isTheCurrentStepBetweenFirstAndCompleted = () =>
-    currentStep > 0 && currentStep < completedStepIndex
-
-  const BackButton = (
-    <Button variant="default" onClick={prevStep} disabled={isSubmitted}>
-      Back
-    </Button>
+  const { completedStepIndex, currentStep, lastStepIndex } = useContext(
+    StepsManagementContext
   )
 
   return (
     <Group position="right" mt="xl">
       <>
-        {isTheCurrentStepBetweenFirstAndCompleted() && BackButton}
-        {currentStep === completedStepIndex && error && BackButton}
-        {currentStep < lastStepIndex && (
-          <Button onClick={nextStepIfNoErrors}>Next step</Button>
-        )}
-        {currentStep === lastStepIndex && (
-          <LoadingButton type="submit" isLoading={isSubmitted}>
-            Submit
-          </LoadingButton>
-        )}
-        {currentStep === completedStepIndex && (
-          <Button onClick={() => router.push(routes.myProjects())}>
-            Close
-          </Button>
-        )}
+        {(() => {
+          switch (currentStep) {
+            case 0:
+              return <Button onClick={nextStepIfNoErrors}>Next step</Button>
+            case lastStepIndex:
+              return (
+                <>
+                  <BackButton isSubmitted={isSubmitted} />
+                  <LoadingButton type="submit" isLoading={isSubmitted}>
+                    Submit
+                  </LoadingButton>
+                </>
+              )
+            case completedStepIndex:
+              return (
+                <>
+                  {error && <BackButton />}
+                  <Button onClick={() => router.push(routes.myProjects())}>
+                    Close
+                  </Button>
+                </>
+              )
+            default:
+              return (
+                <>
+                  <BackButton />
+                  <Button onClick={nextStepIfNoErrors}>Next step</Button>
+                </>
+              )
+          }
+        })()}
       </>
     </Group>
   )
