@@ -43,21 +43,18 @@ export const MembersStep = ({
   )
 }
 
-export const MembersStepData = {
-  description: 'Members',
-  validate: (values: CreateProjectFormValues) => ({
-    capacity: zod
-      .number()
-      .min(1, {
-        message: 'Project capacity must be greater than or equal to 1'
-      })
-      .max(100, {
-        message: 'Project capacity must be less than or equal to 100'
-      }),
-    member_ids: zod
-      .array(zod.unknown())
-      .max(values.capacity > 0 ? values.capacity : 0, {
-        message: 'You cannot add more members than the capacity of the project'
-      })
-  })
-}
+export const membersStepValidation = (values: CreateProjectFormValues) => ({
+  capacity: zod
+    .number()
+    .min(1, {
+      message: 'Project capacity must be greater than or equal to 1'
+    })
+    .max(100, {
+      message: 'Project capacity must be less than or equal to 100'
+    }),
+  member_ids: zod
+    .array(zod.unknown())
+    .max(values.capacity > 0 ? values.capacity : 0, {
+      message: 'You cannot add more members than the capacity of the project'
+    })
+})

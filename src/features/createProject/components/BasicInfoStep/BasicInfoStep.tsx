@@ -27,23 +27,19 @@ export const BasicInfoStep = ({
   )
 }
 
-export const BasicInfoStepData = {
-  description: 'Basic information',
-  validate: () => ({
-    name: zod
-      .string()
-      .min(5, { message: 'Project name must be at least 5 characters long' })
-      .max(100, {
-        message:
-          'Project name must be less than or equal to 100 characters long'
-      }),
-    avatar: zod
-      .any()
+export const basicInfoStepValidation = () => ({
+  name: zod
+    .string()
+    .min(5, { message: 'Project name must be at least 5 characters long' })
+    .max(100, {
+      message: 'Project name must be less than or equal to 100 characters long'
+    }),
+  avatar: zod
+    .any()
 
-      .refine(
-        (file) => file && ALLOWED_AVATAR_EXTENSIONS.includes(file.type),
-        'The avatar file should have an extension of .png, .jpg, .jpeg or .webp'
-      )
-      .refine((file) => !!file, 'Project avatar is required')
-  })
-}
+    .refine(
+      (file) => file && ALLOWED_AVATAR_EXTENSIONS.includes(file.type),
+      'The avatar file should have an extension of .png, .jpg, .jpeg or .webp'
+    )
+    .refine((file) => !!file, 'Project avatar is required')
+})

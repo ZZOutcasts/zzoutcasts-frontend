@@ -38,14 +38,11 @@ export const TechnologiesAndRolesStep = ({
   )
 }
 
-export const TechnologiesAndRolesStepData = {
-  description: 'Technologies and roles',
-  validate: () => ({
-    technologies: zod
-      .array(zod.unknown())
-      .min(1, { message: 'Choose at least one technology' }),
-    roles: zod
-      .array(zod.unknown())
-      .min(1, { message: 'Choose at least one role' })
-  })
-}
+export const technologiesAndRolesStepValidation = () => ({
+  technologies: zod
+    .array(zod.unknown())
+    .min(1, { message: 'Choose at least one technology' }),
+  roles: zod
+    .array(zod.unknown())
+    .min(1, { message: 'Choose at least one role' })
+})

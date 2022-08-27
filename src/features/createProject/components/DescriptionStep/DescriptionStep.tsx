@@ -25,17 +25,14 @@ export const DescriptionStep = ({
   )
 }
 
-export const DescriptionStepData = {
-  description: 'Description',
-  validate: () => ({
-    description: zod
-      .string()
-      .min(20, {
-        message: 'Project description must be at least 20 characters long'
-      })
-      .max(100_000, {
-        message:
-          'Project description must be less than or equal to 100 000 characters long'
-      })
-  })
-}
+export const descriptionStepValidation = () => ({
+  description: zod
+    .string()
+    .min(20, {
+      message: 'Project description must be at least 20 characters long'
+    })
+    .max(100_000, {
+      message:
+        'Project description must be less than or equal to 100 000 characters long'
+    })
+})

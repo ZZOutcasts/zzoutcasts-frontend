@@ -4,19 +4,19 @@ import { Stepper } from '@mantine/core'
 import { useForm, zodResolver } from '@mantine/form'
 import {
   DescriptionStep,
-  DescriptionStepData
+  descriptionStepValidation
 } from '@features/createProject/components/DescriptionStep'
 import {
   TechnologiesAndRolesStep,
-  TechnologiesAndRolesStepData
+  technologiesAndRolesStepValidation
 } from '@features/createProject/components/TechnologiesAndRolesStep'
 import {
   MembersStep,
-  MembersStepData
+  membersStepValidation
 } from '@features/createProject/components/MembersStep'
 import {
   BasicInfoStep,
-  BasicInfoStepData
+  basicInfoStepValidation
 } from '@features/createProject/components/BasicInfoStep'
 import {
   CreateProjectFormValues,
@@ -30,10 +30,10 @@ import { StepsManagementContext } from '@features/common/contexts/StepsManagemen
 import { useWindowSize } from '@features/common/hooks/useWIndowSize'
 
 const stepsValidationArray: StepValidation[] = [
-  BasicInfoStepData.validate,
-  DescriptionStepData.validate,
-  TechnologiesAndRolesStepData.validate,
-  MembersStepData.validate
+  basicInfoStepValidation,
+  descriptionStepValidation,
+  technologiesAndRolesStepValidation,
+  membersStepValidation
 ]
 
 const CreateProjectForm = () => {
@@ -100,33 +100,29 @@ const CreateProjectForm = () => {
       >
         <Stepper.Step
           label="Step 1"
-          description={BasicInfoStepData.description}
-          key={BasicInfoStepData.description}
+          description="Basic information"
+          key="Basic information"
         >
           <BasicInfoStep form={form} />
         </Stepper.Step>
 
         <Stepper.Step
           label="Step 2"
-          description={DescriptionStepData.description}
-          key={DescriptionStepData.description}
+          description="Description"
+          key="Description"
         >
           <DescriptionStep form={form} />
         </Stepper.Step>
 
         <Stepper.Step
           label="Step 3"
-          description={TechnologiesAndRolesStepData.description}
-          key={TechnologiesAndRolesStepData.description}
+          description="Technologies and roles"
+          key="Technologies and roles"
         >
           <TechnologiesAndRolesStep form={form} />
         </Stepper.Step>
 
-        <Stepper.Step
-          label="Step 4"
-          description={MembersStepData.description}
-          key={MembersStepData.description}
-        >
+        <Stepper.Step label="Step 4" description="Members" key="Members">
           <MembersStep form={form} />
         </Stepper.Step>
 
