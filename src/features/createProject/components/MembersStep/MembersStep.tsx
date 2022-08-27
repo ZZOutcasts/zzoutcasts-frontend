@@ -37,7 +37,7 @@ export const MembersStep = ({
         shouldReFetchOnSearchChange
         noDataMessage="No such user found"
         required
-        {...form.getInputProps('member_ids')}
+        {...form.getInputProps('members')}
       />
     </>
   )
@@ -52,7 +52,7 @@ export const membersStepValidation = (values: CreateProjectFormValues) => ({
     .max(100, {
       message: 'Project capacity must be less than or equal to 100'
     }),
-  member_ids: zod
+  members: zod
     .array(zod.unknown())
     .max(values.capacity > 0 ? values.capacity : 0, {
       message: 'You cannot add more members than the capacity of the project'

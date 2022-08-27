@@ -7,7 +7,7 @@ export interface CreateProjectFormValues {
   description: string
   technologies: ApiMultiSelectItem[]
   roles: ApiMultiSelectItem[]
-  member_ids: ApiMultiSelectItem[]
+  members: ApiMultiSelectItem[]
   capacity: number
 }
 

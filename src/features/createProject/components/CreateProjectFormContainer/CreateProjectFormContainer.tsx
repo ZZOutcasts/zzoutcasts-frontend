@@ -1,5 +1,5 @@
 import { z as zod } from 'zod'
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { Stepper } from '@mantine/core'
 import { useForm, zodResolver } from '@mantine/form'
 import {
@@ -41,18 +41,10 @@ const CreateProjectForm = () => {
     StepsManagementContext
   )
 
-  const [formData, setFormData] = useState<CreateProjectFormValues | undefined>(
-    undefined
-  )
-
   const [windowWidth] = useWindowSize()
   const SWITCH_TO_MOBILE_VIEW_WINDOW_WIDTH = 1000
 
-  const [isSubmitted, setIsSubmitted] = useState(false)
-
-  const { error, refetch: reFetch } = useCreateProject(
-    formData as CreateProjectFormValues
-  )
+  const { mutate, isError, isSuccess, isLoading } = useCreateProject()
 
   const form = useForm<CreateProjectFormValues>({
     validate: (values: CreateProjectFormValues) => {
@@ -70,7 +62,7 @@ const CreateProjectForm = () => {
       description: '',
       technologies: [],
       roles: [],
-      member_ids: [],
+      members: [],
       capacity: 0
     }
   })
@@ -78,11 +70,11 @@ const CreateProjectForm = () => {
   const nextStepIfNoErrors = () => !form.validate().hasErrors && nextStep()
 
   const handleSubmit = async (values: CreateProjectFormValues) => {
-    await setFormData(values)
-    await setIsSubmitted(true)
-    await reFetch()
-    await nextStepIfNoErrors()
-    setIsSubmitted(false)
+    mutate(values, {
+      onSettled: () => {
+        nextStepIfNoErrors()
+      }
+    })
   }
 
   return (
@@ -127,14 +119,14 @@ const CreateProjectForm = () => {
         </Stepper.Step>
 
         <Stepper.Completed>
-          <CompletedStep isSuccess={!error} />
+          <CompletedStep isSuccess={isSuccess} />
         </Stepper.Completed>
       </Stepper>
 
       <FormButtons
-        isSubmitted={isSubmitted}
+        isSubmitted={isLoading}
         nextStepIfNoErrors={nextStepIfNoErrors}
-        error={error}
+        isError={isError}
       />
     </form>
   )

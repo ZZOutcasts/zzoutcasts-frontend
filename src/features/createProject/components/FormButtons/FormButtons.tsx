@@ -8,7 +8,7 @@ import { StepsManagementContext } from '@features/common/contexts/StepsManagemen
 interface CreateProjectFormButtonsProps {
   isSubmitted: boolean
   nextStepIfNoErrors: () => void
-  error: unknown
+  isError: boolean
 }
 
 interface BackButtonProps {
@@ -28,7 +28,7 @@ const BackButton = ({ isSubmitted }: BackButtonProps) => {
 export const FormButtons = ({
   isSubmitted,
   nextStepIfNoErrors,
-  error
+  isError
 }: CreateProjectFormButtonsProps) => {
   const router = useRouter()
 
@@ -55,7 +55,7 @@ export const FormButtons = ({
             case completedStepIndex:
               return (
                 <>
-                  {error && <BackButton />}
+                  {isError && <BackButton />}
                   <Button onClick={() => router.push(routes.myProjects())}>
                     Close
                   </Button>
