@@ -3,5 +3,6 @@ export const routes = {
   myProjects: () => '/projects',
   profile: () => '/profile',
   project: (id: string) => `/projects/${id}`,
-  createProject: () => '/projects/create'
+  createProject: () => '/projects/create',
+  projectManagement: (id: string) => `/projects/${id}/management`
 }
