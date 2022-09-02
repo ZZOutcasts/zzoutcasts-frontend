@@ -4,11 +4,12 @@ import {
   useMantineColorScheme,
   useMantineTheme
 } from '@mantine/core'
-import { ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 
-type LoadingButtonProps = {
+export type LoadingButtonProps = {
   children: ReactNode
   isLoading: boolean
+  onClick?: () => unknown
 } & ButtonProps
 
 export const LoadingButton = ({

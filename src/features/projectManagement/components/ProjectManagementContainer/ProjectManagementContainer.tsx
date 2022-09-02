@@ -2,6 +2,7 @@ import { ProjectManagementTabs } from '@features/projectManagement/components/Pr
 import { useUserProject } from '@features/projectManagement/hooks'
 import { ProjectNotFound } from '@features/projectManagement/components/ProjectNotFound'
 import { Group, Loader } from '@mantine/core'
+import { ProjectIdProvider } from '@features/projectManagement/contexts/ProjectIdContext'
 
 interface IProjectManagementContainer {
   projectId: string
@@ -10,7 +11,7 @@ interface IProjectManagementContainer {
 export const ProjectManagementContainer = ({
   projectId
 }: IProjectManagementContainer) => {
-  const { isError, isLoading } = useUserProject(projectId)
+  const { isError, isLoading, data } = useUserProject(projectId)
 
   if (isError) {
     return <ProjectNotFound />
@@ -23,5 +24,9 @@ export const ProjectManagementContainer = ({
     )
   }
 
-  return <ProjectManagementTabs />
+  return (
+    <ProjectIdProvider projectId={data.id}>
+      <ProjectManagementTabs />
+    </ProjectIdProvider>
+  )
 }

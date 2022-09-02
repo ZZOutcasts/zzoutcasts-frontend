@@ -4,7 +4,7 @@ export const useUserProject = (projectId: string) => {
   return useQuery<any>(['project', projectId], async () => {
     return new Promise<any>((resolve, reject) => {
       console.log(projectId)
-      setTimeout(() => resolve({ name: 'JSON CONNOR' }), 1000)
+      setTimeout(() => resolve({ id: 'someuuid' }), 1000)
     })
   })
 }

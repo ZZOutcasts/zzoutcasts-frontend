@@ -1,10 +1,23 @@
-import { Tabs } from '@mantine/core'
+import { Group, Tabs } from '@mantine/core'
 import { AiOutlineMail } from 'react-icons/ai'
 import { HiOutlineDocumentText } from 'react-icons/hi'
 import { BsPersonCircle } from 'react-icons/bs'
 import { MdWorkOutline } from 'react-icons/md'
 import { MembersTab } from '@features/projectManagement/components/MembersTab'
 import { InvitationsTab } from '@features/projectManagement/components/InvitationsTab'
+import { ReactNode } from 'react'
+
+interface TabContainerProps {
+  children: ReactNode
+}
+
+const TabContainer = ({ children }: TabContainerProps) => {
+  return (
+    <Group position="center">
+      <div style={{ margin: 60, width: '100%' }}>{children}</div>
+    </Group>
+  )
+}
 
 export const ProjectManagementTabs = () => {
   return (
@@ -28,11 +41,15 @@ export const ProjectManagementTabs = () => {
       </Tabs.List>
 
       <Tabs.Panel value="members" pt="xs">
-        <MembersTab />
+        <TabContainer>
+          <MembersTab projectId="1" />
+        </TabContainer>
       </Tabs.Panel>
 
       <Tabs.Panel value="invitations" pt="xs">
-        <InvitationsTab />
+        <TabContainer>
+          <InvitationsTab />
+        </TabContainer>
       </Tabs.Panel>
 
       <Tabs.Panel value="join-requests" pt="xs">
