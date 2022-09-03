@@ -15,7 +15,8 @@ import {
 } from '@mantine/core'
 import { ReactNode } from 'react'
 
-export function LoginForm() {
+
+export const LoginForm = () => {
   return (
     <Container size={420} my={40}>
       <Title
