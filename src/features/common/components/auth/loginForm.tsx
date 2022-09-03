@@ -1,5 +1,5 @@
-import { useToggle, upperFirst } from '@mantine/hooks'
-import { useForm } from '@mantine/form'
+// import { useToggle, upperFirst } from '@mantine/hooks'
+// import { useForm } from '@mantine/form'
 import { routes } from '@config/routes'
 import {
   TextInput,
@@ -13,7 +13,6 @@ import {
   Group,
   Button
 } from '@mantine/core'
-import { ReactNode } from 'react'
 
 
 export const LoginForm = () => {
@@ -22,11 +21,7 @@ export const LoginForm = () => {
       <Title align="center">Welcome back!</Title>
       <Text color="dimmed" size="lg" align="center" mt={5}>
         Do not have an account yet?{' '}
-        <Anchor<'a'>
-          //onClick={(event) => event.preventDefault()}
-          href={routes.register_demo()}
-          size="lg"
-        >
+        <Anchor<'a'> href={routes.register_demo()} size="lg">
           Create account
         </Anchor>
       </Text>
@@ -42,7 +37,6 @@ export const LoginForm = () => {
         <Group position="apart" mt="md">
           <Checkbox label="Remember me" />
           <Anchor<'a'>
-            //onClick={(event) => event.preventDefault()}
             href="#" // TODO: add route to "forgot password page"
             size="sm"
           >
