@@ -19,15 +19,7 @@ import { ReactNode } from 'react'
 export const LoginForm = () => {
   return (
     <Container size={420} my={40}>
-      <Title
-        align="center"
-        sx={(theme) => ({
-          fontFamily: `Greycliff CF, ${theme.fontFamily}`,
-          fontWeight: 900
-        })}
-      >
-        Welcome back!
-      </Title>
+      <Title align="center">Welcome back!</Title>
       <Text color="dimmed" size="lg" align="center" mt={5}>
         Do not have an account yet?{' '}
         <Anchor<'a'>
