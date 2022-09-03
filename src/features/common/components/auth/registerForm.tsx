@@ -18,15 +18,7 @@ import { ReactNode } from 'react'
 export const RegisterForm = () => {
   return (
     <Container size={420} my={40}>
-      <Title
-        align="center"
-        sx={(theme) => ({
-          fontFamily: `Greycliff CF, ${theme.fontFamily}`,
-          fontWeight: 900
-        })}
-      >
-        Welcome to Projectly!
-      </Title>
+      <Title align="center">Welcome to Projectly!</Title>
       <Text color="dimmed" size="lg" align="center" mt={5}>
         Alredy registerd ?{' '}
         <Anchor<'a'>
