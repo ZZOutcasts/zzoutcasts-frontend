@@ -1,5 +1,3 @@
-// import { useToggle, upperFirst } from '@mantine/hooks'
-// import { useForm } from '@mantine/form'
 import { routes } from '@config/routes'
 import {
   TextInput,
@@ -13,7 +11,6 @@ import {
   Group,
   Button
 } from '@mantine/core'
-
 
 export const LoginForm = () => {
   return (
@@ -36,10 +33,7 @@ export const LoginForm = () => {
         />
         <Group position="apart" mt="md">
           <Checkbox label="Remember me" />
-          <Anchor<'a'>
-            href="#" // TODO: add route to "forgot password page"
-            size="sm"
-          >
+          <Anchor<'a'> href={routes.forgotPasswordFormDemo()} size="sm">
             Forgot password?
           </Anchor>
         </Group>

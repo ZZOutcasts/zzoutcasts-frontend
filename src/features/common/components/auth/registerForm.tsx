@@ -20,21 +20,16 @@ export const RegisterForm = () => {
     <Container size={420} my={40}>
       <Title align="center">Welcome to Projectly!</Title>
       <Text color="dimmed" size="lg" align="center" mt={5}>
-        Alredy registerd ?{' '}
+        Already registerd ?{' '}
         <Anchor<'a'> href={routes.loginDemo()} size="lg">
           Log in
         </Anchor>
       </Text>
 
       <Paper withBorder shadow="md" p={30} mt={30} radius="md">
-        <TextInput label="Name" placeholder="Name" required />
-        <TextInput label="Email" placeholder="you@mail.com" required />
-        <PasswordInput
-          label="Password"
-          placeholder="Your password"
-          required
-          mt="md"
-        />
+        <TextInput label="Name" placeholder="Name" mb={5} required />
+        <TextInput label="Email" placeholder="you@mail.com" mb={5} required />
+        <PasswordInput label="Password" placeholder="Your password" required />
         <Group position="apart" mt="md">
           <Checkbox label="Remember me" />
         </Group>
