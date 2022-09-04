@@ -21,7 +21,7 @@ export const LoginForm = () => {
       <Title align="center">Welcome back!</Title>
       <Text color="dimmed" size="lg" align="center" mt={5}>
         Do not have an account yet?{' '}
-        <Anchor<'a'> href={routes.register_demo()} size="lg">
+        <Anchor<'a'> href={routes.registerDemo()} size="lg">
           Create account
         </Anchor>
       </Text>

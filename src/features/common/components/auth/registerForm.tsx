@@ -21,7 +21,7 @@ export const RegisterForm = () => {
       <Title align="center">Welcome to Projectly!</Title>
       <Text color="dimmed" size="lg" align="center" mt={5}>
         Alredy registerd ?{' '}
-        <Anchor<'a'> href={routes.login_demo()} size="lg">
+        <Anchor<'a'> href={routes.loginDemo()} size="lg">
           Log in
         </Anchor>
       </Text>
