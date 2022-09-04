@@ -44,11 +44,11 @@ const DefaultNavItems = () => (
       My projects
     </NavbarLink>
     {/* TODO remove later */}
-    <NavbarLink icon={<TbBrandTinder />} href={routes.login_demo()} color="red">
+    <NavbarLink icon={<TbBrandTinder />} href={routes.loginDemo()} color="red">
       Login Demo
     </NavbarLink>
     <NavbarLink
-      href={routes.register_demo()}
+      href={routes.registerDemo()}
       icon={<TbBrandTinder />}
       color="red"
     >

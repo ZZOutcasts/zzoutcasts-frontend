@@ -4,6 +4,6 @@ export const routes = {
   profile: () => '/profile',
   project: (id: string) => `/projects/${id}`,
   createProject: () => '/projects/create',
-  login_demo: () => 'login-demo',
-  register_demo: () => 'register-demo'
+  loginDemo: () => 'loginDemo',
+  registerDemo: () => 'registerDemo'
 }
