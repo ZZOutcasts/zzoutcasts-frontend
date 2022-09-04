@@ -5,5 +5,6 @@ export const routes = {
   project: (id: string) => `/projects/${id}`,
   createProject: () => '/projects/create',
   loginDemo: () => 'loginDemo',
-  registerDemo: () => 'registerDemo'
+  registerDemo: () => 'registerDemo',
+  forgotPasswordFormDemo: () => 'forgotPasswordFormDemo'
 }
