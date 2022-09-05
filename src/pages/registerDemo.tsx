@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
-import { Layout } from '../features/common/components/navigation/Layout'
 import { RegisterForm } from '@features/common/components/auth'
+import { Layout } from '@features/common/components/navigation/Layout'
 
 const RegisterFormDemo: NextPage = () => {
   return (
