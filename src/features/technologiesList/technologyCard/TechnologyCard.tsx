@@ -1,14 +1,11 @@
-import {
-  Card,
-  Center,
-  Image,
-  Text,
-  Button,
-  Group,
-  CardSection
-} from '@mantine/core'
+import { Button, Card, CardSection, Group, Image, Text } from '@mantine/core'
+import { TechnologyAndRole } from '@features/common/types/TechnologyAndRole'
 
-export const TechnologyCard = ({ project }) => {
+interface TechnologyCardProps {
+  project: TechnologyAndRole
+}
+
+export const TechnologyCard = ({ project }: TechnologyCardProps) => {
   return (
     <Card shadow="md" p="20px" radius="md" withBorder>
       <CardSection>
