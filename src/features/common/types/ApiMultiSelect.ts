@@ -1,5 +1,5 @@
 export interface ApiMultiSelectItem {
-  name?: string
+  label?: string
   value: string
   imageUrl?: string
 }
