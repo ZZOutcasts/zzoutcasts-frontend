@@ -4,14 +4,25 @@ import { CreateProjectFormValues } from '@features/createProject/types'
 import { useFetchTechnologies } from '@features/createProject/hooks/useFetchTechnologies'
 import { useFetchRoles } from '@features/createProject/hooks'
 import { z as zod } from 'zod'
+import { mapTechnologyOrRoleToApiMultiSelectItem } from '@features/common/utils/ApiMultiSelect'
 
 export const TechnologiesAndRolesStep = ({
   form
 }: {
   form: UseFormReturnType<CreateProjectFormValues>
 }) => {
-  const technologiesQuery = useFetchTechnologies()
+  const { data: technologiesQueryData, ...technologiesQueryProps } =
+    useFetchTechnologies()
   const rolesQuery = useFetchRoles()
+
+  const technologiesQuery = {
+    ...technologiesQueryProps,
+    data:
+      technologiesQueryData &&
+      mapTechnologyOrRoleToApiMultiSelectItem(technologiesQueryData)
+  }
+
+  // TODO: add the same thing for roles
 
   return (
     <>

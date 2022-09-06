@@ -1,9 +1,9 @@
 import { useQuery } from '@tanstack/react-query'
-import { ApiMultiSelectItem } from '@features/common/types/ApiMultiSelect'
+import { TechnologyAndRole } from '@features/common/types/TechnologyAndRole'
 
 export const useFetchTechnologies = () => {
-  return useQuery<ApiMultiSelectItem[]>(['technologies'], (() => {
-    return new Promise((resolve) =>
+  return useQuery<TechnologyAndRole[]>(['technologies'], () => {
+    return new Promise<TechnologyAndRole[]>((resolve) =>
       setTimeout(() => {
         resolve([
           {
@@ -24,5 +24,5 @@ export const useFetchTechnologies = () => {
         ])
       }, 4000)
     )
-  }) as unknown as () => Promise<ApiMultiSelectItem[]>)
+  })
 }

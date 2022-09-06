@@ -1,7 +1,6 @@
+import { useFetchTechnologies } from '@features/createProject/hooks'
 import { Grid } from '@mantine/core'
 import { TechnologyCard } from './technologyCard/index'
-import { useFetchTechnologies } from '@features/createProject/hooks'
-import { AiFillAmazonSquare } from 'react-icons/ai'
 
 export const TechnologiesList = () => {
   const { data = [], isLoading } = useFetchTechnologies()
