@@ -6,26 +6,21 @@ export const useFetchTechnologies = () => {
     return new Promise((resolve) =>
       setTimeout(() => {
         resolve([
-          { imageUrl: '/js.png', value: 'Javascript' },
-          { imageUrl: '/js.png', value: 'Javascript1' },
-          { imageUrl: '/js.png', value: 'Javascript2' },
-          { imageUrl: '/js.png', value: 'Javascript4' },
-          { imageUrl: '/js.png', value: 'Javascript3' },
-          { imageUrl: '/js.png', value: 'Javascript5' },
-          { imageUrl: '/js.png', value: 'Javascript6' },
-          { imageUrl: '/js.png', value: 'Javascript7' },
-          { imageUrl: '/js.png', value: 'Javascript8' },
-          { imageUrl: '/js.png', value: 'Javascript9' },
-          { imageUrl: '/js.png', value: 'Javascript10' },
-          { imageUrl: '/js.png', value: 'Javascript11' },
-          { imageUrl: '/js.png', value: 'Javascript12' },
-          { imageUrl: '/js.png', value: 'Javascript13' },
-          { imageUrl: '/js.png', value: 'Javascript14' },
-          { imageUrl: '/js.png', value: 'Javascript15' },
-          { imageUrl: '/js.png', value: 'Javascript16' },
-          { imageUrl: '/js.png', value: 'Javascript17' },
-          { imageUrl: '/js.png', value: 'Javascript18' },
-          { imageUrl: '/js.png', value: 'Javascript19' }
+          {
+            imageUrl: '/js.png',
+            name: 'Javascript',
+            description: 'Description of JS'
+          },
+          {
+            imageUrl: '/js.png',
+            name: 'CSS',
+            description: 'Description of CSS'
+          },
+          {
+            imageUrl: '/js.png',
+            name: 'HTML',
+            description: 'Description of HTML'
+          }
         ])
       }, 4000)
     )
