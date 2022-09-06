@@ -5,7 +5,7 @@ import { AiFillAmazonSquare } from 'react-icons/ai'
 
 export const TechnologiesList = () => {
   const { data = [], isLoading } = useFetchTechnologies()
-  if (isLoading == false) {
+  if (!isLoading) {
     return (
       <Grid justify="center" align="flex-start">
         {data.map((project) => (
@@ -15,7 +15,6 @@ export const TechnologiesList = () => {
         ))}
       </Grid>
     )
-  } else {
-    return <p>Loading...</p>
   }
+  return <p>Loading...</p>
 }
