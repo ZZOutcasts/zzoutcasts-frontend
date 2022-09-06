@@ -8,8 +8,9 @@ export const useFetchTechnologies = () => {
         resolve([
           {
             imageUrl: '/js.png',
-            name: 'Javascript',
-            description: 'Description of JS'
+            name: 'TypeScript',
+            description:
+              'free and open source programming language developed and maintained by Microsoft. It is a strict syntactical superset of JavaScript and adds optional static typing to the language.'
           },
           {
             imageUrl: '/js.png',

@@ -1,29 +1,27 @@
 import {
   Card,
+  Center,
   Image,
   Text,
-  Badge,
   Button,
   Group,
-  keyframes,
   CardSection
 } from '@mantine/core'
 
 export const TechnologyCard = ({ project }) => {
   return (
-    <Card shadow="md" p="lg" radius="md" withBorder>
+    <Card shadow="md" p="20px" radius="md" withBorder>
       <CardSection>
-        <Image src={project.imageUrl}></Image>
-      </CardSection>
-      <Group position="center" mt="md" mb="xs">
-        <Text size="sm" color="dimmed">
-          {project.name}
+        <Group position="left" spacing="xl">
+          <Image src={project.imageUrl} height="70px" width="70px"></Image>
+          <Text align="end" size="md" weight={700} ml="50px">
+            {project.name}
+          </Text>
+        </Group>
+        <Text pt="30px" align="center" size="sm" color="dimmed">
+          {project.description}
         </Text>
-      </Group>
-
-      <Text align="center" size="sm" color="dimmed">
-        {project.description}
-      </Text>
+      </CardSection>
 
       <Group position="center" spacing="lg">
         <Button variant="light" color="blue" radius="md" size="xs" mt="xl">
