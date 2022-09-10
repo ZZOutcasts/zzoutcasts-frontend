@@ -1,5 +1,4 @@
-import { useToggle, upperFirst } from '@mantine/hooks'
-import { useForm } from '@mantine/form'
+import { useForm, zodResolver } from '@mantine/form'
 import { routes } from '@config/routes'
 import {
   TextInput,
@@ -13,9 +12,30 @@ import {
   Group,
   Button
 } from '@mantine/core'
-import { ReactNode } from 'react'
+import { z } from 'zod'
 
-export const RegisterForm = () => {
+const registerSchema = z.object({
+  name: z.string().min(2, { message: 'Name should have at least 2 letters' }),
+  email: z.string().email({ message: 'Invalid email' }),
+  password: z
+    .string()
+    .min(8, { message: 'Password must have at least 8 letters' })
+})
+
+interface RegisterFormProps {
+  onSubmit: () => void
+}
+
+export const RegisterForm = ({ onSubmit }: RegisterFormProps) => {
+  const form = useForm({
+    validate: zodResolver(registerSchema),
+    initialValues: {
+      name: '',
+      email: '',
+      password: ''
+    }
+  })
+
   return (
     <Container size={420} my={40}>
       <Title align="center">Welcome to Projectly!</Title>
@@ -27,15 +47,38 @@ export const RegisterForm = () => {
       </Text>
 
       <Paper withBorder shadow="md" p={30} mt={30} radius="md">
-        <TextInput label="Name" placeholder="Name" mb={5} required />
-        <TextInput label="Email" placeholder="you@mail.com" mb={5} required />
-        <PasswordInput label="Password" placeholder="Your password" required />
-        <Group position="apart" mt="md">
-          <Checkbox label="Remember me" />
-        </Group>
-        <Button fullWidth mt="xl">
-          Register
-        </Button>
+        <form
+          onSubmit={form.onSubmit((values) => {
+            onSubmit()
+          })}
+        >
+          <TextInput
+            label="Name"
+            placeholder="Name"
+            mb={5}
+            required
+            {...form.getInputProps('name')}
+          />
+          <TextInput
+            label="Email"
+            placeholder="you@mail.com"
+            mb={5}
+            required
+            {...form.getInputProps('email')}
+          />
+          <PasswordInput
+            label="Password"
+            placeholder="Your password"
+            required
+            {...form.getInputProps('password')}
+          />
+          <Group position="apart" mt="md">
+            <Checkbox label="Remember me" />
+          </Group>
+          <Button fullWidth mt="xl" type="submit">
+            Register
+          </Button>
+        </form>
       </Paper>
     </Container>
   )
