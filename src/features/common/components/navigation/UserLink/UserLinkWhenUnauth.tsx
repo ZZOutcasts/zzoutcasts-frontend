@@ -1,7 +1,6 @@
 import { Text, Button, Group, Modal } from '@mantine/core'
 import { useState } from 'react'
-import { LoginForm } from '../../auth'
-import { RegisterForm } from '../../auth'
+import { LoginForm, RegisterForm } from '../../auth'
 
 export const UserLinkWhenUnauth = () => {
   const [loginOpened, setLoginOpened] = useState(false)

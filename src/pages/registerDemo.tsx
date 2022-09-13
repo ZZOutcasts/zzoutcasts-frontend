@@ -5,7 +5,8 @@ import { Layout } from '@features/common/components/navigation/Layout'
 const RegisterFormDemo: NextPage = () => {
   return (
     <Layout>
-      <RegisterForm />
+      {/* eslint-disable-next-line @typescript-eslint/no-empty-function */}
+      <RegisterForm onSubmit={() => {}} />
     </Layout>
   )
 }

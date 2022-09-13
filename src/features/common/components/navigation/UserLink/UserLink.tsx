@@ -5,14 +5,13 @@ import {
   Box,
   Space,
   UnstyledButton,
-  Button,
   Group,
   ActionIcon
 } from '@mantine/core'
 import Link from 'next/link'
+import { TbLogout } from 'react-icons/tb'
 import { routes } from '@config/routes'
 import { useCurrentUser } from '@features/user/hooks/useCurrentUser'
-import { IconLogout } from '@tabler/icons'
 
 export const UserLink = () => {
   const theme = useMantineTheme()
@@ -38,8 +37,8 @@ export const UserLink = () => {
       </Link>
       <Group>
         <Link href="test">
-          <ActionIcon color="red.6">
-            <IconLogout />
+          <ActionIcon color="red.5">
+            <TbLogout size="md" />
           </ActionIcon>
         </Link>
       </Group>

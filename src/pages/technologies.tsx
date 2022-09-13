@@ -1,8 +1,7 @@
 import type { NextPage } from 'next'
-import { Layout } from '../features/common/components/navigation/Layout'
-import { TechnologiesList } from '@features/technologiesList/index'
-import { QueryClientProvider } from '@tanstack/react-query'
-import { QueryClient } from '@tanstack/react-query'
+import { Layout } from '@features/common/components/navigation/Layout'
+import { TechnologiesList } from '@features/technologiesList'
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 
 const queryClient = new QueryClient()
 
