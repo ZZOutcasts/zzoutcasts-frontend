@@ -5,7 +5,8 @@ import { LoginForm } from '@features/common/components/auth'
 const LoginFormDemo: NextPage = () => {
   return (
     <Layout>
-      <LoginForm />
+      {/* eslint-disable-next-line @typescript-eslint/no-empty-function */}
+      <LoginForm onSubmit={() => {}} />
     </Layout>
   )
 }
