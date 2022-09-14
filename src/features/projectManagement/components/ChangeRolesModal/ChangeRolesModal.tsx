@@ -12,6 +12,7 @@ import { useContext } from 'react'
 import { ProjectIdContext } from '@features/projectManagement/contexts/ProjectIdContext'
 import { Member } from '@features/projectManagement/types'
 import { ModalMemberInfo } from '@features/common/components/modalContent/ModalMemberInfo'
+import { showSuccessNotification } from '@features/common/utils'
 
 interface ChangeRolesFormValues {
   roles: ApiMultiSelectItem[]
@@ -39,7 +40,7 @@ export const ChangeRolesModal = ({
         roles: zod
           .array(zod.any())
           .min(1, { message: 'You must choose at least 1 role' })
-      })
+      }) // TODO: add validation whether roles were changed
     )
   })
 
@@ -53,7 +54,13 @@ export const ChangeRolesModal = ({
     mutate(
       { projectId, memberId: member.id, roles },
       {
-        onSuccess: handleClose
+        onSuccess: () => {
+          handleClose()
+          showSuccessNotification({
+            title: 'Success!',
+            message: `Updated roles for ${member.username}`
+          })
+        }
       }
     )
   }

@@ -1,5 +1,6 @@
 import { ModalManagement } from '@features/common/hooks/useModalManagement'
 import {
+  useChangeMemberPermission,
   useChangeMemberRoles,
   usePermissions
 } from '@features/projectManagement/hooks'
@@ -12,6 +13,7 @@ import { useContext } from 'react'
 import { ProjectIdContext } from '@features/projectManagement/contexts/ProjectIdContext'
 import { Member } from '@features/projectManagement/types'
 import { ModalMemberInfo } from '@features/common/components/modalContent/ModalMemberInfo'
+import { showSuccessNotification } from '@features/common/utils'
 
 interface ChangePermissionFormValues {
   permission: string
@@ -21,8 +23,6 @@ type ChangePermissionModalProps = ModalManagement & {
   member: Member
 }
 
-// TODO: add notification on success
-
 export const ChangePermissionModal = ({
   isOpened,
   changeModalState,
@@ -30,7 +30,7 @@ export const ChangePermissionModal = ({
 }: ChangePermissionModalProps) => {
   const { projectId } = useContext(ProjectIdContext)
   const permissionsQuery = usePermissions()
-  const { mutate, isLoading, isError, reset } = useChangeMemberRoles()
+  const { mutate, isLoading, isError, reset } = useChangeMemberPermission()
 
   const form = useForm<ChangePermissionFormValues>({
     initialValues: {
@@ -57,7 +57,13 @@ export const ChangePermissionModal = ({
     mutate(
       { projectId, memberId: member.id, permission },
       {
-        onSuccess: handleClose
+        onSuccess: () => {
+          handleClose()
+          showSuccessNotification({
+            title: 'Success!',
+            message: `Updated permission for ${member.username}`
+          })
+        }
       }
     )
   }
