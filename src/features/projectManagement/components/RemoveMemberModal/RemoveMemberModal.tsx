@@ -7,6 +7,7 @@ import { useContext } from 'react'
 import { ProjectIdContext } from '@features/projectManagement/contexts/ProjectIdContext'
 import { Member } from '@features/projectManagement/types'
 import { ModalMemberInfo } from '@features/common/components/modalContent/ModalMemberInfo'
+import { showSuccessNotification } from '@features/common/utils/showSuccessNotification'
 
 type RemoveMemberModalProps = ModalManagement & {
   member: Member
@@ -28,6 +29,10 @@ export const RemoveMemberModal = ({
         onSuccess: async () => {
           changeModalState()
           reset()
+          showSuccessNotification({
+            title: 'Success!',
+            message: `Successfully removed ${member.username} from project`
+          })
         }
       }
     )

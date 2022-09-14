@@ -5,6 +5,7 @@ import { FiTrash } from 'react-icons/fi'
 import { RemoveMemberModal } from '@features/projectManagement/components/RemoveMemberModal'
 import { ChangeRolesModal } from '@features/projectManagement/components/ChangeRolesModal'
 import { Member } from '@features/projectManagement/types'
+import { ChangePermissionModal } from '@features/projectManagement/components/ChangePermissionModal'
 
 interface MemberActionButtonsProps {
   member: Member
@@ -51,7 +52,7 @@ export const MemberActionButtons = ({ member }: MemberActionButtonsProps) => {
       </Menu>
       <RemoveMemberModal {...removeModal} member={member} />
       <ChangeRolesModal {...changeRolesModal} member={member} />
-      <ChangeRolesModal {...changePermissionModal} member={member} />
+      <ChangePermissionModal {...changePermissionModal} member={member} />
     </>
   )
 }

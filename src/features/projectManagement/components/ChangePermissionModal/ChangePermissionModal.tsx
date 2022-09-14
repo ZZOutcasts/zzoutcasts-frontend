@@ -1,44 +1,48 @@
-import { ApiMultiSelectItem } from '@features/common/types/ApiMultiSelect'
 import { ModalManagement } from '@features/common/hooks/useModalManagement'
-import { useFetchRoles } from '@features/createProject/hooks'
-import { useChangeMemberRoles } from '@features/projectManagement/hooks'
+import {
+  useChangeMemberRoles,
+  usePermissions
+} from '@features/projectManagement/hooks'
 import { useForm, zodResolver } from '@mantine/form'
 import { z as zod } from 'zod'
-import { Modal } from '@mantine/core'
+import { Modal, Select } from '@mantine/core'
 import { ModalError } from '@features/common/components/modalContent/ModalError'
-import { ApiMultiSelect } from '@features/common/components/customInputs/ApiMultiSelect'
 import { ModalSubmitButton } from '@features/common/components/modalContent/ModalSubmitButton'
 import { useContext } from 'react'
 import { ProjectIdContext } from '@features/projectManagement/contexts/ProjectIdContext'
 import { Member } from '@features/projectManagement/types'
 import { ModalMemberInfo } from '@features/common/components/modalContent/ModalMemberInfo'
 
-interface ChangeRolesFormValues {
-  roles: ApiMultiSelectItem[]
+interface ChangePermissionFormValues {
+  permission: string
 }
 
-type ChangeRolesModalProps = ModalManagement & {
+type ChangePermissionModalProps = ModalManagement & {
   member: Member
 }
 
-export const ChangeRolesModal = ({
+// TODO: add notification on success
+
+export const ChangePermissionModal = ({
   isOpened,
   changeModalState,
   member
-}: ChangeRolesModalProps) => {
+}: ChangePermissionModalProps) => {
   const { projectId } = useContext(ProjectIdContext)
-  const rolesQuery = useFetchRoles()
+  const permissionsQuery = usePermissions()
   const { mutate, isLoading, isError, reset } = useChangeMemberRoles()
 
-  const form = useForm<ChangeRolesFormValues>({
+  const form = useForm<ChangePermissionFormValues>({
     initialValues: {
-      roles: member.roles
+      permission: member.permission
     },
     validate: zodResolver(
       zod.object({
-        roles: zod
-          .array(zod.any())
-          .min(1, { message: 'You must choose at least 1 role' })
+        permission: zod
+          .string()
+          .refine((permission) => permission !== member.permission, {
+            message: 'Change permission before submitting'
+          })
       })
     )
   })
@@ -49,9 +53,9 @@ export const ChangeRolesModal = ({
     reset()
   }
 
-  const handleSubmit = ({ roles }: ChangeRolesFormValues) => {
+  const handleSubmit = ({ permission }: ChangePermissionFormValues) => {
     mutate(
-      { projectId, memberId: member.id, roles },
+      { projectId, memberId: member.id, permission },
       {
         onSuccess: handleClose
       }
@@ -61,7 +65,7 @@ export const ChangeRolesModal = ({
   const modalProps = {
     opened: isOpened,
     onClose: handleClose,
-    title: 'Choose new role for chosen member',
+    title: 'Choose permission for chosen member',
     size: 'xl'
   }
 
@@ -77,18 +81,24 @@ export const ChangeRolesModal = ({
     <Modal {...modalProps}>
       <ModalMemberInfo {...member} />
       <form onSubmit={form.onSubmit(handleSubmit)}>
-        <ApiMultiSelect
+        <Select
           sx={{ padding: '20px 0 ' }}
-          placeholder="Pick new role"
+          placeholder={
+            permissionsQuery.isLoading ? 'Loading...' : 'Pick permission'
+          }
           searchable
-          disabled={isLoading}
-          nothingFound="No options"
-          query={rolesQuery}
-          {...form.getInputProps('roles')}
+          disabled={
+            isLoading || permissionsQuery.isLoading || permissionsQuery.isError
+          }
+          data={permissionsQuery.data || []}
+          {...form.getInputProps('permission')}
+          {...(permissionsQuery.isError
+            ? { error: 'An error occurred. Try again later' }
+            : {})}
         />
         <ModalSubmitButton
-          isLoading={isLoading || rolesQuery.isLoading}
-          disabled={rolesQuery.isError}
+          isLoading={isLoading || permissionsQuery.isLoading}
+          disabled={permissionsQuery.isError}
           color="green"
           type="submit"
         >

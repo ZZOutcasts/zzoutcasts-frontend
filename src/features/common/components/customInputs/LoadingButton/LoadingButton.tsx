@@ -15,6 +15,7 @@ export type LoadingButtonProps = {
 export const LoadingButton = ({
   children,
   isLoading = false,
+  disabled,
   ...props
 }: LoadingButtonProps) => {
   const theme = useMantineTheme()
@@ -22,7 +23,7 @@ export const LoadingButton = ({
   return (
     <Button
       {...props}
-      disabled={isLoading}
+      disabled={isLoading || disabled}
       sx={{
         ':disabled': {
           color:

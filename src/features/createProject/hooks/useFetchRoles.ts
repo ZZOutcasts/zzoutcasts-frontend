@@ -15,7 +15,7 @@ export const useFetchRoles = () => {
           { imageUrl: '/js.png', value: 'Fullstack developer6' },
           { imageUrl: '/js.png', value: 'Fullstack developer7' }
         ])
-      }, 4000)
+      }, 17000)
     )
   }) as unknown as () => Promise<ApiMultiSelectItem[]>)
 }
