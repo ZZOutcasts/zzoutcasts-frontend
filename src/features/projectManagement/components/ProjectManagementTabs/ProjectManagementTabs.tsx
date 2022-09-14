@@ -21,7 +21,7 @@ const TabContainer = ({ children }: TabContainerProps) => {
 
 export const ProjectManagementTabs = () => {
   return (
-    <Tabs defaultValue="members">
+    <Tabs defaultValue="members" variant="pills">
       <Tabs.List>
         <Tabs.Tab value="members" icon={<BsPersonCircle size={14} />}>
           Members
@@ -42,7 +42,7 @@ export const ProjectManagementTabs = () => {
 
       <Tabs.Panel value="members" pt="xs">
         <TabContainer>
-          <MembersTab projectId="1" />
+          <MembersTab />
         </TabContainer>
       </Tabs.Panel>
 

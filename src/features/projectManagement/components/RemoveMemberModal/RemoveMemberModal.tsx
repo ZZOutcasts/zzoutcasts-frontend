@@ -1,22 +1,29 @@
 import { ModalManagement } from '@features/common/hooks/useModalManagement'
 import { useRemoveProjectMember } from '@features/projectManagement/hooks/useRemoveProjectMember'
-import { Avatar, Group, Modal, Text } from '@mantine/core'
+import { Modal } from '@mantine/core'
 import { ModalError } from '@features/projectManagement/components/ModalError'
-import { ModalButton } from '@features/projectManagement/components/ModalButton'
+import { ModalSubmitButton } from '@features/projectManagement/components/ModalSubmitButton'
 import { useContext } from 'react'
 import { ProjectIdContext } from '@features/projectManagement/contexts/ProjectIdContext'
+import { Member } from '@features/projectManagement/types/projectManagement'
+import { ModalMemberInfo } from '@features/projectManagement/components/ModalMemberInfo'
+
+type RemoveMemberModalProps = ModalManagement & {
+  member: Member
+}
 
 export const RemoveMemberModal = ({
   isOpened,
-  changeModalState
-}: ModalManagement) => {
+  changeModalState,
+  member
+}: RemoveMemberModalProps) => {
   const { mutate, reset, isLoading, isError } = useRemoveProjectMember()
 
   const { projectId } = useContext(ProjectIdContext)
 
   const handleClick = () => {
     mutate(
-      { projectId, memberId: '1' },
+      { projectId, memberId: member.id },
       {
         onSuccess: async () => {
           changeModalState()
@@ -48,14 +55,14 @@ export const RemoveMemberModal = ({
 
   return (
     <Modal {...modalProps}>
-      <Group>
-        <Avatar radius="xl" />
-        <Text weight="bold">Adameq</Text>
-      </Group>
-
-      <ModalButton isLoading={isLoading} color="red" onClick={handleClick}>
+      <ModalMemberInfo {...member} />
+      <ModalSubmitButton
+        isLoading={isLoading}
+        color="red"
+        onClick={handleClick}
+      >
         Remove
-      </ModalButton>
+      </ModalSubmitButton>
     </Modal>
   )
 }

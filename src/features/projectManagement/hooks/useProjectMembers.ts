@@ -1,24 +1,75 @@
 import { useQuery } from '@tanstack/react-query'
+import { Member } from '@features/projectManagement/types/projectManagement'
 
 export const useProjectMembers = (projectId: string) => {
-  return useQuery<any>(['projectMembers', projectId], () => {
-    return new Promise((resolve, reject) => {
+  return useQuery<Member[]>(['projectMembers', projectId], () => {
+    return new Promise<Member[]>((resolve, reject) => {
       setTimeout(
         () =>
           resolve([
             {
+              id: '1',
               username: 'JSON CONNOR',
-              roles: ['Fullstack developer', 'Epuap creator', 'ceo'],
+              roles: [
+                {
+                  value: 'Javascript Developer',
+                  imageUrl: '/js.png'
+                },
+                {
+                  value: 'Javascript Developer',
+                  imageUrl: '/js.png'
+                },
+                {
+                  value: 'Javascript Developer',
+                  imageUrl: '/js.png'
+                },
+                {
+                  value: 'Javascript Developer',
+                  imageUrl: '/js.png'
+                },
+                {
+                  value: 'Javascript Developer',
+                  imageUrl: '/js.png'
+                },
+                {
+                  value: 'Javascript Developer',
+                  imageUrl: '/js.png'
+                },
+                {
+                  value: 'Javascript Developer',
+                  imageUrl: '/js.png'
+                },
+                {
+                  value: 'Javascript Developer',
+                  imageUrl: '/js.png'
+                },
+                {
+                  value: 'Javascript Developer',
+                  imageUrl: '/js.png'
+                }
+              ],
               permission: 'Owner'
             },
             {
+              id: '2',
               username: 'Programista 30k',
-              roles: ['Fullstack developer'],
+              roles: [
+                {
+                  value: 'Javascript Developer',
+                  imageUrl: '/js.png'
+                }
+              ],
               permission: 'Administrator'
             },
             {
+              id: '3',
               username: 'Kodsu',
-              roles: ['Fullstack developer', 'Bicek workout enjoyer'],
+              roles: [
+                {
+                  value: 'Javascript Developer',
+                  imageUrl: '/js.png'
+                }
+              ],
               permission: 'Member'
             }
           ]),
