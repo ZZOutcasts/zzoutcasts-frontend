@@ -4,7 +4,7 @@ import { BsCode, BsLock, BsThreeDots } from 'react-icons/bs'
 import { FiTrash } from 'react-icons/fi'
 import { RemoveMemberModal } from '@features/projectManagement/components/RemoveMemberModal'
 import { ChangeRolesModal } from '@features/projectManagement/components/ChangeRolesModal'
-import { Member } from '@features/projectManagement/types/projectManagement'
+import { Member } from '@features/projectManagement/types'
 
 interface MemberActionButtonsProps {
   member: Member

@@ -1,4 +1,4 @@
-import { Member } from '@features/projectManagement/types/projectManagement'
+import { Member } from '@features/projectManagement/types'
 import { Avatar, Group, Paper, Text } from '@mantine/core'
 import { MemberActionButtons } from '@features/projectManagement/components/MemberActionButtons'
 

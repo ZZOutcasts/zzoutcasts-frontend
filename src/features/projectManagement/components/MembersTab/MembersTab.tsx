@@ -1,5 +1,5 @@
 import { Group, Loader, Stack, Text } from '@mantine/core'
-import { Member } from '@features/projectManagement/types/projectManagement'
+import { Member } from '@features/projectManagement/types'
 import { useContext } from 'react'
 import { ProjectIdContext } from '@features/projectManagement/contexts/ProjectIdContext'
 import { useProjectMembers } from '@features/projectManagement/hooks'

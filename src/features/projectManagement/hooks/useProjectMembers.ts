@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { Member } from '@features/projectManagement/types/projectManagement'
+import { Member } from '@features/projectManagement/types'
 
 export const useProjectMembers = (projectId: string) => {
   return useQuery<Member[]>(['projectMembers', projectId], () => {

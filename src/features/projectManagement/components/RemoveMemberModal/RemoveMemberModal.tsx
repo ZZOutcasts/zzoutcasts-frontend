@@ -1,12 +1,12 @@
 import { ModalManagement } from '@features/common/hooks/useModalManagement'
 import { useRemoveProjectMember } from '@features/projectManagement/hooks/useRemoveProjectMember'
 import { Modal } from '@mantine/core'
-import { ModalError } from '@features/projectManagement/components/ModalError'
-import { ModalSubmitButton } from '@features/projectManagement/components/ModalSubmitButton'
+import { ModalError } from '@features/common/components/modalContent/ModalError'
+import { ModalSubmitButton } from '@features/common/components/modalContent/ModalSubmitButton'
 import { useContext } from 'react'
 import { ProjectIdContext } from '@features/projectManagement/contexts/ProjectIdContext'
-import { Member } from '@features/projectManagement/types/projectManagement'
-import { ModalMemberInfo } from '@features/projectManagement/components/ModalMemberInfo'
+import { Member } from '@features/projectManagement/types'
+import { ModalMemberInfo } from '@features/common/components/modalContent/ModalMemberInfo'
 
 type RemoveMemberModalProps = ModalManagement & {
   member: Member

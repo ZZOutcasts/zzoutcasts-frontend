@@ -5,13 +5,13 @@ import { useChangeMemberRoles } from '@features/projectManagement/hooks'
 import { useForm, zodResolver } from '@mantine/form'
 import { z as zod } from 'zod'
 import { Modal } from '@mantine/core'
-import { ModalError } from '@features/projectManagement/components/ModalError'
+import { ModalError } from '@features/common/components/modalContent/ModalError'
 import { ApiMultiSelect } from '@features/common/components/customInputs/ApiMultiSelect'
-import { ModalSubmitButton } from '@features/projectManagement/components/ModalSubmitButton'
+import { ModalSubmitButton } from '@features/common/components/modalContent/ModalSubmitButton'
 import { useContext } from 'react'
 import { ProjectIdContext } from '@features/projectManagement/contexts/ProjectIdContext'
-import { Member } from '@features/projectManagement/types/projectManagement'
-import { ModalMemberInfo } from '@features/projectManagement/components/ModalMemberInfo'
+import { Member } from '@features/projectManagement/types'
+import { ModalMemberInfo } from '@features/common/components/modalContent/ModalMemberInfo'
 
 interface ChangeRolesFormValues {
   roles: ApiMultiSelectItem[]
