@@ -22,13 +22,17 @@ export const RemoveMemberModal = ({
 
   const { projectId } = useContext(ProjectIdContext)
 
+  const handleClose = () => {
+    changeModalState()
+    reset()
+  }
+
   const handleClick = () => {
     mutate(
       { projectId, memberId: member.id },
       {
         onSuccess: async () => {
-          changeModalState()
-          reset()
+          handleClose()
           showSuccessNotification({
             title: 'Success!',
             message: `Successfully removed ${member.username} from project`
@@ -36,11 +40,6 @@ export const RemoveMemberModal = ({
         }
       }
     )
-  }
-
-  const handleClose = () => {
-    changeModalState()
-    reset()
   }
 
   const modalProps = {
