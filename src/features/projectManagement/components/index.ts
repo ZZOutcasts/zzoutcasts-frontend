@@ -1,1 +1,1 @@
-export * from './ProjectManagementContainer/ProjectManagementContainer'
+export * from './ProjectManagementContainer'

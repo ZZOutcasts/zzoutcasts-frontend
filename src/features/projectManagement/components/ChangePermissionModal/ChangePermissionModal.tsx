@@ -1,7 +1,6 @@
 import { ModalManagement } from '@features/common/hooks/useModalManagement'
 import {
   useChangeMemberPermission,
-  useChangeMemberRoles,
   usePermissions
 } from '@features/projectManagement/hooks'
 import { useForm, zodResolver } from '@mantine/form'
