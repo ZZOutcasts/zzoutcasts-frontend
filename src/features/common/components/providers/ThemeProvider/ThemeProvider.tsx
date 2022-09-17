@@ -5,6 +5,7 @@ import {
 } from '@mantine/core'
 import { useHotkeys, useLocalStorage } from '@mantine/hooks'
 import { ReactNode } from 'react'
+import { NotificationsProvider } from '@mantine/notifications'
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
@@ -27,7 +28,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
         withNormalizeCSS
         theme={{ colorScheme }}
       >
-        {children}
+        <NotificationsProvider>{children}</NotificationsProvider>
       </MantineProvider>
     </ColorSchemeProvider>
   )

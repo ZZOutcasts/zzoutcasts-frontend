@@ -4,6 +4,7 @@ export const routes = {
   profile: () => '/profile',
   project: (id: string) => `/projects/${id}`,
   createProject: () => '/projects/create',
+  projectManagement: (id: string) => `/projects/${id}/management`,
   loginDemo: () => 'loginDemo',
   registerDemo: () => 'registerDemo',
   forgotPasswordFormDemo: () => 'forgotPasswordFormDemo'
