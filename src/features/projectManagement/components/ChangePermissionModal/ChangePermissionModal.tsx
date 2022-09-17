@@ -1,8 +1,5 @@
 import { ModalManagement } from '@features/common/hooks/useModalManagement'
-import {
-  useChangeMemberPermission,
-  usePermissions
-} from '@features/projectManagement/hooks'
+import { useChangeMemberPermission } from '@features/projectManagement/hooks'
 import { useForm, zodResolver } from '@mantine/form'
 import { z as zod } from 'zod'
 import { Modal, Select } from '@mantine/core'
@@ -13,6 +10,7 @@ import { ProjectIdContext } from '@features/projectManagement/contexts/ProjectId
 import { Member } from '@features/projectManagement/types'
 import { ModalMemberInfo } from '@features/common/components/modalContent/ModalMemberInfo'
 import { showSuccessNotification } from '@features/common/utils'
+import { permissionsList } from '@features/projectManagement/utils'
 
 interface ChangePermissionFormValues {
   permission: string
@@ -28,7 +26,6 @@ export const ChangePermissionModal = ({
   member
 }: ChangePermissionModalProps) => {
   const { projectId } = useContext(ProjectIdContext)
-  const permissionsQuery = usePermissions()
   const { mutate, isLoading, isError, reset } = useChangeMemberPermission()
 
   const form = useForm<ChangePermissionFormValues>({
@@ -88,25 +85,13 @@ export const ChangePermissionModal = ({
       <form onSubmit={form.onSubmit(handleSubmit)}>
         <Select
           sx={{ padding: '20px 0 ' }}
-          placeholder={
-            permissionsQuery.isLoading ? 'Loading...' : 'Pick permission'
-          }
+          placeholder="Pick permission"
           searchable
-          disabled={
-            isLoading || permissionsQuery.isLoading || permissionsQuery.isError
-          }
-          data={permissionsQuery.data || []}
+          disabled={isLoading}
+          data={permissionsList}
           {...form.getInputProps('permission')}
-          {...(permissionsQuery.isError
-            ? { error: 'An error occurred. Try again later' }
-            : {})}
         />
-        <ModalSubmitButton
-          isLoading={isLoading || permissionsQuery.isLoading}
-          disabled={permissionsQuery.isError}
-          color="green"
-          type="submit"
-        >
+        <ModalSubmitButton isLoading={isLoading} color="green" type="submit">
           Change
         </ModalSubmitButton>
       </form>
