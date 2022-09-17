@@ -16,11 +16,6 @@ import { Roles } from '@features/myProjects/components/ProjectOverview/Roles'
 import { Team } from '@features/myProjects/components/ProjectOverview/Team'
 import { TechnologyStack } from '@features/myProjects/components/ProjectOverview/TechnologyStack'
 
-export interface ApiMultiSelectItem {
-  label?: string
-  value: string
-  imageUrl?: string
-}
 export const ProjectOverview = () => {
   const router = useRouter()
   const { pid } = router.query
