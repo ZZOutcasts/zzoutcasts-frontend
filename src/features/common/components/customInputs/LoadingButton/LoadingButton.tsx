@@ -4,16 +4,18 @@ import {
   useMantineColorScheme,
   useMantineTheme
 } from '@mantine/core'
-import { ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 
-type LoadingButtonProps = {
+export type LoadingButtonProps = {
   children: ReactNode
   isLoading: boolean
+  onClick?: () => unknown
 } & ButtonProps
 
 export const LoadingButton = ({
   children,
   isLoading = false,
+  disabled,
   ...props
 }: LoadingButtonProps) => {
   const theme = useMantineTheme()
@@ -21,7 +23,7 @@ export const LoadingButton = ({
   return (
     <Button
       {...props}
-      disabled={isLoading}
+      disabled={isLoading || disabled}
       sx={{
         ':disabled': {
           color:
