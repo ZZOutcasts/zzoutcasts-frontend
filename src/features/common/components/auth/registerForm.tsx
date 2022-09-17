@@ -48,6 +48,7 @@ export const RegisterForm = ({ onSubmit }: RegisterFormProps) => {
 
       <Paper withBorder shadow="md" p={30} mt={30} radius="md">
         <form
+          autoComplete="new-password"
           onSubmit={form.onSubmit((values) => {
             onSubmit()
           })}
@@ -57,6 +58,7 @@ export const RegisterForm = ({ onSubmit }: RegisterFormProps) => {
             placeholder="Name"
             mb={5}
             required
+            autoComplete="new-password"
             {...form.getInputProps('name')}
           />
           <TextInput
@@ -64,12 +66,14 @@ export const RegisterForm = ({ onSubmit }: RegisterFormProps) => {
             placeholder="you@mail.com"
             mb={5}
             required
+            autoComplete="new-password"
             {...form.getInputProps('email')}
           />
           <PasswordInput
             label="Password"
             placeholder="Your password"
             required
+            autoComplete="new-password"
             {...form.getInputProps('password')}
           />
           <Group position="apart" mt="md">
