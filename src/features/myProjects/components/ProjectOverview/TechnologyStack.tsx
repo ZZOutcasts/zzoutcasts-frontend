@@ -20,7 +20,7 @@ export const TechnologyStack = () => {
             return (
               <List.Item
                 icon={
-                  <ThemeIcon variant="subtle" size={24} radius="xl">
+                  <ThemeIcon variant="light" size={24} radius="xl">
                     <Image src={imageUrl} />
                   </ThemeIcon>
                 }

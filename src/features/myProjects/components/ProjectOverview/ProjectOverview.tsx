@@ -18,14 +18,16 @@ import { TechnologyStack } from '@features/myProjects/components/ProjectOverview
 
 export const ProjectOverview = () => {
   const router = useRouter()
-  const { pid } = router.query
+  const { projectId } = router.query
   const projects = useUserProjects()
 
-  if (pid === undefined) {
+  if (projectId === undefined) {
     return null
   }
 
-  const currentProject = projects.filter((project) => project.id === pid)[0]
+  const currentProject = projects.filter(
+    (project) => project.id === projectId
+  )[0]
 
   return (
     <Container
