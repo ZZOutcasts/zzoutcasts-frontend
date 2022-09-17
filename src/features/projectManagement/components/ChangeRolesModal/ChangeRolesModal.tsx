@@ -13,6 +13,7 @@ import { ProjectIdContext } from '@features/projectManagement/contexts/ProjectId
 import { Member } from '@features/projectManagement/types'
 import { ModalMemberInfo } from '@features/common/components/modalContent/ModalMemberInfo'
 import { showSuccessNotification } from '@features/common/utils'
+import { mapTechnologyOrRoleToApiMultiSelectItem } from '@features/common/utils/ApiMultiSelect'
 
 interface ChangeRolesFormValues {
   roles: ApiMultiSelectItem[]
@@ -28,8 +29,15 @@ export const ChangeRolesModal = ({
   member
 }: ChangeRolesModalProps) => {
   const { projectId } = useContext(ProjectIdContext)
-  const rolesQuery = useFetchRoles()
+
   const { mutate, isLoading, isError, reset } = useChangeMemberRoles()
+
+  const { data: rolesQueryData, ...rolesQueryProps } = useFetchRoles()
+  const rolesQuery = {
+    ...rolesQueryProps,
+    data:
+      rolesQueryData && mapTechnologyOrRoleToApiMultiSelectItem(rolesQueryData)
+  }
 
   const form = useForm<ChangeRolesFormValues>({
     initialValues: {
