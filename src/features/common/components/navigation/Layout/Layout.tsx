@@ -18,6 +18,7 @@ import { TbSearch, TbBrandTinder, TbMoonStars } from 'react-icons/tb'
 import { routes } from '@config/routes'
 import { NavbarLink } from '../NavbarLink'
 import { UserLink } from '../UserLink'
+// import { UserLinkWhenUnauth } from '../UserLink/UserLinkWhenUnauth'
 
 interface NavbarItem {
   icon: ReactNode
@@ -42,6 +43,17 @@ const DefaultNavItems = () => (
     </NavbarLink>
     <NavbarLink icon={<TbBrandTinder />} color="red" href={routes.myProjects()}>
       My projects
+    </NavbarLink>
+    {/* TODO remove later */}
+    <NavbarLink icon={<TbBrandTinder />} href={routes.loginDemo()} color="red">
+      Login Demo
+    </NavbarLink>
+    <NavbarLink
+      href={routes.registerDemo()}
+      icon={<TbBrandTinder />}
+      color="red"
+    >
+      Register demo
     </NavbarLink>
   </>
 )
@@ -70,7 +82,7 @@ export const Layout = ({ children, navItems }: LayoutProps) => {
               ))}
           </Box>
           <Divider />
-          <UserLink />
+          <UserLink /> {/* TODO: add UserLinkWhenUnauth when unauthenticated */}
         </Navbar>
       }
       header={
