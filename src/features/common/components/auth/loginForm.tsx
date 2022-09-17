@@ -30,7 +30,6 @@ export const LoginForm = ({ onSubmit }: LoginFormProps) => {
       password: ''
     }
   })
-
   return (
     <Container size={420} my={40}>
       <Title align="center">Welcome back!</Title>

@@ -17,8 +17,7 @@ import { GoProject } from 'react-icons/go'
 import { TbSearch, TbBrandTinder, TbMoonStars } from 'react-icons/tb'
 import { routes } from '@config/routes'
 import { NavbarLink } from '../NavbarLink'
-import { UserLink } from '../UserLink'
-// import { UserLinkWhenUnauth } from '../UserLink/UserLinkWhenUnauth'
+import { UserLink, UserLinkWhenNotAuthenticated } from '../UserLink'
 
 interface NavbarItem {
   icon: ReactNode
@@ -43,17 +42,6 @@ const DefaultNavItems = () => (
     </NavbarLink>
     <NavbarLink icon={<TbBrandTinder />} color="red" href={routes.myProjects()}>
       My projects
-    </NavbarLink>
-    {/* TODO remove later */}
-    <NavbarLink icon={<TbBrandTinder />} href={routes.loginDemo()} color="red">
-      Login Demo
-    </NavbarLink>
-    <NavbarLink
-      href={routes.registerDemo()}
-      icon={<TbBrandTinder />}
-      color="red"
-    >
-      Register demo
     </NavbarLink>
   </>
 )
@@ -82,7 +70,8 @@ export const Layout = ({ children, navItems }: LayoutProps) => {
               ))}
           </Box>
           <Divider />
-          <UserLink /> {/* TODO: add UserLinkWhenUnauth when unauthenticated */}
+          {/* <UserLink /> /!* TODO: add UserLinkWhenUnauth when unauthenticated *!/*/}
+          <UserLinkWhenNotAuthenticated />
         </Navbar>
       }
       header={

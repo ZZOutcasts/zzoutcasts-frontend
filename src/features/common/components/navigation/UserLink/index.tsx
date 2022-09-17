@@ -1,2 +1,2 @@
 export * from './UserLink'
-export * from './UserLinkWhenUnauth'
+export * from './UserLinkWhenNotAuthenticated'
