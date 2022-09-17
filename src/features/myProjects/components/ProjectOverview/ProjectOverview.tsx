@@ -1,25 +1,30 @@
 import React from 'react'
 import {
-  Image,
-  Title,
-  Text,
-  List,
-  Space,
   Box,
+  Button,
   Container,
-  Button
+  Divider,
+  Image,
+  Space,
+  Text,
+  Title
 } from '@mantine/core'
 import { StatusBadge } from '@features/myProjects/components/StatusBadge'
 import { useUserProjects } from '@features/myProjects/hooks'
 import { useRouter } from 'next/router'
-import { useCurrentUser } from '@features/user/hooks/useCurrentUser'
-import { UserInfo } from './UserInfo'
+import { Roles } from '@features/myProjects/components/ProjectOverview/Roles'
+import { Team } from '@features/myProjects/components/ProjectOverview/Team'
+import { TechnologyStack } from '@features/myProjects/components/ProjectOverview/TechnologyStack'
 
+export interface ApiMultiSelectItem {
+  label?: string
+  value: string
+  imageUrl?: string
+}
 export const ProjectOverview = () => {
   const router = useRouter()
   const { pid } = router.query
   const projects = useUserProjects()
-  const { username, email, avatar } = useCurrentUser()
 
   if (pid === undefined) {
     return null
@@ -60,33 +65,17 @@ export const ProjectOverview = () => {
               posuere vel ante non dapibus. Curabitur accumsan vestibulum
               dapibus.
             </Text>
-            <Title order={2} mt="lg">
-              Our Technology Stack
-            </Title>
-            <List>
-              <List.Item>Example</List.Item>
-              <List.Item>Example</List.Item>
-              <List.Item>Example</List.Item>
-              <List.Item>Example</List.Item>
-              <List.Item>Example</List.Item>
-            </List>
+            <Divider my="sm" />
+            <Box style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <TechnologyStack />
+              <Roles />
+            </Box>
             <Button variant="light" mt="xl" size="xl">
               Send join request
             </Button>
           </Box>
           <Space w="xl" />
-          <Box>
-            <Title order={1}>Our Team</Title>
-            <Title order={2} mt="lg">
-              Leader
-            </Title>
-            <UserInfo avatar={avatar} email={email} name={username} />
-            <Title order={2} mt="lg">
-              Members
-            </Title>
-            <UserInfo avatar={avatar} email={email} name={username} />
-            <UserInfo avatar={avatar} email={email} name={username} />
-          </Box>
+          <Team />
         </>
       )}
     </Container>
