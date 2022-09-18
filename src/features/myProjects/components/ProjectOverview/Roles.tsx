@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box, Image, List, ThemeIcon, Title } from '@mantine/core'
-import { useFetchRoles } from '@features/myProjects/hooks/useFetchRoles'
+import { useFetchRoles } from '@features/createProject/hooks'
 
 export const Roles = () => {
   const { isLoading, error, data } = useFetchRoles()
@@ -16,7 +16,7 @@ export const Roles = () => {
       </Title>
       <List mt="sm" spacing="xs">
         {data &&
-          data.map(({ imageUrl, value }) => {
+          data.map(({ imageUrl, name }) => {
             return (
               <List.Item
                 icon={
@@ -30,7 +30,7 @@ export const Roles = () => {
                   </ThemeIcon>
                 }
               >
-                {value}
+                {name}
               </List.Item>
             )
           })}

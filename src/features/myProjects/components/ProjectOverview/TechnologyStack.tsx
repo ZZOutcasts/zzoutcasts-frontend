@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box, Image, List, ThemeIcon, Title } from '@mantine/core'
-import { useFetchTechnologies } from '@features/myProjects/hooks/useFetchTechnologies'
+import { useFetchTechnologies } from '@features/createProject/hooks/useFetchTechnologies'
 
 export const TechnologyStack = () => {
   const { isLoading, error, data } = useFetchTechnologies()
@@ -16,7 +16,7 @@ export const TechnologyStack = () => {
       </Title>
       <List mt="sm" spacing="xs">
         {data &&
-          data.map(({ imageUrl, value }) => {
+          data.map(({ imageUrl, name }) => {
             return (
               <List.Item
                 icon={
@@ -25,7 +25,7 @@ export const TechnologyStack = () => {
                   </ThemeIcon>
                 }
               >
-                {value}
+                {name}
               </List.Item>
             )
           })}
