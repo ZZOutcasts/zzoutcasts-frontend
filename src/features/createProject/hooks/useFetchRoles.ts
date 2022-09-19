@@ -1,21 +1,53 @@
 import { useQuery } from '@tanstack/react-query'
-import { ApiMultiSelectItem } from '@features/common/types/ApiMultiSelect'
+import { TechnologyAndRole } from '@features/common/types/TechnologyAndRole'
 
 export const useFetchRoles = () => {
-  return useQuery<ApiMultiSelectItem[]>(['roles'], (() => {
-    return new Promise<ApiMultiSelectItem[]>((resolve) =>
-      setTimeout(() => {
+  return useQuery<TechnologyAndRole[]>(['roles'], () => {
+    return new Promise<TechnologyAndRole[]>((resolve) =>
+      setTimeout<TechnologyAndRole[]>(() => {
         resolve([
-          { imageUrl: '/js.png', value: 'Fullstack developer' },
-          { imageUrl: '/js.png', value: 'Fullstack developer1' },
-          { imageUrl: '/js.png', value: 'Fullstack developer2' },
-          { imageUrl: '/js.png', value: 'Fullstack developer3' },
-          { imageUrl: '/js.png', value: 'Fullstack developer4' },
-          { imageUrl: '/js.png', value: 'Fullstack developer5' },
-          { imageUrl: '/js.png', value: 'Fullstack developer6' },
-          { imageUrl: '/js.png', value: 'Fullstack developer7' }
+          {
+            imageUrl: '/js.png',
+            name: 'Fullstack developer',
+            description: 'Some description'
+          },
+          {
+            imageUrl: '/js.png',
+            name: 'Fullstack developer1',
+            description: 'Some description'
+          },
+          {
+            imageUrl: '/js.png',
+            name: 'Fullstack developer2',
+            description: 'Some description'
+          },
+          {
+            imageUrl: '/js.png',
+            name: 'Fullstack developer3',
+            description: 'Some description'
+          },
+          {
+            imageUrl: '/js.png',
+            name: 'Fullstack developer4',
+            description: 'Some description'
+          },
+          {
+            imageUrl: '/js.png',
+            name: 'Fullstack developer5',
+            description: 'Some description'
+          },
+          {
+            imageUrl: '/js.png',
+            name: 'Fullstack developer6',
+            description: 'Some description'
+          },
+          {
+            imageUrl: '/js.png',
+            name: 'Fullstack developer7',
+            description: 'Some description'
+          }
         ])
       }, 4000)
     )
-  }) as unknown as () => Promise<ApiMultiSelectItem[]>)
+  })
 }

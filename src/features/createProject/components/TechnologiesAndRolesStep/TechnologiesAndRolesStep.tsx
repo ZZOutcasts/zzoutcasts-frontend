@@ -13,7 +13,7 @@ export const TechnologiesAndRolesStep = ({
 }) => {
   const { data: technologiesQueryData, ...technologiesQueryProps } =
     useFetchTechnologies()
-  const rolesQuery = useFetchRoles()
+  const { data: rolesQueryData, ...rolesQueryProps } = useFetchRoles()
 
   const technologiesQuery = {
     ...technologiesQueryProps,
@@ -22,7 +22,11 @@ export const TechnologiesAndRolesStep = ({
       mapTechnologyOrRoleToApiMultiSelectItem(technologiesQueryData)
   }
 
-  // TODO: add the same thing for roles
+  const rolesQuery = {
+    ...rolesQueryProps,
+    data:
+      rolesQueryData && mapTechnologyOrRoleToApiMultiSelectItem(rolesQueryData)
+  }
 
   return (
     <>
