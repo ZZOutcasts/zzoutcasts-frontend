@@ -9,13 +9,19 @@ export const UserLinkWhenNotAuthenticated = () => {
   return (
     <>
       <Modal opened={loginModal.isOpened} onClose={loginModal.changeModalState}>
-        <LoginForm onSubmit={loginModal.changeModalState} />
+        <LoginForm
+          onClose={loginModal.changeModalState}
+          openRegisterForm={registerModal.changeModalState}
+        />
       </Modal>
       <Modal
         opened={registerModal.isOpened}
         onClose={registerModal.changeModalState}
       >
-        <RegisterForm onSubmit={registerModal.changeModalState} />
+        <RegisterForm
+          onClose={registerModal.changeModalState}
+          openLoginForm={loginModal.changeModalState}
+        />
       </Modal>
       <Group spacing="xs" noWrap py="10px" position="center">
         <Button

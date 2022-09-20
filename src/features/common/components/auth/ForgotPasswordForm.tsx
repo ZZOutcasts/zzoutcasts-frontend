@@ -11,8 +11,9 @@ import {
   Center,
   Box
 } from '@mantine/core'
+import { FixInputAutoCompletionStyles } from '@features/common/components/customInputs/FixInputAutoCompletionStyles'
 
-export function ForgotPasswordForm() {
+export const ForgotPasswordForm = () => {
   return (
     <Container size={460} my={30}>
       <Title align="center">Forgot your password?</Title>
@@ -21,7 +22,9 @@ export function ForgotPasswordForm() {
       </Text>
 
       <Paper withBorder shadow="md" p={30} radius="md" mt="xl">
-        <TextInput label="Your email" placeholder="you@mail.com" required />
+        <FixInputAutoCompletionStyles>
+          <TextInput label="Your email" placeholder="you@mail.com" required />
+        </FixInputAutoCompletionStyles>
         <Group position="apart" mt="lg">
           <Anchor color="dimmed" size="sm" href={routes.loginDemo()}>
             <Center inline>

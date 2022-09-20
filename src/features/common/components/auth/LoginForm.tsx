@@ -13,6 +13,7 @@ import {
 } from '@mantine/core'
 import { useForm, zodResolver } from '@mantine/form'
 import { z } from 'zod'
+import { FixInputAutoCompletionStyles } from '@features/common/components/customInputs/FixInputAutoCompletionStyles'
 
 const loginSchema = z.object({
   email: z.string().email({ message: 'Invalid email' }),
@@ -20,9 +21,11 @@ const loginSchema = z.object({
 })
 
 interface LoginFormProps {
-  onSubmit: () => void
+  onClose: () => void
+  openRegisterForm: () => void
 }
-export const LoginForm = ({ onSubmit }: LoginFormProps) => {
+
+export const LoginForm = ({ onClose, openRegisterForm }: LoginFormProps) => {
   const form = useForm({
     validate: zodResolver(loginSchema),
     initialValues: {
@@ -30,12 +33,18 @@ export const LoginForm = ({ onSubmit }: LoginFormProps) => {
       password: ''
     }
   })
+
+  const forwardToRegisterForm = () => {
+    openRegisterForm()
+    onClose()
+  }
+
   return (
     <Container size={420} my={40}>
       <Title align="center">Welcome back!</Title>
       <Text color="dimmed" size="lg" align="center" mt={5}>
         Do not have an account yet?{' '}
-        <Anchor<'a'> href={routes.registerDemo()} size="lg">
+        <Anchor<'a'> onClick={forwardToRegisterForm} size="lg">
           Create account
         </Anchor>
       </Text>
@@ -43,22 +52,26 @@ export const LoginForm = ({ onSubmit }: LoginFormProps) => {
       <Paper withBorder shadow="md" p={30} mt={30} radius="md">
         <form
           onSubmit={form.onSubmit((values) => {
-            onSubmit()
+            onClose()
           })}
         >
-          <TextInput
-            label="Email"
-            placeholder="you@mail.com"
-            required
-            {...form.getInputProps('email')}
-          />
-          <PasswordInput
-            label="Password"
-            placeholder="Your password"
-            required
-            mt="md"
-            {...form.getInputProps('password')}
-          />
+          <FixInputAutoCompletionStyles>
+            <TextInput
+              label="Email"
+              placeholder="you@mail.com"
+              required
+              {...form.getInputProps('email')}
+            />
+          </FixInputAutoCompletionStyles>
+          <FixInputAutoCompletionStyles>
+            <PasswordInput
+              label="Password"
+              placeholder="Your password"
+              required
+              mt="md"
+              {...form.getInputProps('password')}
+            />
+          </FixInputAutoCompletionStyles>
           <Group position="apart" mt="md">
             <Checkbox label="Remember me" />
             <Anchor<'a'> href={routes.forgotPasswordFormDemo()} size="sm">

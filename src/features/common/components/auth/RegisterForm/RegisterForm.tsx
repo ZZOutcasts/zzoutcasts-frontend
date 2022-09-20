@@ -1,16 +1,15 @@
 import { useForm, zodResolver } from '@mantine/form'
-import { routes } from '@config/routes'
 import {
-  TextInput,
-  PasswordInput,
-  Checkbox,
   Anchor,
-  Paper,
-  Title,
-  Text,
+  Button,
+  Checkbox,
   Container,
   Group,
-  Button
+  Paper,
+  PasswordInput,
+  Text,
+  TextInput,
+  Title
 } from '@mantine/core'
 import { z } from 'zod'
 
@@ -23,10 +22,11 @@ const registerSchema = z.object({
 })
 
 interface RegisterFormProps {
-  onSubmit: () => void
+  onClose: () => void
+  openLoginForm: () => void
 }
 
-export const RegisterForm = ({ onSubmit }: RegisterFormProps) => {
+export const RegisterForm = ({ onClose, openLoginForm }: RegisterFormProps) => {
   const form = useForm({
     validate: zodResolver(registerSchema),
     initialValues: {
@@ -36,12 +36,17 @@ export const RegisterForm = ({ onSubmit }: RegisterFormProps) => {
     }
   })
 
+  const forwardToLoginForm = () => {
+    openLoginForm()
+    onClose()
+  }
+
   return (
     <Container size={420} my={40}>
       <Title align="center">Welcome to Projectly!</Title>
       <Text color="dimmed" size="lg" align="center" mt={5}>
-        Already registerd ?{' '}
-        <Anchor<'a'> href={routes.loginDemo()} size="lg">
+        Already registered ?{' '}
+        <Anchor<'a'> onClick={forwardToLoginForm} size="lg">
           Log in
         </Anchor>
       </Text>
@@ -50,7 +55,7 @@ export const RegisterForm = ({ onSubmit }: RegisterFormProps) => {
         <form
           autoComplete="new-password"
           onSubmit={form.onSubmit((values) => {
-            onSubmit()
+            onClose()
           })}
         >
           <TextInput
