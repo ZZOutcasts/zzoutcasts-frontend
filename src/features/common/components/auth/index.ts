@@ -1,3 +1,3 @@
-export * from './loginForm'
-export * from './registerForm'
-export * from './forgotPasswordForm'
+export * from './LoginForm'
+export * from './RegisterForm'
+export * from './ForgotPasswordForm'
