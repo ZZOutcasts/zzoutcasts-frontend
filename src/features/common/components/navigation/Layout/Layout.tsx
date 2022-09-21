@@ -70,8 +70,8 @@ export const Layout = ({ children, navItems }: LayoutProps) => {
               ))}
           </Box>
           <Divider />
-          {/* <UserLink /> /!* TODO: add UserLinkWhenNotAuthenticated when not authenticated *!/ */}
-          <UserLinkWhenNotAuthenticated />
+          <UserLink />
+          {/* TODO: add UserLinkWhenNotAuthenticated when not authenticated */}
         </Navbar>
       }
       header={

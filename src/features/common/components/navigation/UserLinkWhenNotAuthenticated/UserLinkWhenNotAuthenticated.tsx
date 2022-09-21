@@ -1,6 +1,10 @@
 import { Button, Group, Modal, Text } from '@mantine/core'
 import { useModalManagement } from '@features/common/hooks/useModalManagement'
-import { ForgotPasswordForm, LoginForm, RegisterForm } from '@features/common/components/auth'
+import {
+  ForgotPasswordForm,
+  LoginForm,
+  RegisterForm
+} from '@features/common/components/auth'
 
 export const UserLinkWhenNotAuthenticated = () => {
   const loginModal = useModalManagement()
@@ -14,10 +18,13 @@ export const UserLinkWhenNotAuthenticated = () => {
           onClose={loginModal.changeModalState}
           openRegisterForm={registerModal.changeModalState}
           openForgotPasswordForm={forgotPasswordModal.changeModalState}
-/>
+        />
       </Modal>
 
-      <Modal opened={forgotPasswordModal.isOpened} onClose={forgotPasswordModal.changeModalState}>
+      <Modal
+        opened={forgotPasswordModal.isOpened}
+        onClose={forgotPasswordModal.changeModalState}
+      >
         <ForgotPasswordForm
           onClose={forgotPasswordModal.changeModalState}
           openLoginForm={loginModal.changeModalState}

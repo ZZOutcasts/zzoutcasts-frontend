@@ -23,10 +23,14 @@ const loginSchema = z.object({
 interface LoginFormProps {
   onClose: () => void
   openRegisterForm: () => void
-  openForgotPasswordForm: () =>void
+  openForgotPasswordForm: () => void
 }
 
-export const LoginForm = ({ onClose, openRegisterForm,openForgotPasswordForm }: LoginFormProps) => {
+export const LoginForm = ({
+  onClose,
+  openRegisterForm,
+  openForgotPasswordForm
+}: LoginFormProps) => {
   const form = useForm({
     validate: zodResolver(loginSchema),
     initialValues: {
@@ -40,10 +44,10 @@ export const LoginForm = ({ onClose, openRegisterForm,openForgotPasswordForm }: 
     onClose()
   }
 
-const goToForgotPasswordForm = () => {
-  openForgotPasswordForm()
-  onClose()
-}
+  const goToForgotPasswordForm = () => {
+    openForgotPasswordForm()
+    onClose()
+  }
 
   return (
     <Container size={420} my={40}>
