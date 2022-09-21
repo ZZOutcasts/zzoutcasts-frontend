@@ -1,21 +1,26 @@
-import { Container, Text, Group, useMantineTheme } from '@mantine/core'
+import { Container, Text, Group, useMantineTheme, Badge,Card, Grid, Col, SimpleGrid, Stack,  CardSection } from '@mantine/core'
 import Link from 'next/link'
 import { useStyles } from './ProjectItem.styles'
 
-interface ProjectItemProps {
+export interface ProjectItemProps {
   projectId: number
   projectName: string
+  projectOwner: string
+  recruitments?: string[]
+  techStack: string[]
 }
 
-export const ProjectItem = ({ projectId, projectName }: ProjectItemProps) => {
+
+
+
+export const ProjectItem = ({ projectId, projectName, projectOwner, recruitments, techStack }: ProjectItemProps) => {
   const theme = useMantineTheme()
   const { classes } = useStyles()
 
   return (
     <Link href={`projects/${projectId}`}>
       <a className={classes.link}>
-        <Group
-          spacing={'xl'}
+        <Card
           pl={'1rem'}
           className={classes.groupItem}
           sx={(theme) => ({
@@ -25,8 +30,21 @@ export const ProjectItem = ({ projectId, projectName }: ProjectItemProps) => {
                 : theme.colors.gray[1]
           })}
         >
-          <Text size="xl">{projectName}</Text>
-        </Group>
+          <Grid grow> 
+          <Grid.Col span={9}> 
+          <Text size="xl">{projectName}</Text><Text size="sm">{projectOwner}</Text></Grid.Col>
+          <Grid.Col span={2}>
+
+        
+            {recruitments && recruitments.length>0 && <Badge color="green">Open recruitments</Badge>}
+          </Grid.Col>
+        
+        <Grid.Col span={2}offset={9} mt={-20}>
+          {techStack.map((tech) =>  (<Badge>{tech}</Badge>))}
+
+          </Grid.Col>
+        </Grid>
+        </Card>
       </a>
     </Link>
   )

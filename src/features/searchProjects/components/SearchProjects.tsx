@@ -10,9 +10,28 @@ import {
 } from '@mantine/core'
 import { IconSearch, IconArrowRight, IconArrowLeft } from '@tabler/icons'
 import { ProjectItem } from './ProjectItem'
+import { ProjectItemProps } from './ProjectItem'
 
 export const SearchProjects = (props: TextInputProps) => {
   const theme = useMantineTheme()
+
+
+ const projects:  ProjectItemProps[]= [{
+  projectId: 1, 
+  projectName:'Projectly - znajdź dream-team do Twojego projektu!',
+  projectOwner:'Jan Kowalski', 
+  recruitments:["losowy_string"], 
+  techStack:['PHP', 'JS','Python']
+},
+{
+  projectId: 2, 
+  projectName:'Friendly - znajdź dream-team do Twojego projektu!',
+  projectOwner:'Jan Nowak', 
+  recruitments:[], 
+  techStack:['HTML', 'CSS','JS']
+},
+]
+
 
   return (
     <>
@@ -20,7 +39,6 @@ export const SearchProjects = (props: TextInputProps) => {
         <TextInput
           icon={<IconSearch size={18} stroke={1.5} />}
           radius="xl"
-          size="md"
           rightSection={
             <ActionIcon
               size={32}
@@ -51,9 +69,9 @@ export const SearchProjects = (props: TextInputProps) => {
             height: 300
           })}
         >
-          <ProjectItem projectId={1} projectName={'Projekt 1'} />
-          <ProjectItem projectId={2} projectName={'Projekt 2'} />
-          <ProjectItem projectId={3} projectName={'Projekt 3'} />
+          {projects.map((project)=> <ProjectItem {...project}/>)}
+
+
         </Stack>
       </Stack>
     </>
