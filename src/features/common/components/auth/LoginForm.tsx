@@ -23,9 +23,10 @@ const loginSchema = z.object({
 interface LoginFormProps {
   onClose: () => void
   openRegisterForm: () => void
+  openForgotPasswordForm: () =>void
 }
 
-export const LoginForm = ({ onClose, openRegisterForm }: LoginFormProps) => {
+export const LoginForm = ({ onClose, openRegisterForm,openForgotPasswordForm }: LoginFormProps) => {
   const form = useForm({
     validate: zodResolver(loginSchema),
     initialValues: {
@@ -38,6 +39,11 @@ export const LoginForm = ({ onClose, openRegisterForm }: LoginFormProps) => {
     openRegisterForm()
     onClose()
   }
+
+const goToForgotPasswordForm = () => {
+  openForgotPasswordForm()
+  onClose()
+}
 
   return (
     <Container size={420} my={40}>
@@ -74,7 +80,7 @@ export const LoginForm = ({ onClose, openRegisterForm }: LoginFormProps) => {
           </FixInputAutoCompletionStyles>
           <Group position="apart" mt="md">
             <Checkbox label="Remember me" />
-            <Anchor<'a'> href={routes.forgotPasswordFormDemo()} size="sm">
+            <Anchor<'a'> onClick={goToForgotPasswordForm} size="sm">
               Forgot password?
             </Anchor>
           </Group>
