@@ -18,6 +18,7 @@ import { TbSearch, TbBrandTinder, TbMoonStars } from 'react-icons/tb'
 import { routes } from '@config/routes'
 import { UserLinkWhenNotAuthenticated } from '@features/common/components/navigation/UserLinkWhenNotAuthenticated'
 import { NavbarLink } from '@features/common/components/navigation/NavbarLink'
+import { UserLink } from '@features/common/components/navigation/UserLink'
 
 interface NavbarItem {
   icon: ReactNode
@@ -70,8 +71,8 @@ export const Layout = ({ children, navItems }: LayoutProps) => {
               ))}
           </Box>
           <Divider />
-          {/* <UserLink /> /!* TODO: add UserLinkWhenNotAuthenticated when not authenticated *!/ */}
-          <UserLinkWhenNotAuthenticated />
+          <UserLink />
+          {/* TODO: add UserLinkWhenNotAuthenticated when not authenticated */}
         </Navbar>
       }
       header={
