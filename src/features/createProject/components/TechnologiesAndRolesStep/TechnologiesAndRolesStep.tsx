@@ -1,7 +1,7 @@
 import { UseFormReturnType } from '@mantine/form'
 import { ApiMultiSelect } from '@features/common/components/customInputs/ApiMultiSelect'
 import { CreateProjectFormValues } from '@features/createProject/types'
-import { useFetchTechnologies } from '@features/createProject/hooks/useFetchTechnologies'
+import { useFetchTechnologies } from '@api/hooks/useFetchTechnologies'
 import { useFetchRoles } from '@features/createProject/hooks'
 import { z as zod } from 'zod'
 import { mapTechnologyOrRoleToApiMultiSelectItem } from '@features/common/utils/ApiMultiSelect'

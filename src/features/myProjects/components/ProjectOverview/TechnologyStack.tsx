@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box, Image, List, ThemeIcon, Title } from '@mantine/core'
-import { useFetchTechnologies } from '@features/createProject/hooks/useFetchTechnologies'
+import { useFetchTechnologies } from '@api/hooks/useFetchTechnologies'
 
 export const TechnologyStack = () => {
   const { isLoading, error, data } = useFetchTechnologies()

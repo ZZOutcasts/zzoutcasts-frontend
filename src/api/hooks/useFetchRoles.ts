@@ -1,10 +1,10 @@
+import { TechnologyAndRole } from '@api/interfaces'
 import { useQuery } from '@tanstack/react-query'
-import { TechnologyAndRole } from '@features/common/types/TechnologyAndRole'
 
 export const useFetchRoles = () => {
   return useQuery<TechnologyAndRole[]>(['roles'], () => {
     return new Promise<TechnologyAndRole[]>((resolve) =>
-      setTimeout<TechnologyAndRole[]>(() => {
+      setTimeout(() => {
         resolve([
           {
             imageUrl: '/js.png',

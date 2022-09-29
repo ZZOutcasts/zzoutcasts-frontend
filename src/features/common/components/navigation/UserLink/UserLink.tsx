@@ -11,11 +11,11 @@ import {
 import Link from 'next/link'
 import { TbLogout } from 'react-icons/tb'
 import { routes } from '@config/routes'
-import { useCurrentUser } from '@features/user/hooks/useCurrentUser'
+import { useFetchCurrentUser } from '@api/hooks/useFetchCurrentUser'
 
 export const UserLink = () => {
   const theme = useMantineTheme()
-  const { username, email, avatar } = useCurrentUser()
+  const { username, email, avatar } = useFetchCurrentUser()
 
   return (
     <Group spacing="xs" noWrap>

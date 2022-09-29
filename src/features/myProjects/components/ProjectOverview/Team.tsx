@@ -1,10 +1,10 @@
 import React from 'react'
 import { Box, Space, Title, useMantineTheme } from '@mantine/core'
-import { useCurrentUser } from '@features/user/hooks/useCurrentUser'
+import { useFetchCurrentUser } from '@api/hooks/useFetchCurrentUser'
 import { UserInfo } from './UserInfo'
 
 export const Team = () => {
-  const { username, email, avatar } = useCurrentUser()
+  const { username, email, avatar } = useFetchCurrentUser()
   const theme = useMantineTheme()
 
   return (

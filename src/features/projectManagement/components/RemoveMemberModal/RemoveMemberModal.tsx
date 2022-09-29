@@ -1,5 +1,5 @@
 import { ModalManagement } from '@features/common/hooks/useModalManagement'
-import { useRemoveProjectMember } from '@features/projectManagement/hooks/useRemoveProjectMember'
+import { useRemoveProjectMember } from '@api/hooks/useRemoveProjectMember'
 import { Modal } from '@mantine/core'
 import { ModalError } from '@features/common/components/modalContent/ModalError'
 import { ModalSubmitButton } from '@features/common/components/modalContent/ModalSubmitButton'

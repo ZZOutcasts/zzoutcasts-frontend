@@ -1,8 +1,8 @@
 import { useMemo } from 'react'
-import { UserProject } from '@features/myProjects/types'
+import { UserProjectPreview } from '@api/interfaces'
 
-export const useUserProjects = () => {
-  const userData = useMemo<UserProject[]>(
+export const useFetchUserProjects = () => {
+  const userData = useMemo<UserProjectPreview[]>(
     () => [
       {
         id: '1',
