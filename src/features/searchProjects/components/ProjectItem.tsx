@@ -1,10 +1,10 @@
 import { routes } from '@config/routes'
-import { Text, useMantineTheme, Badge, Card, Grid } from '@mantine/core'
+import { Badge, Card, Grid, Text } from '@mantine/core'
 import Link from 'next/link'
 import { useStyles } from './ProjectItem.styles'
 
 export interface ProjectItemProps {
-  projectId: number
+  projectId: string
   projectName: string
   projectOwner: string
   recruitments?: string[]
@@ -18,7 +18,6 @@ export const ProjectItem = ({
   recruitments,
   techStack
 }: ProjectItemProps) => {
-  const theme = useMantineTheme()
   const { classes } = useStyles()
 
   return (

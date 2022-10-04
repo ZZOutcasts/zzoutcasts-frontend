@@ -14,14 +14,14 @@ export const SearchProjects = (props: TextInputProps) => {
 
   const projects: ProjectItemProps[] = [
     {
-      projectId: 1,
+      projectId: '1',
       projectName: 'Projectly - znajdź dream-team do Twojego projektu!',
       projectOwner: 'Jan Kowalski',
       recruitments: ['losowy_string'],
       techStack: ['PHP', 'JS', 'Python']
     },
     {
-      projectId: 2,
+      projectId: '2',
       projectName: 'Friendly - znajdź dream-team do Twojego projektu!',
       projectOwner: 'Jan Nowak',
       recruitments: [],
@@ -56,11 +56,11 @@ export const SearchProjects = (props: TextInputProps) => {
       <Stack
         justify="flex-start"
         pt="1rem"
-        sx={(theme) => ({
+        sx={(sxTheme) => ({
           backgroundColor:
-            theme.colorScheme === 'dark'
-              ? theme.colors.dark[5]
-              : theme.colors.gray[2],
+            sxTheme.colorScheme === 'dark'
+              ? sxTheme.colors.dark[5]
+              : sxTheme.colors.gray[2],
           height: 300
         })}
       >
