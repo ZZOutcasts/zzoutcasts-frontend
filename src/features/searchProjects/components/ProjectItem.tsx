@@ -1,4 +1,5 @@
-import { Container, Text, Group, useMantineTheme, Badge,Card, Grid, Col, SimpleGrid, Stack,  CardSection } from '@mantine/core'
+import { routes } from '@config/routes'
+import { Text, useMantineTheme, Badge, Card, Grid } from '@mantine/core'
 import Link from 'next/link'
 import { useStyles } from './ProjectItem.styles'
 
@@ -10,18 +11,21 @@ export interface ProjectItemProps {
   techStack: string[]
 }
 
-
-
-
-export const ProjectItem = ({ projectId, projectName, projectOwner, recruitments, techStack }: ProjectItemProps) => {
+export const ProjectItem = ({
+  projectId,
+  projectName,
+  projectOwner,
+  recruitments,
+  techStack
+}: ProjectItemProps) => {
   const theme = useMantineTheme()
   const { classes } = useStyles()
 
   return (
-    <Link href={`projects/${projectId}`}>
+    <Link href={routes.project(projectId)}>
       <a className={classes.link}>
         <Card
-          pl={'1rem'}
+          pl="1rem"
           className={classes.groupItem}
           sx={(theme) => ({
             backgroundColor:
@@ -30,20 +34,23 @@ export const ProjectItem = ({ projectId, projectName, projectOwner, recruitments
                 : theme.colors.gray[1]
           })}
         >
-          <Grid grow> 
-          <Grid.Col span={9}> 
-          <Text size="xl">{projectName}</Text><Text size="sm">{projectOwner}</Text></Grid.Col>
-          <Grid.Col span={2}>
+          <Grid grow>
+            <Grid.Col span={9}>
+              <Text size="xl">{projectName}</Text>
+              <Text size="sm">{projectOwner}</Text>
+            </Grid.Col>
+            <Grid.Col span={2}>
+              {recruitments && recruitments.length > 0 && (
+                <Badge color="green">Open recruitments</Badge>
+              )}
+            </Grid.Col>
 
-        
-            {recruitments && recruitments.length>0 && <Badge color="green">Open recruitments</Badge>}
-          </Grid.Col>
-        
-        <Grid.Col span={2}offset={9} mt={-20}>
-          {techStack.map((tech) =>  (<Badge>{tech}</Badge>))}
-
-          </Grid.Col>
-        </Grid>
+            <Grid.Col span={2} offset={9} mt={-20}>
+              {techStack.map((tech) => (
+                <Badge>{tech}</Badge>
+              ))}
+            </Grid.Col>
+          </Grid>
         </Card>
       </a>
     </Link>
