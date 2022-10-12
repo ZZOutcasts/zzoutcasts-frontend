@@ -1,23 +1,23 @@
-import { ModalManagement } from '@features/common/hooks/useModalManagement'
-import { useChangeMemberPermission } from '@features/projectManagement/hooks'
 import { useForm, zodResolver } from '@mantine/form'
 import { z as zod } from 'zod'
 import { Modal, Select } from '@mantine/core'
-import { ModalError } from '@features/common/components/modalContent/ModalError'
-import { ModalSubmitButton } from '@features/common/components/modalContent/ModalSubmitButton'
 import { useContext } from 'react'
 import { ProjectIdContext } from '@features/projectManagement/contexts/ProjectIdContext'
-import { Member } from '@features/projectManagement/types'
-import { ModalMemberInfo } from '@features/common/components/modalContent/ModalMemberInfo'
-import { showSuccessNotification } from '@features/common/utils'
 import { permissionsList } from '@features/projectManagement/utils'
+import { useChangeMemberPermission } from '@api/hooks'
+import { ModalManagement } from '@hooks/useModalManagement'
+import { showSuccessNotification } from '@utils'
+import { ModalError } from '@components/modalContent/ModalError'
+import { ModalMemberInfo } from '@components/modalContent/ModalMemberInfo'
+import { ModalSubmitButton } from '@components/modalContent/ModalSubmitButton'
+import { ProjectMember } from '@api/interfaces'
 
 interface ChangePermissionFormValues {
   permission: string
 }
 
 type ChangePermissionModalProps = ModalManagement & {
-  member: Member
+  member: ProjectMember
 }
 
 export const ChangePermissionModal = ({
@@ -51,7 +51,7 @@ export const ChangePermissionModal = ({
 
   const handleSubmit = ({ permission }: ChangePermissionFormValues) => {
     mutate(
-      { projectId, memberId: member.id, permission },
+      { projectId, memberId: member.id, permissionName: permission },
       {
         onSuccess: () => {
           handleClose()

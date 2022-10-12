@@ -1,26 +1,25 @@
-import { ApiMultiSelectItem } from '@features/common/types/ApiMultiSelect'
-import { ModalManagement } from '@features/common/hooks/useModalManagement'
-import { useFetchRoles } from '@features/createProject/hooks'
-import { useChangeMemberRoles } from '@features/projectManagement/hooks'
 import { useForm, zodResolver } from '@mantine/form'
 import { z as zod } from 'zod'
 import { Modal } from '@mantine/core'
-import { ModalError } from '@features/common/components/modalContent/ModalError'
-import { ApiMultiSelect } from '@features/common/components/customInputs/ApiMultiSelect'
-import { ModalSubmitButton } from '@features/common/components/modalContent/ModalSubmitButton'
 import { useContext } from 'react'
 import { ProjectIdContext } from '@features/projectManagement/contexts/ProjectIdContext'
-import { Member } from '@features/projectManagement/types'
-import { ModalMemberInfo } from '@features/common/components/modalContent/ModalMemberInfo'
-import { showSuccessNotification } from '@features/common/utils'
-import { mapTechnologyOrRoleToApiMultiSelectItem } from '@features/common/utils/ApiMultiSelect'
+import { ApiMultiSelectItem } from '@types/ApiMultiSelect'
+import { ModalManagement } from '@hooks/useModalManagement'
+import { useChangeMemberRoles, useFetchRoles } from '@api/hooks'
+import { mapTechnologyOrRoleToApiMultiSelectItem } from '@utils/ApiMultiSelect'
+import { showSuccessNotification } from '@utils'
+import { ModalError } from '@components/modalContent/ModalError'
+import { ModalMemberInfo } from '@components/modalContent/ModalMemberInfo'
+import { ApiMultiSelect } from '@components/customInputs/ApiMultiSelect'
+import { ModalSubmitButton } from '@components/modalContent/ModalSubmitButton'
+import { ProjectMember } from '@api/interfaces'
 
 interface ChangeRolesFormValues {
   roles: ApiMultiSelectItem[]
 }
 
 type ChangeRolesModalProps = ModalManagement & {
-  member: Member
+  member: ProjectMember
 }
 
 export const ChangeRolesModal = ({
@@ -41,7 +40,7 @@ export const ChangeRolesModal = ({
 
   const form = useForm<ChangeRolesFormValues>({
     initialValues: {
-      roles: member.roles
+      roles: mapTechnologyOrRoleToApiMultiSelectItem(member.roles)
     },
     validate: zodResolver(
       zod.object({
@@ -60,7 +59,11 @@ export const ChangeRolesModal = ({
 
   const handleSubmit = ({ roles }: ChangeRolesFormValues) => {
     mutate(
-      { projectId, memberId: member.id, roles },
+      {
+        projectId,
+        memberId: member.id,
+        roleNames: roles.map((role) => role.value)
+      },
       {
         onSuccess: () => {
           handleClose()

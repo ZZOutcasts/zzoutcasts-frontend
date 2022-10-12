@@ -23,11 +23,12 @@ import {
   StepValidation
 } from '@features/createProject/types'
 import { CompletedStep } from '@features/createProject/components/CompletedStep'
-import { useCreateProject } from '@features/createProject/hooks'
-import { withStepsManagement } from '@features/common/hocs/withStepsManagement'
 import { FormButtons } from '@features/createProject/components/FormButtons'
-import { StepsManagementContext } from '@features/common/contexts/StepsManagementContext'
-import { useWindowSize } from '@features/common/hooks/useWIndowSize'
+import { StepsManagementContext } from '@contexts/StepsManagementContext'
+import { useWindowSize } from '@hooks/useWIndowSize'
+import { useCreateProject } from '@api/hooks'
+import { withStepsManagement } from '@hocs/withStepsManagement'
+import { mapCreateProjectFormValuesToCreateOrUpdateProject } from '@features/createProject/utils/mapCreateProjectFormValuesToCreateOrUpdateProject'
 
 const stepsValidationArray: StepValidation[] = [
   basicInfoStepValidation,
@@ -70,11 +71,14 @@ const CreateProjectForm = () => {
   const nextStepIfNoErrors = () => !form.validate().hasErrors && nextStep()
 
   const handleSubmit = async (values: CreateProjectFormValues) => {
-    mutate(values, {
-      onSettled: () => {
-        nextStepIfNoErrors()
+    mutate(
+      { project: mapCreateProjectFormValuesToCreateOrUpdateProject(values) },
+      {
+        onSettled: () => {
+          nextStepIfNoErrors()
+        }
       }
-    })
+    )
   }
 
   return (

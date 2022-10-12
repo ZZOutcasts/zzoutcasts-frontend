@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import { Layout } from '../features/common/components/navigation/Layout'
+import { Layout } from '@components/navigation/Layout'
 
 const Home: NextPage = () => {
   return (

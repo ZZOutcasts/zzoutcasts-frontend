@@ -1,13 +1,13 @@
 import { Group, Loader, Stack, Text } from '@mantine/core'
-import { Member } from '@features/projectManagement/types'
 import { useContext } from 'react'
 import { ProjectIdContext } from '@features/projectManagement/contexts/ProjectIdContext'
-import { useProjectMembers } from '@features/projectManagement/hooks'
 import { MemberInfo } from '@features/projectManagement/components/MemberInfo'
+import { useFetchProjectMembers } from '@api/hooks'
+import { ProjectMember } from '@api/interfaces'
 
 export const MembersTab = () => {
   const { projectId } = useContext(ProjectIdContext)
-  const { isError, isLoading, data } = useProjectMembers(projectId)
+  const { isError, isLoading, data } = useFetchProjectMembers(projectId)
 
   if (isLoading) {
     return (
@@ -27,7 +27,7 @@ export const MembersTab = () => {
 
   return (
     <Stack>
-      {data!.map((member: Member) => (
+      {data!.map((member: ProjectMember) => (
         <MemberInfo member={member} />
       ))}
     </Stack>

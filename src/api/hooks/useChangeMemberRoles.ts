@@ -3,7 +3,7 @@ import { useMutation } from '@tanstack/react-query'
 interface UseChangeMemberRolesProps {
   memberId: string
   projectId: string
-  roleNames: string
+  roleNames: string[]
 }
 
 export const useChangeMemberRoles = () => {

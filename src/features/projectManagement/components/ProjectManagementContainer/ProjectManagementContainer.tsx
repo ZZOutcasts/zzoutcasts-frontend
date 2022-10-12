@@ -1,7 +1,7 @@
 import { ProjectManagementTabs } from '@features/projectManagement/components/ProjectManagementTabs'
-import { useUserProject } from '@features/projectManagement/hooks'
 import { Group, Loader, Text } from '@mantine/core'
 import { ProjectIdProvider } from '@features/projectManagement/contexts/ProjectIdContext'
+import { useFetchUserProject } from '@api/hooks'
 
 interface IProjectManagementContainer {
   projectId: string
@@ -10,7 +10,7 @@ interface IProjectManagementContainer {
 export const ProjectManagementContainer = ({
   projectId
 }: IProjectManagementContainer) => {
-  const { isError, isLoading, data } = useUserProject(projectId)
+  const { isError, isLoading, data } = useFetchUserProject(projectId)
 
   if (isError) {
     return (

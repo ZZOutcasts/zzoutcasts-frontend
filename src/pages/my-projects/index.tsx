@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
-import { Layout } from '@features/common/components/navigation/Layout'
 import { UserProjects } from '@features/myProjects/components'
+import { Layout } from '@components/navigation/Layout'
 
 const MyProjects: NextPage = () => {
   return (

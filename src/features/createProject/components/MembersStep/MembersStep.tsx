@@ -1,10 +1,11 @@
 import { UseFormReturnType } from '@mantine/form'
 import { NumberInput } from '@mantine/core'
 import { CreateProjectFormValues } from '@features/createProject/types'
-import { ApiMultiSelect } from '@features/common/components/customInputs/ApiMultiSelect'
-import { useFetchMembersByUsername } from '@features/createProject/hooks'
 import { useState } from 'react'
 import { z as zod } from 'zod'
+import { useFetchMembersByUsername } from '@api/hooks'
+import { ApiMultiSelect } from '@components/customInputs/ApiMultiSelect'
+import { mapProjectMemberToApiMultiSelect } from '@utils/ApiMultiSelect'
 
 export const MembersStep = ({
   form
@@ -12,11 +13,17 @@ export const MembersStep = ({
   form: UseFormReturnType<CreateProjectFormValues>
 }) => {
   const [memberUsername, setMemberUsername] = useState('')
-  const { refetch, ...query } = useFetchMembersByUsername(memberUsername)
+  const { refetch, data, ...queryProps } =
+    useFetchMembersByUsername(memberUsername)
 
   const handleUsernameChange = async (value: string) => {
     await setMemberUsername(value)
     refetch()
+  }
+
+  const query = {
+    data: data && mapProjectMemberToApiMultiSelect(data),
+    ...queryProps
   }
 
   return (
