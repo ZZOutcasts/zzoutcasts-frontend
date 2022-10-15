@@ -1,6 +1,6 @@
-import { useFetchTechnologies } from '@features/createProject/hooks'
 import { Grid } from '@mantine/core'
-import { TechnologyCard } from './technologyCard'
+import { useFetchTechnologies } from '@api/hooks'
+import { TechnologyCard } from '@features/technologiesList/technologyCard'
 
 export const TechnologiesList = () => {
   const { data = [], isLoading } = useFetchTechnologies()

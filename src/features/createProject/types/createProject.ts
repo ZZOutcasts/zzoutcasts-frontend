@@ -1,5 +1,5 @@
-import { ApiMultiSelectItem } from '@features/common/types/ApiMultiSelect'
 import { ZodTypeAny } from 'zod'
+import { ApiMultiSelectItem } from '@types/ApiMultiSelect'
 
 export interface CreateProjectFormValues {
   name: string
@@ -18,3 +18,5 @@ export type CreateProjectFormValuesValidation = {
 export type StepValidation = (
   values: CreateProjectFormValues
 ) => CreateProjectFormValuesValidation
+
+// TODO: types into specific files

@@ -1,16 +1,16 @@
-import { ModalManagement } from '@features/common/hooks/useModalManagement'
-import { useRemoveProjectMember } from '@features/projectManagement/hooks/useRemoveProjectMember'
+import { useRemoveProjectMember } from '@api/hooks/useRemoveProjectMember'
 import { Modal } from '@mantine/core'
-import { ModalError } from '@features/common/components/modalContent/ModalError'
-import { ModalSubmitButton } from '@features/common/components/modalContent/ModalSubmitButton'
 import { useContext } from 'react'
 import { ProjectIdContext } from '@features/projectManagement/contexts/ProjectIdContext'
-import { Member } from '@features/projectManagement/types'
-import { ModalMemberInfo } from '@features/common/components/modalContent/ModalMemberInfo'
-import { showSuccessNotification } from '@features/common/utils/showSuccessNotification'
+import { showSuccessNotification } from '@utils'
+import { ModalSubmitButton } from '@components/modalContent/ModalSubmitButton'
+import { ModalError } from '@components/modalContent/ModalError'
+import { ModalMemberInfo } from '@components/modalContent/ModalMemberInfo'
+import { ModalManagement } from '@hooks/useModalManagement'
+import { ProjectMember } from '@api/interfaces'
 
 type RemoveMemberModalProps = ModalManagement & {
-  member: Member
+  member: ProjectMember
 }
 
 export const RemoveMemberModal = ({

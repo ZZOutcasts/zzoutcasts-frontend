@@ -1,5 +1,5 @@
 import { Button, Card, CardSection, Group, Image, Text } from '@mantine/core'
-import { TechnologyAndRole } from '@features/common/types/TechnologyAndRole'
+import { TechnologyAndRole } from '@api/interfaces'
 
 interface TechnologyCardProps {
   project: TechnologyAndRole
@@ -10,7 +10,7 @@ export const TechnologyCard = ({ project }: TechnologyCardProps) => {
     <Card shadow="md" p="20px" radius="md" withBorder>
       <CardSection>
         <Group position="left" spacing="xl">
-          <Image src={project.imageUrl} height="70px" width="70px"></Image>
+          <Image src={project.imageUrl} height="70px" width="70px" />
           <Text align="end" size="md" weight={700} ml="50px">
             {project.name}
           </Text>

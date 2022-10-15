@@ -1,7 +1,7 @@
 import { Group, Select } from '@mantine/core'
 import { useState } from 'react'
-import { useFetchMembersByUsername } from '@features/createProject/hooks'
-import { LoadingButton } from '@features/common/components/customInputs/LoadingButton'
+import { LoadingButton } from '@components/customInputs/LoadingButton'
+import { useFetchMembersByUsername } from '@api/hooks'
 
 export const InvitationsTab = () => {
   const [memberUsername, setMemberUsername] = useState('')

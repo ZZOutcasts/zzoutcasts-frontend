@@ -1,8 +1,8 @@
 import { NextPage } from 'next'
-import { Layout } from '@features/common/components/navigation/Layout'
 import { useRouter } from 'next/router'
 import { ProjectManagementContainer } from '@features/projectManagement/components'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { Layout } from '@components/navigation/Layout'
 
 const queryClient = new QueryClient()
 

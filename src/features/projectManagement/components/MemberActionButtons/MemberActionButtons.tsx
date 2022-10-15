@@ -1,14 +1,14 @@
-import { useModalManagement } from '@features/common/hooks/useModalManagement'
+import { useModalManagement } from '@hooks/useModalManagement'
 import { ActionIcon, Menu } from '@mantine/core'
 import { BsCode, BsLock, BsThreeDots } from 'react-icons/bs'
 import { FiTrash } from 'react-icons/fi'
 import { RemoveMemberModal } from '@features/projectManagement/components/RemoveMemberModal'
 import { ChangeRolesModal } from '@features/projectManagement/components/ChangeRolesModal'
-import { Member } from '@features/projectManagement/types'
 import { ChangePermissionModal } from '@features/projectManagement/components/ChangePermissionModal'
+import { ProjectMember } from '@api/interfaces'
 
 interface MemberActionButtonsProps {
-  member: Member
+  member: ProjectMember
 }
 
 export const MemberActionButtons = ({ member }: MemberActionButtonsProps) => {

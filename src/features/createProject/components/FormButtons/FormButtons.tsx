@@ -1,9 +1,9 @@
 import { Button, Group } from '@mantine/core'
-import { LoadingButton } from '@features/common/components/customInputs/LoadingButton'
 import { routes } from '@config/routes'
 import { useRouter } from 'next/router'
 import { useContext } from 'react'
-import { StepsManagementContext } from '@features/common/contexts/StepsManagementContext'
+import { StepsManagementContext } from '@contexts/StepsManagementContext'
+import { LoadingButton } from '@components/customInputs/LoadingButton'
 
 interface CreateProjectFormButtonsProps {
   isSubmitted: boolean

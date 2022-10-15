@@ -1,16 +1,16 @@
 import { Card, Group, Text } from '@mantine/core'
 import { StatusBadge } from '@features/myProjects/components/StatusBadge'
 import { useStyles } from '@features/myProjects/components/ProjectCard/ProjectCard.styles'
-import { shortenText } from '@features/common/utils'
 import { routes } from '@config/routes'
 import { ProjectCardContainer } from '@features/myProjects/components/ProjectCardContainer'
 import Image from 'next/image'
-import { UserProject } from '@features/myProjects/types'
+import { shortenText } from '@utils'
+import { UserProjectPreview } from '@api/interfaces'
 
 const MAX_PROJECT_NAME_LENGTH = 34
 
 type ProjectCardProps = {
-  project: UserProject
+  project: UserProjectPreview
 }
 
 export const ProjectCard = ({ project }: ProjectCardProps) => {
