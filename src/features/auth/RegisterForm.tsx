@@ -1,10 +1,7 @@
 import { useForm, zodResolver } from '@mantine/form'
 import {
   Anchor,
-  Button,
-  Checkbox,
   Container,
-  Group,
   Paper,
   PasswordInput,
   Text,
@@ -12,6 +9,9 @@ import {
   Title
 } from '@mantine/core'
 import { z } from 'zod'
+import { useRegisterUser } from '@api/hooks/useRegisterUser'
+import { RegisterUser } from '@api/interfaces/RegisterUser'
+import { LoadingButton } from '@components/customInputs/LoadingButton'
 
 const registerSchema = z.object({
   name: z.string().min(2, { message: 'Name should have at least 2 letters' }),
@@ -27,10 +27,12 @@ interface RegisterFormProps {
 }
 
 export const RegisterForm = ({ onClose, openLoginForm }: RegisterFormProps) => {
+  const { mutate, isLoading, isError } = useRegisterUser()
+
   const form = useForm({
     validate: zodResolver(registerSchema),
     initialValues: {
-      name: '',
+      username: '',
       email: '',
       password: ''
     }
@@ -39,6 +41,15 @@ export const RegisterForm = ({ onClose, openLoginForm }: RegisterFormProps) => {
   const forwardToLoginForm = () => {
     openLoginForm()
     onClose()
+  }
+
+  const handleSubmit = (values: RegisterUser) => {
+    mutate(
+      { userData: values },
+      {
+        onSuccess: forwardToLoginForm
+      }
+    )
   }
 
   return (
@@ -53,10 +64,8 @@ export const RegisterForm = ({ onClose, openLoginForm }: RegisterFormProps) => {
 
       <Paper withBorder shadow="md" p={30} mt={30} radius="md">
         <form
+          onSubmit={form.onSubmit(handleSubmit)}
           autoComplete="new-password"
-          onSubmit={form.onSubmit((values) => {
-            onClose()
-          })}
         >
           <TextInput
             label="Name"
@@ -64,7 +73,8 @@ export const RegisterForm = ({ onClose, openLoginForm }: RegisterFormProps) => {
             mb={5}
             required
             autoComplete="new-password"
-            {...form.getInputProps('name')}
+            disabled={isLoading}
+            {...form.getInputProps('username')}
           />
           <TextInput
             label="Email"
@@ -72,6 +82,7 @@ export const RegisterForm = ({ onClose, openLoginForm }: RegisterFormProps) => {
             mb={5}
             required
             autoComplete="new-password"
+            disabled={isLoading}
             {...form.getInputProps('email')}
           />
           <PasswordInput
@@ -79,14 +90,18 @@ export const RegisterForm = ({ onClose, openLoginForm }: RegisterFormProps) => {
             placeholder="Your password"
             required
             autoComplete="new-password"
+            disabled={isLoading}
             {...form.getInputProps('password')}
           />
-          <Group position="apart" mt="md">
-            <Checkbox label="Remember me" />
-          </Group>
-          <Button fullWidth mt="xl" type="submit">
+
+          <LoadingButton fullWidth mt="xl" type="submit" isLoading={isLoading}>
             Register
-          </Button>
+          </LoadingButton>
+          {isError && (
+            <Text align="center" color="red" mt={5}>
+              An error occurred. Try again later
+            </Text>
+          )}
         </form>
       </Paper>
     </Container>

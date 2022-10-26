@@ -1,21 +1,25 @@
 import {
+  ActionIcon,
   Avatar,
-  Text,
-  useMantineTheme,
   Box,
-  Space,
-  UnstyledButton,
   Group,
-  ActionIcon
+  Space,
+  Text,
+  UnstyledButton,
+  useMantineTheme
 } from '@mantine/core'
 import Link from 'next/link'
 import { TbLogout } from 'react-icons/tb'
 import { routes } from '@config/routes'
-import { useFetchCurrentUser } from '@api/hooks/useFetchCurrentUser'
+import { User } from '@api/interfaces'
 
-export const UserLink = () => {
+interface UserLinkProps {
+  user: User
+}
+
+export const UserLink = ({ user }: UserLinkProps) => {
   const theme = useMantineTheme()
-  const { username, email, avatarUrl } = useFetchCurrentUser()
+  const { username, email, avatarUrl } = user
 
   return (
     <Group spacing="xs" noWrap>

@@ -1,18 +1,25 @@
 import {
-  TextInput,
-  PasswordInput,
-  Checkbox,
   Anchor,
-  Paper,
-  Title,
-  Text,
+  Checkbox,
   Container,
   Group,
-  Button
+  Paper,
+  PasswordInput,
+  Text,
+  TextInput,
+  Title
 } from '@mantine/core'
 import { useForm, zodResolver } from '@mantine/form'
 import { z } from 'zod'
 import { FixInputAutoCompletionStyles } from '@components/customInputs/FixInputAutoCompletionStyles'
+import { useLoginUser } from '@api/hooks/useLoginUser'
+import { LoginUser } from '@api/interfaces/LoginUser'
+import { useRouter } from 'next/router'
+import { routes } from '@config/routes'
+import { LoadingButton } from '@components/customInputs/LoadingButton'
+import { useState } from 'react'
+import { AxiosError } from 'axios'
+import { StatusCode } from '@utils/StatusCode'
 
 const loginSchema = z.object({
   email: z.string().email({ message: 'Invalid email' }),
@@ -30,7 +37,14 @@ export const LoginForm = ({
   openRegisterForm,
   openForgotPasswordForm
 }: LoginFormProps) => {
-  const form = useForm({
+  const router = useRouter()
+
+  const DEFAULT_ERROR_MESSAGE = ''
+  const [errorMessage, setErrorMessage] = useState('')
+
+  const { mutate, isError, isLoading } = useLoginUser()
+
+  const form = useForm<LoginUser>({
     validate: zodResolver(loginSchema),
     initialValues: {
       email: '',
@@ -47,6 +61,27 @@ export const LoginForm = ({
     openForgotPasswordForm()
     onClose()
   }
+  const handleSubmit = (values: LoginUser) => {
+    setErrorMessage(DEFAULT_ERROR_MESSAGE)
+    mutate(
+      { userData: values },
+      {
+        onSuccess: () => {
+          onClose()
+          router.push(routes.myProjects())
+        },
+        onError: (error) => {
+          if (
+            error instanceof AxiosError &&
+            error?.response?.status === StatusCode.NOT_FOUND
+          ) {
+            return setErrorMessage('Email or password is invalid')
+          }
+          setErrorMessage('An error occurred. Try again later')
+        }
+      }
+    )
+  }
 
   return (
     <Container size={420} my={40}>
@@ -59,13 +94,10 @@ export const LoginForm = ({
       </Text>
 
       <Paper withBorder shadow="md" p={30} mt={30} radius="md">
-        <form
-          onSubmit={form.onSubmit((values) => {
-            onClose()
-          })}
-        >
+        <form onSubmit={form.onSubmit(handleSubmit)}>
           <FixInputAutoCompletionStyles>
             <TextInput
+              disabled={isLoading}
               label="Email"
               placeholder="you@mail.com"
               required
@@ -74,6 +106,7 @@ export const LoginForm = ({
           </FixInputAutoCompletionStyles>
           <FixInputAutoCompletionStyles>
             <PasswordInput
+              disabled={isLoading}
               label="Password"
               placeholder="Your password"
               required
@@ -82,14 +115,17 @@ export const LoginForm = ({
             />
           </FixInputAutoCompletionStyles>
           <Group position="apart" mt="md">
-            <Checkbox label="Remember me" />
+            <Checkbox label="Remember me" disabled={isLoading} />
             <Anchor<'a'> onClick={goToForgotPasswordForm} size="sm">
               Forgot password?
             </Anchor>
           </Group>
-          <Button fullWidth mt="xl" type="submit">
+          <LoadingButton fullWidth mt="xl" type="submit" isLoading={isLoading}>
             Sign in
-          </Button>
+          </LoadingButton>
+          <Text align="center" color="red" mt={5}>
+            {errorMessage}
+          </Text>
         </form>
       </Paper>
     </Container>

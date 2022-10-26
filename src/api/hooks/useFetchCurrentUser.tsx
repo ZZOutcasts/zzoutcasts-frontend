@@ -1,17 +1,12 @@
-import { useMemo } from 'react'
+import { useQuery } from '@tanstack/react-query'
+import axios from 'axios'
+import { apiUrl } from '@config/apiUrl'
 import { User } from '@api/interfaces'
 
 export const useFetchCurrentUser = () => {
-  const userData = useMemo<User>(
-    () => ({
-      id: 'id',
-      username: 'jeicaM',
-      email: 'json.connor@wp.com',
-      avatarUrl: '/avatar.png'
-      // TODO: These should be generated on backend
-    }),
-    []
-  )
-
-  return userData
+  return useQuery([], () => {
+    return axios
+      .get<User>(`${apiUrl}users`, { withCredentials: true })
+      .then((response) => response.data)
+  })
 }
