@@ -1,4 +1,4 @@
-import { ProjectStatus } from '@features/myProjects/types'
+import { ProjectStatus } from './ProjectStatus'
 
 export interface UserProjectPreview {
   id: string

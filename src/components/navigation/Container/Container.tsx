@@ -2,6 +2,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactNode } from 'react'
 import { Layout } from '@components/navigation/Layout'
 import { UserProvider } from '@contexts/UserContext'
+import { AxiosInstanceProvider } from '@contexts/AxiosInstanceContext'
 
 const queryClient = new QueryClient()
 
@@ -12,9 +13,11 @@ interface ContainerProps {
 export const Container = ({ children }: ContainerProps) => {
   return (
     <QueryClientProvider client={queryClient}>
-      <UserProvider>
-        <Layout>{children}</Layout>
-      </UserProvider>
+      <AxiosInstanceProvider>
+        <UserProvider>
+          <Layout>{children}</Layout>
+        </UserProvider>
+      </AxiosInstanceProvider>
     </QueryClientProvider>
   )
 }

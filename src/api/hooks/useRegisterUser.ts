@@ -1,14 +1,15 @@
 import { useMutation } from '@tanstack/react-query'
-import axios from 'axios'
 import { RegisterUser } from '@api/interfaces/RegisterUser'
-import { apiUrl } from '@config/apiUrl'
+import { useContext } from 'react'
+import { AxiosInstanceContext } from '@contexts/AxiosInstanceContext'
 
 interface UseRegisterUserProps {
   userData: RegisterUser
 }
 
 export const useRegisterUser = () => {
+  const { axiosInstanceWithoutHandleError } = useContext(AxiosInstanceContext)
   return useMutation(({ userData }: UseRegisterUserProps) => {
-    return axios.post(`${apiUrl}users`, { ...userData })
+    return axiosInstanceWithoutHandleError.post(`/users`, userData)
   })
 }

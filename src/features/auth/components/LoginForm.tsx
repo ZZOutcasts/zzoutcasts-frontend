@@ -19,7 +19,6 @@ import { routes } from '@config/routes'
 import { LoadingButton } from '@components/customInputs/LoadingButton'
 import { useContext, useState } from 'react'
 import { AxiosError } from 'axios'
-import { StatusCode } from '@utils/StatusCode'
 import { UserContext } from '@contexts/UserContext'
 
 const loginSchema = z.object({
@@ -77,7 +76,7 @@ export const LoginForm = ({
         onError: (error) => {
           if (
             error instanceof AxiosError &&
-            error?.response?.status === StatusCode.NOT_FOUND
+            error?.response?.status?.toString().startsWith('4')
           ) {
             return setErrorMessage('Email or password is invalid')
           }

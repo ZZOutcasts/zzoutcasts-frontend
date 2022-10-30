@@ -1,9 +1,11 @@
 import { useMutation } from '@tanstack/react-query'
-import axios from 'axios'
-import { apiUrl } from '@config/apiUrl'
+import { useContext } from 'react'
+import { AxiosInstanceContext } from '@contexts/AxiosInstanceContext'
 
 export const useLogoutUser = () => {
+  const { axiosInstanceWithHandleError } = useContext(AxiosInstanceContext)
+
   return useMutation(() => {
-    return axios.delete(`${apiUrl}auth`, { withCredentials: true })
+    return axiosInstanceWithHandleError.delete(`/auth`)
   })
 }

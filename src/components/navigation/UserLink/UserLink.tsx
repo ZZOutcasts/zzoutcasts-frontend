@@ -16,6 +16,7 @@ import { useRouter } from 'next/router'
 import { useContext } from 'react'
 import { noAuthRoute } from '@features/auth/utils/noAuthRoute'
 import { UserContext } from '@contexts/UserContext'
+import { User } from '@api/interfaces'
 
 export const UserLink = () => {
   const router = useRouter()
@@ -25,11 +26,11 @@ export const UserLink = () => {
 
   const { reloadUser, user } = useContext(UserContext)
 
-  const { username, email, avatarUrl } = user
+  const { username, email, avatarUrl } = user as User
 
   const handleLogout = () => {
     mutate(undefined, {
-      onSettled: () => {
+      onSuccess: () => {
         reloadUser()
         router.push(noAuthRoute())
       }
