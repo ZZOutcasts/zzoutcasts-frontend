@@ -4,9 +4,13 @@ import { apiUrl } from '@config/apiUrl'
 import { User } from '@api/interfaces'
 
 export const useFetchCurrentUser = () => {
-  return useQuery([], () => {
-    return axios
-      .get<User>(`${apiUrl}users`, { withCredentials: true })
-      .then((response) => response.data)
-  })
+  return useQuery(
+    [],
+    () => {
+      return axios
+        .get<User>(`${apiUrl}users`, { withCredentials: true })
+        .then((response) => response.data)
+    },
+    { retry: false, keepPreviousData: false }
+  )
 }

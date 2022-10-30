@@ -1,4 +1,4 @@
-import { ThemeProvider } from '@components/providers/ThemeProvider'
+import { ThemeProvider } from '@components/navigation/ThemeProvider'
 import type { AppProps } from 'next/app'
 import { Container } from '@components/navigation/Container/Container'
 

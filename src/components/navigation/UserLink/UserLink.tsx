@@ -12,14 +12,33 @@ import Link from 'next/link'
 import { TbLogout } from 'react-icons/tb'
 import { routes } from '@config/routes'
 import { User } from '@api/interfaces'
+import { useLogoutUser } from '@api/hooks/useLogoutUser'
+import { useRouter } from 'next/router'
+import { useContext } from 'react'
+import { noAuthRoute } from '@features/auth/utils/noAuthRoute'
+import { UserContext } from '@contexts/UserContext'
 
 interface UserLinkProps {
   user: User
 }
 
 export const UserLink = ({ user }: UserLinkProps) => {
+  const router = useRouter()
   const theme = useMantineTheme()
   const { username, email, avatarUrl } = user
+
+  const { mutate } = useLogoutUser()
+
+  const { reloadUser } = useContext(UserContext)
+
+  const handleLogout = () => {
+    mutate(undefined, {
+      onSettled: () => {
+        reloadUser()
+        router.push(noAuthRoute())
+      }
+    })
+  }
 
   return (
     <Group spacing="xs" noWrap>
@@ -40,11 +59,9 @@ export const UserLink = ({ user }: UserLinkProps) => {
         </UnstyledButton>
       </Link>
       <Group>
-        <Link href="/test">
-          <ActionIcon color="red.5">
-            <TbLogout size="md" />
-          </ActionIcon>
-        </Link>
+        <ActionIcon color="red.5" onClick={handleLogout}>
+          <TbLogout size="md" />
+        </ActionIcon>
       </Group>
     </Group>
   )

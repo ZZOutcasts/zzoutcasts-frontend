@@ -9,6 +9,6 @@ interface UseRegisterUserProps {
 
 export const useRegisterUser = () => {
   return useMutation(({ userData }: UseRegisterUserProps) => {
-    return axios.post(`${apiUrl}user`, { ...userData })
+    return axios.post(`${apiUrl}users`, { ...userData })
   })
 }

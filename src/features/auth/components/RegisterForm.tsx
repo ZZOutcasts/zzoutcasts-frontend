@@ -14,7 +14,9 @@ import { RegisterUser } from '@api/interfaces/RegisterUser'
 import { LoadingButton } from '@components/customInputs/LoadingButton'
 
 const registerSchema = z.object({
-  name: z.string().min(2, { message: 'Name should have at least 2 letters' }),
+  username: z
+    .string()
+    .min(2, { message: 'Name should have at least 2 letters' }),
   email: z.string().email({ message: 'Invalid email' }),
   password: z
     .string()

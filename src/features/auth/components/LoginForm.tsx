@@ -17,9 +17,10 @@ import { LoginUser } from '@api/interfaces/LoginUser'
 import { useRouter } from 'next/router'
 import { routes } from '@config/routes'
 import { LoadingButton } from '@components/customInputs/LoadingButton'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { AxiosError } from 'axios'
 import { StatusCode } from '@utils/StatusCode'
+import { UserContext } from '@contexts/UserContext'
 
 const loginSchema = z.object({
   email: z.string().email({ message: 'Invalid email' }),
@@ -42,7 +43,9 @@ export const LoginForm = ({
   const DEFAULT_ERROR_MESSAGE = ''
   const [errorMessage, setErrorMessage] = useState('')
 
-  const { mutate, isError, isLoading } = useLoginUser()
+  const { mutate, isLoading } = useLoginUser()
+
+  const { reloadUser } = useContext(UserContext)
 
   const form = useForm<LoginUser>({
     validate: zodResolver(loginSchema),
@@ -68,6 +71,7 @@ export const LoginForm = ({
       {
         onSuccess: () => {
           onClose()
+          reloadUser()
           router.push(routes.myProjects())
         },
         onError: (error) => {

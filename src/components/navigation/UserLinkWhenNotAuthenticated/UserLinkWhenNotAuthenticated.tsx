@@ -1,6 +1,10 @@
 import { Button, Group, Modal, Text } from '@mantine/core'
 import { useModalManagement } from '@hooks/useModalManagement'
-import { ForgotPasswordForm, LoginForm, RegisterForm } from '@features/auth'
+import {
+  ForgotPasswordForm,
+  LoginForm,
+  RegisterForm
+} from '@features/auth/components'
 
 export const UserLinkWhenNotAuthenticated = () => {
   const loginModal = useModalManagement()

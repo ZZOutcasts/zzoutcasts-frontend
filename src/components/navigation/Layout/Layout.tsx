@@ -12,14 +12,14 @@ import {
   useMantineColorScheme,
   useMantineTheme
 } from '@mantine/core'
-import { ReactNode } from 'react'
+import { ReactNode, useContext } from 'react'
 import { GoProject } from 'react-icons/go'
 import { TbBrandTinder, TbMoonStars, TbSearch } from 'react-icons/tb'
 import { routes } from '@config/routes'
 import { NavbarLink } from '@components/navigation/NavbarLink'
 import { UserLink } from '@components/navigation/UserLink'
 import { UserLinkWhenNotAuthenticated } from '@components/navigation/UserLinkWhenNotAuthenticated'
-import { useFetchCurrentUser } from '@api/hooks'
+import { UserContext } from '@contexts/UserContext'
 
 interface NavbarItem {
   icon: ReactNode
@@ -52,8 +52,7 @@ export const Layout = ({ children, navItems }: LayoutProps) => {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme()
   const theme = useMantineTheme()
 
-  const { data } = useFetchCurrentUser()
-
+  const { user } = useContext(UserContext)
   return (
     <AppShell
       padding="md"
@@ -74,8 +73,8 @@ export const Layout = ({ children, navItems }: LayoutProps) => {
               ))}
           </Box>
           <Divider />
-          {data && <UserLink user={data} />}
-          {!data && <UserLinkWhenNotAuthenticated />}
+          {user && <UserLink user={user} />}
+          {!user && <UserLinkWhenNotAuthenticated />}
         </Navbar>
       }
       header={
