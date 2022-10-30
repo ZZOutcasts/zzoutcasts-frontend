@@ -2,7 +2,7 @@ import { AxiosError } from 'axios'
 import { useRouter } from 'next/router'
 import { noAuthRoute } from '@features/auth/utils/noAuthRoute'
 
-export const useHandleForbidden = (error: AxiosError | undefined) => {
+export const useHandleForbidden = (error?: AxiosError) => {
   const router = useRouter()
 
   if (!error) return
