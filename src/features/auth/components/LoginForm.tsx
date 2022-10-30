@@ -41,7 +41,7 @@ export const LoginForm = ({
   const router = useRouter()
 
   const DEFAULT_ERROR_MESSAGE = ''
-  const [errorMessage, setErrorMessage] = useState('')
+  const [errorMessage, setErrorMessage] = useState(DEFAULT_ERROR_MESSAGE)
 
   const { mutate, isLoading } = useLoginUser()
 
