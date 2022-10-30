@@ -11,25 +11,21 @@ import {
 import Link from 'next/link'
 import { TbLogout } from 'react-icons/tb'
 import { routes } from '@config/routes'
-import { User } from '@api/interfaces'
 import { useLogoutUser } from '@api/hooks/useLogoutUser'
 import { useRouter } from 'next/router'
 import { useContext } from 'react'
 import { noAuthRoute } from '@features/auth/utils/noAuthRoute'
 import { UserContext } from '@contexts/UserContext'
 
-interface UserLinkProps {
-  user: User
-}
-
-export const UserLink = ({ user }: UserLinkProps) => {
+export const UserLink = () => {
   const router = useRouter()
   const theme = useMantineTheme()
-  const { username, email, avatarUrl } = user
 
   const { mutate } = useLogoutUser()
 
-  const { reloadUser } = useContext(UserContext)
+  const { reloadUser, user } = useContext(UserContext)
+
+  const { username, email, avatarUrl } = user
 
   const handleLogout = () => {
     mutate(undefined, {

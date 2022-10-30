@@ -73,7 +73,7 @@ export const Layout = ({ children, navItems }: LayoutProps) => {
               ))}
           </Box>
           <Divider />
-          {user && <UserLink user={user} />}
+          {user && <UserLink />}
           {!user && <UserLinkWhenNotAuthenticated />}
         </Navbar>
       }
