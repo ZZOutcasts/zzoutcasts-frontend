@@ -16,9 +16,9 @@ import { ReactNode, useContext } from 'react'
 import { GoProject } from 'react-icons/go'
 import { TbBrandTinder, TbMoonStars, TbSearch } from 'react-icons/tb'
 import { routes } from '@config/routes'
-import { NavbarLink } from '@components/navigation/NavbarLink'
-import { UserLink } from '@components/navigation/UserLink'
-import { UserLinkWhenNotAuthenticated } from '@components/navigation/UserLinkWhenNotAuthenticated'
+import { NavbarLink } from '@features/appContainer/NavbarLink'
+import { UserLink } from '@features/appContainer/UserLink'
+import { UserLinkWhenNotAuthenticated } from '@features/appContainer/UserLinkWhenNotAuthenticated'
 import { UserContext } from '@contexts/UserContext'
 
 interface NavbarItem {

@@ -1,14 +1,11 @@
-import { ThemeProvider } from '@components/navigation/ThemeProvider'
 import type { AppProps } from 'next/app'
-import { Container } from '@components/navigation/Container/Container'
+import { AppContainer } from '@features/appContainer/AppContainer'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
-    <ThemeProvider>
-      <Container>
-        <Component {...pageProps} />
-      </Container>
-    </ThemeProvider>
+    <AppContainer>
+      <Component {...pageProps} />
+    </AppContainer>
   )
 }
 

@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import { ErrorPage } from '@components/navigation/ErrorPage/ErrorPage'
+import { ErrorPage } from '@components/other/ErrorPage'
 
 const UnauthorizedErrorPage: NextPage = () => {
   return (
