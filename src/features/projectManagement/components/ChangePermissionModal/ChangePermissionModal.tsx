@@ -5,12 +5,12 @@ import { useContext } from 'react'
 import { ProjectIdContext } from '@features/projectManagement/contexts/ProjectIdContext'
 import { permissionsList } from '@features/projectManagement/utils'
 import { useChangeMemberPermission } from '@api/hooks'
-import { ModalManagement } from '@hooks/useModalManagement'
+import { ModalManagement } from '@hooks'
 import { showSuccessNotification } from '@utils'
 import { ModalError } from '@components/modalContent/ModalError'
 import { ModalMemberInfo } from '@components/modalContent/ModalMemberInfo'
 import { ModalSubmitButton } from '@components/modalContent/ModalSubmitButton'
-import { ProjectMember } from '@api/interfaces'
+import { ProjectMember } from '@api/types'
 
 interface ChangePermissionFormValues {
   permission: string

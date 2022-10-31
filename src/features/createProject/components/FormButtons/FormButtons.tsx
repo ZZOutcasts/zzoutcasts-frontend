@@ -3,7 +3,7 @@ import { routes } from '@config/routes'
 import { useRouter } from 'next/router'
 import { useContext } from 'react'
 import { StepsManagementContext } from '@contexts/StepsManagementContext'
-import { LoadingButton } from '@components/customInputs/LoadingButton'
+import { LoadingButton } from '@components/customInputs'
 
 interface CreateProjectFormButtonsProps {
   isSubmitted: boolean

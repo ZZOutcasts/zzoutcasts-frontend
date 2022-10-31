@@ -3,7 +3,7 @@ import { useContext } from 'react'
 import { ProjectIdContext } from '@features/projectManagement/contexts/ProjectIdContext'
 import { MemberInfo } from '@features/projectManagement/components/MemberInfo'
 import { useFetchProjectMembers } from '@api/hooks'
-import { ProjectMember } from '@api/interfaces'
+import { ProjectMember } from '@api/types'
 
 export const MembersTab = () => {
   const { projectId } = useContext(ProjectIdContext)

@@ -1,6 +1,6 @@
 import { Avatar, Group, Paper, Text } from '@mantine/core'
 import { MemberActionButtons } from '@features/projectManagement/components/MemberActionButtons'
-import { ProjectMember } from '@api/interfaces'
+import { ProjectMember } from '@api/types'
 
 interface MemberInfoProps {
   member: ProjectMember

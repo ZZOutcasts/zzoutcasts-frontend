@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { ProjectMember } from '@api/interfaces'
+import { ProjectMember } from '@api/types'
 
 export const useFetchMembersByUsername = (username: string) => {
   return useQuery<ProjectMember[]>(

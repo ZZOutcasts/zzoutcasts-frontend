@@ -3,12 +3,12 @@ import { createStyles } from '@mantine/core'
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 // eslint-disable-next-line import/no-relative-packages
-import { InputError } from '@mantine/core/esm/Input/InputError/InputError.js'
+import { InputError } from '@mantine/core/cjs/Input/InputError/InputError.js'
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 // eslint-disable-next-line import/no-relative-packages
-import { InputLabel } from '@mantine/core/esm/Input/InputLabel/InputLabel.js'
-import { RichText } from '@components/customInputs/RichText'
+import { InputLabel } from '@mantine/core/cjs/Input/InputLabel/InputLabel.js'
+import { RichText } from '../RichText'
 
 export const RichTextInput = ({
   onChange,

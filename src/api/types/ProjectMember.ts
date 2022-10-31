@@ -1,5 +1,5 @@
-import { Permission } from '@api/interfaces/Permission'
-import { TechnologyAndRole } from '@api/interfaces/TechnologyAndRole'
+import { Permission } from '@api/types/Permission'
+import { TechnologyAndRole } from '@api/types/TechnologyAndRole'
 
 export interface ProjectMember {
   id: string

@@ -4,8 +4,8 @@ import { CreateProjectFormValues } from '@features/createProject/types'
 import { useState } from 'react'
 import { z as zod } from 'zod'
 import { useFetchMembersByUsername } from '@api/hooks'
-import { ApiMultiSelect } from '@components/customInputs/ApiMultiSelect'
-import { mapProjectMemberToApiMultiSelect } from '@utils/ApiMultiSelect'
+import { ApiMultiSelect } from '@components/customInputs'
+import { mapProjectMemberToApiMultiSelect } from '@utils'
 
 export const MembersStep = ({
   form

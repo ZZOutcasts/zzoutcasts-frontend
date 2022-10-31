@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { Project } from '@api/interfaces'
+import { Project } from '@api/types'
 
 export const useFetchUserProject = (projectId: string) => {
   return useQuery<Project>(['project', projectId], async () => {

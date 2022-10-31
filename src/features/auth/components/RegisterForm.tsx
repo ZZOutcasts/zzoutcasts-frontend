@@ -10,8 +10,8 @@ import {
 } from '@mantine/core'
 import { z } from 'zod'
 import { useRegisterUser } from '@api/hooks/useRegisterUser'
-import { RegisterUser } from '@api/interfaces/RegisterUser'
-import { LoadingButton } from '@components/customInputs/LoadingButton'
+import { RegisterUser } from '@api/types/RegisterUser'
+import { LoadingButton } from '@components/customInputs'
 
 const registerSchema = z.object({
   username: z

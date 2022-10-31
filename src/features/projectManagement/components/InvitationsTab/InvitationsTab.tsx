@@ -1,6 +1,6 @@
 import { Group, Select } from '@mantine/core'
 import { useState } from 'react'
-import { LoadingButton } from '@components/customInputs/LoadingButton'
+import { LoadingButton } from '@components/customInputs'
 import { useFetchMembersByUsername } from '@api/hooks'
 
 export const InvitationsTab = () => {

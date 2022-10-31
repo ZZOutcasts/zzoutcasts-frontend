@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useEffect, useMemo, useState } from 'react'
-import { User } from '@api/interfaces'
+import { User } from '@api/types'
 import { useFetchCurrentUser } from '@api/hooks'
 
 interface UserContextProps {

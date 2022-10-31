@@ -15,7 +15,7 @@ import { useLogoutUser } from '@api/hooks/useLogoutUser'
 import { useRouter } from 'next/router'
 import { useContext } from 'react'
 import { UserContext } from '@contexts/UserContext'
-import { User } from '@api/interfaces'
+import { User } from '@api/types'
 
 export const UserLink = () => {
   const router = useRouter()

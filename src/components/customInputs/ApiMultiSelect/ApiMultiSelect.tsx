@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { UseQueryResult } from '@tanstack/react-query'
 import { MultiSelect, MultiSelectProps, SelectItem } from '@mantine/core'
-import { ApiMultiSelectItem } from '@types/ApiMultiSelect'
+import { ApiMultiSelectItem } from '@types'
 import { ApiMultiSelectItemComponent } from './ApiMultiSelectItemComponent'
 import { ApiMultiSelectElementComponent } from './ApiMultiSelectElementComponent'
 

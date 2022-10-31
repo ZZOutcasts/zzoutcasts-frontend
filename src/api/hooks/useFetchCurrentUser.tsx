@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { User } from '@api/interfaces'
+import { User } from '@api/types'
 import { useContext } from 'react'
 import { AxiosInstanceContext } from '@contexts/AxiosInstanceContext'
 

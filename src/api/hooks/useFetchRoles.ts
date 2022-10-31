@@ -1,4 +1,4 @@
-import { TechnologyAndRole } from '@api/interfaces'
+import { TechnologyAndRole } from '@api/types'
 import { useQuery } from '@tanstack/react-query'
 
 export const useFetchRoles = () => {

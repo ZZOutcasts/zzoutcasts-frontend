@@ -5,7 +5,7 @@ import { routes } from '@config/routes'
 import { ProjectCardContainer } from '@features/myProjects/components/ProjectCardContainer'
 import Image from 'next/image'
 import { shortenText } from '@utils'
-import { UserProjectPreview } from '@api/interfaces'
+import { UserProjectPreview } from '@api/types'
 
 const MAX_PROJECT_NAME_LENGTH = 34
 

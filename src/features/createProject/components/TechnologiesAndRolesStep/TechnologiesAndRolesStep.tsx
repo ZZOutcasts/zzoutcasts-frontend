@@ -3,8 +3,8 @@ import { CreateProjectFormValues } from '@features/createProject/types'
 import { useFetchTechnologies } from '@api/hooks/useFetchTechnologies'
 import { z as zod } from 'zod'
 import { useFetchRoles } from '@api/hooks'
-import { mapTechnologyOrRoleToApiMultiSelectItem } from '@utils/ApiMultiSelect'
-import { ApiMultiSelect } from '@components/customInputs/ApiMultiSelect'
+import { mapTechnologyOrRoleToApiMultiSelectItem } from '@utils'
+import { ApiMultiSelect } from '@components/customInputs'
 
 export const TechnologiesAndRolesStep = ({
   form

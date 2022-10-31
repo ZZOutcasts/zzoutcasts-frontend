@@ -1,5 +1,5 @@
 import { Button, Group, Modal, Text } from '@mantine/core'
-import { useModalManagement } from '@hooks/useModalManagement'
+import { useModalManagement } from '@hooks'
 import {
   ForgotPasswordForm,
   LoginForm,

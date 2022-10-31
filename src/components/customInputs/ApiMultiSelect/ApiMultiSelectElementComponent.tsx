@@ -1,6 +1,6 @@
 import { Box, CloseButton, MultiSelectValueProps } from '@mantine/core'
 import Image from 'next/image'
-import { ApiMultiSelectItem } from '@types/ApiMultiSelect'
+import { ApiMultiSelectItem } from '@types'
 import { useStyles } from './ApiMultiSelectElementComponent.styles'
 
 type ApiMultiSelectElementComponentProps = MultiSelectValueProps &

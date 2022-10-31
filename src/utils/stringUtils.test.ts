@@ -1,4 +1,4 @@
-import { shortenText } from './string.utils'
+import { shortenText } from './stringUtils'
 
 describe('shortenText', () => {
   test('Should return string of 33 chars with 3 dots at the end When given string has more than 30 chars', async () => {

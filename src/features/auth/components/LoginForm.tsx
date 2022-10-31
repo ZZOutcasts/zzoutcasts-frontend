@@ -11,16 +11,18 @@ import {
 } from '@mantine/core'
 import { useForm, zodResolver } from '@mantine/form'
 import { z } from 'zod'
-import { FixInputAutoCompletionStyles } from '@components/customInputs/FixInputAutoCompletionStyles'
+import {
+  FixInputAutoCompletionStyles,
+  LoadingButton
+} from '@components/customInputs'
 import { useLoginUser } from '@api/hooks/useLoginUser'
-import { LoginUser } from '@api/interfaces/LoginUser'
+import { LoginUser } from '@api/types/LoginUser'
 import { useRouter } from 'next/router'
 import { routes } from '@config/routes'
-import { LoadingButton } from '@components/customInputs/LoadingButton'
 import { useContext, useState } from 'react'
 import { AxiosError } from 'axios'
 import { UserContext } from '@contexts/UserContext'
-import { StatusCode } from '@utils/StatusCode'
+import { StatusCode } from '@utils'
 
 const loginSchema = z.object({
   email: z.string().email({ message: 'Invalid email' }),

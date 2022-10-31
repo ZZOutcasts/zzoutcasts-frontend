@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
-import { RegisterUser } from '@api/interfaces/RegisterUser'
+import { RegisterUser } from '@api/types/RegisterUser'
 import { useContext } from 'react'
 import { AxiosInstanceContext } from '@contexts/AxiosInstanceContext'
 

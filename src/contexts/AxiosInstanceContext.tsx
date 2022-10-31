@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useMemo } from 'react'
 import axios, { AxiosError, AxiosInstance } from 'axios'
-import { StatusCode } from '@utils/StatusCode'
+import { StatusCode } from '@utils'
 import { useRouter } from 'next/router'
 
 interface AxiosInstanceContextProps {

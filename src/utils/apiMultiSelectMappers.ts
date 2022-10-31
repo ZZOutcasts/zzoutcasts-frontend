@@ -1,4 +1,4 @@
-import { ProjectMember, TechnologyAndRole } from '@api/interfaces'
+import { ProjectMember, TechnologyAndRole } from '@api/types'
 
 export const mapTechnologyOrRoleToApiMultiSelectItem = (
   arr: TechnologyAndRole[]

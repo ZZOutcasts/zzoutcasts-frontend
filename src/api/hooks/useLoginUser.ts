@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
-import { LoginUser } from '@api/interfaces/LoginUser'
+import { LoginUser } from '@api/types/LoginUser'
 import { useContext } from 'react'
 import { AxiosInstanceContext } from '@contexts/AxiosInstanceContext'
 

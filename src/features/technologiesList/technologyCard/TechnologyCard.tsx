@@ -1,5 +1,5 @@
 import { Button, Card, CardSection, Group, Image, Text } from '@mantine/core'
-import { TechnologyAndRole } from '@api/interfaces'
+import { TechnologyAndRole } from '@api/types'
 
 interface TechnologyCardProps {
   project: TechnologyAndRole
