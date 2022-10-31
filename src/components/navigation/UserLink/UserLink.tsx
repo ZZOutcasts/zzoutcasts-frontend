@@ -14,7 +14,6 @@ import { routes } from '@config/routes'
 import { useLogoutUser } from '@api/hooks/useLogoutUser'
 import { useRouter } from 'next/router'
 import { useContext } from 'react'
-import { noAuthRoute } from '@features/auth/utils/noAuthRoute'
 import { UserContext } from '@contexts/UserContext'
 import { User } from '@api/interfaces'
 
@@ -32,7 +31,7 @@ export const UserLink = () => {
     mutate(undefined, {
       onSuccess: () => {
         reloadUser()
-        router.push(noAuthRoute())
+        router.push(routes.home())
       }
     })
   }

@@ -7,7 +7,7 @@ import {
   Group
 } from '@mantine/core'
 import Link from 'next/link'
-import { noAuthRoute } from '@features/auth/utils'
+import { routes } from '@config/routes'
 
 const useStyles = createStyles((theme) => ({
   root: {
@@ -72,7 +72,7 @@ export const ErrorPage = ({ errorCode, title, message }: ErrorPageProps) => {
         {message}
       </Text>
       <Group position="center">
-        <Link href={noAuthRoute()}>
+        <Link href={routes.home()}>
           <Button variant="subtle" size="md">
             Go to home page
           </Button>

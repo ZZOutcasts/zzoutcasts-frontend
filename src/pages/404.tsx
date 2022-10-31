@@ -6,7 +6,7 @@ const NotFoundErrorPage: NextPage = () => {
     <ErrorPage
       errorCode="404"
       title="Not Found"
-      message="Page you are trying to open does not exist. You may have mistyped the address, or the page has been moved to another URL."
+      message="Resource you are trying to open does not exist. You may have mistyped the address, or the resource has been moved to another URL."
     />
   )
 }

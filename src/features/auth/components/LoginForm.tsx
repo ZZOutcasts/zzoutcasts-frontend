@@ -20,6 +20,7 @@ import { LoadingButton } from '@components/customInputs/LoadingButton'
 import { useContext, useState } from 'react'
 import { AxiosError } from 'axios'
 import { UserContext } from '@contexts/UserContext'
+import { StatusCode } from '@utils/StatusCode'
 
 const loginSchema = z.object({
   email: z.string().email({ message: 'Invalid email' }),
@@ -74,11 +75,14 @@ export const LoginForm = ({
           router.push(routes.myProjects())
         },
         onError: (error) => {
-          if (
-            error instanceof AxiosError &&
-            error?.response?.status?.toString().startsWith('4')
-          ) {
-            return setErrorMessage('Email or password is invalid')
+          if (error instanceof AxiosError) {
+            if (error?.response?.status === StatusCode.UNAUTHORIZED) {
+              return setErrorMessage('Email or password is invalid')
+            }
+
+            if (error?.response?.status === StatusCode.BAD_REQUEST) {
+              return setErrorMessage('Email or password cannot be empty')
+            }
           }
           setErrorMessage('An error occurred. Try again later')
         }
