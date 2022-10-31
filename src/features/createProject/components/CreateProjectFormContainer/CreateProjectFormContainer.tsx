@@ -24,10 +24,12 @@ import {
 } from '@features/createProject/types'
 import { CompletedStep } from '@features/createProject/components/CompletedStep'
 import { FormButtons } from '@features/createProject/components/FormButtons'
-import { StepsManagementContext } from '@contexts/StepsManagementContext'
-import { useWindowSize } from '@hooks/useWIndowSize'
+import {
+  StepsManagementContext,
+  withStepsManagement
+} from '@contexts/StepsManagementContext'
+import { useWindowSize } from '@hooks'
 import { useCreateProject } from '@api/hooks'
-import { withStepsManagement } from '@hocs/withStepsManagement'
 import { mapCreateProjectFormValuesToCreateOrUpdateProject } from '@features/createProject/utils/mapCreateProjectFormValuesToCreateOrUpdateProject'
 
 const stepsValidationArray: StepValidation[] = [

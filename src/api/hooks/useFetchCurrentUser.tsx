@@ -1,17 +1,18 @@
-import { useMemo } from 'react'
-import { User } from '@api/interfaces'
+import { useQuery } from '@tanstack/react-query'
+import { User } from '@api/types'
+import { useContext } from 'react'
+import { AxiosInstanceContext } from '@contexts/AxiosInstanceContext'
 
 export const useFetchCurrentUser = () => {
-  const userData = useMemo<User>(
-    () => ({
-      id: 'id',
-      username: 'jeicaM',
-      email: 'json.connor@wp.com',
-      avatarUrl: '/avatar.png'
-      // TODO: These should be generated on backend
-    }),
-    []
-  )
+  const { axiosInstanceWithoutHandleError } = useContext(AxiosInstanceContext)
 
-  return userData
+  return useQuery(
+    [],
+    () => {
+      return axiosInstanceWithoutHandleError
+        .get<User>(`/users`)
+        .then((response) => response.data)
+    },
+    { retry: false, keepPreviousData: false }
+  )
 }

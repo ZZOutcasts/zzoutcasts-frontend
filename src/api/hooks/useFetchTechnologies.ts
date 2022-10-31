@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { TechnologyAndRole } from '@api/interfaces'
+import { TechnologyAndRole } from '@api/types'
 
 export const useFetchTechnologies = () => {
   return useQuery<TechnologyAndRole[]>(['technologies'], () => {

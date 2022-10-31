@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
-import { CreateAndUpdateProject } from '@api/interfaces'
+import { CreateAndUpdateProject } from '@api/types'
 
 interface UseCreateProjectProps {
   project: CreateAndUpdateProject

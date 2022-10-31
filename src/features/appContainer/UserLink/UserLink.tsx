@@ -1,21 +1,40 @@
 import {
+  ActionIcon,
   Avatar,
-  Text,
-  useMantineTheme,
   Box,
-  Space,
-  UnstyledButton,
   Group,
-  ActionIcon
+  Space,
+  Text,
+  UnstyledButton,
+  useMantineTheme
 } from '@mantine/core'
 import Link from 'next/link'
 import { TbLogout } from 'react-icons/tb'
 import { routes } from '@config/routes'
-import { useFetchCurrentUser } from '@api/hooks/useFetchCurrentUser'
+import { useLogoutUser } from '@api/hooks/useLogoutUser'
+import { useRouter } from 'next/router'
+import { useContext } from 'react'
+import { UserContext } from '@contexts/UserContext'
+import { User } from '@api/types'
 
 export const UserLink = () => {
+  const router = useRouter()
   const theme = useMantineTheme()
-  const { username, email, avatarUrl } = useFetchCurrentUser()
+
+  const { mutate } = useLogoutUser()
+
+  const { reloadUser, user } = useContext(UserContext)
+
+  const { username, email, avatarUrl } = user as User
+
+  const handleLogout = () => {
+    mutate(undefined, {
+      onSuccess: () => {
+        reloadUser()
+        router.push(routes.home())
+      }
+    })
+  }
 
   return (
     <Group spacing="xs" noWrap>
@@ -36,11 +55,9 @@ export const UserLink = () => {
         </UnstyledButton>
       </Link>
       <Group>
-        <Link href="/test">
-          <ActionIcon color="red.5">
-            <TbLogout size="md" />
-          </ActionIcon>
-        </Link>
+        <ActionIcon color="red.5" onClick={handleLogout}>
+          <TbLogout size="md" />
+        </ActionIcon>
       </Group>
     </Group>
   )

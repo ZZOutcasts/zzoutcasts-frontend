@@ -1,8 +1,5 @@
 import { Group } from '@mantine/core'
-import {
-  LoadingButton,
-  LoadingButtonProps
-} from '@components/customInputs/LoadingButton'
+import { LoadingButton, LoadingButtonProps } from '@components/customInputs'
 
 export const ModalSubmitButton = ({
   children,

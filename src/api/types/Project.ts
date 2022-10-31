@@ -1,5 +1,5 @@
-import { TechnologyAndRole } from '@api/interfaces/TechnologyAndRole'
-import { ProjectMember } from '@api/interfaces/ProjectMember'
+import { TechnologyAndRole } from '@api/types/TechnologyAndRole'
+import { ProjectMember } from '@api/types/ProjectMember'
 
 export interface Project {
   id: string

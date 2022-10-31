@@ -1,8 +1,18 @@
-import { ComponentType, useMemo, useState } from 'react'
-import {
-  StepsManagementContext,
-  WithStepManagementContextProps
-} from '@contexts/StepsManagementContext'
+import { ComponentType, createContext, useMemo, useState } from 'react'
+
+export interface WithStepManagementContextProps {
+  prevStep: () => void
+  nextStep: () => void
+  currentStep: number
+  stepsCount: number
+  lastStepIndex: number
+  completedStepIndex: number
+}
+
+export const StepsManagementContext =
+  createContext<WithStepManagementContextProps>(
+    {} as WithStepManagementContextProps
+  )
 
 export const withStepsManagement =
   <T extends object>(WrappedComponent: ComponentType<T>, stepsCount: number) =>

@@ -1,8 +1,8 @@
 import { forwardRef } from 'react'
 import { Box, SelectItemProps } from '@mantine/core'
 import Image from 'next/image'
-import { ApiMultiSelectItem } from '@types/ApiMultiSelect'
-import { useStyles } from '@components/customInputs/ApiMultiSelect/ApiMultiSelectItemComponent.styles'
+import { ApiMultiSelectItem } from '@types'
+import { useStyles } from './ApiMultiSelectItemComponent.styles'
 
 type ApiMultiSelectItemProps = SelectItemProps &
   ApiMultiSelectItem & { center: boolean }

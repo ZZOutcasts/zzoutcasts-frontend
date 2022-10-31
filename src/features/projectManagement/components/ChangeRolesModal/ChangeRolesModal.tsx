@@ -3,16 +3,18 @@ import { z as zod } from 'zod'
 import { Modal } from '@mantine/core'
 import { useContext } from 'react'
 import { ProjectIdContext } from '@features/projectManagement/contexts/ProjectIdContext'
-import { ApiMultiSelectItem } from '@types/ApiMultiSelect'
-import { ModalManagement } from '@hooks/useModalManagement'
+import { ApiMultiSelectItem } from '@types'
+import { ModalManagement } from '@hooks'
 import { useChangeMemberRoles, useFetchRoles } from '@api/hooks'
-import { mapTechnologyOrRoleToApiMultiSelectItem } from '@utils/ApiMultiSelect'
-import { showSuccessNotification } from '@utils'
+import {
+  mapTechnologyOrRoleToApiMultiSelectItem,
+  showSuccessNotification
+} from '@utils'
 import { ModalError } from '@components/modalContent/ModalError'
 import { ModalMemberInfo } from '@components/modalContent/ModalMemberInfo'
-import { ApiMultiSelect } from '@components/customInputs/ApiMultiSelect'
+import { ApiMultiSelect } from '@components/customInputs'
 import { ModalSubmitButton } from '@components/modalContent/ModalSubmitButton'
-import { ProjectMember } from '@api/interfaces'
+import { ProjectMember } from '@api/types'
 
 interface ChangeRolesFormValues {
   roles: ApiMultiSelectItem[]

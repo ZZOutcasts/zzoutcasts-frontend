@@ -6,8 +6,8 @@ import { showSuccessNotification } from '@utils'
 import { ModalSubmitButton } from '@components/modalContent/ModalSubmitButton'
 import { ModalError } from '@components/modalContent/ModalError'
 import { ModalMemberInfo } from '@components/modalContent/ModalMemberInfo'
-import { ModalManagement } from '@hooks/useModalManagement'
-import { ProjectMember } from '@api/interfaces'
+import { ModalManagement } from '@hooks'
+import { ProjectMember } from '@api/types'
 
 type RemoveMemberModalProps = ModalManagement & {
   member: ProjectMember

@@ -1,4 +1,5 @@
 export const routes = {
+  home: () => '/',
   projectsSearch: () => '/search',
   myProjects: () => '/my-projects',
   profile: () => '/profile',

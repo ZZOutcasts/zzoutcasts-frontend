@@ -10,7 +10,7 @@ import {
   Center,
   Box
 } from '@mantine/core'
-import { FixInputAutoCompletionStyles } from '@components/customInputs/FixInputAutoCompletionStyles'
+import { FixInputAutoCompletionStyles } from '@components/customInputs'
 
 interface ForgotPasswordFormProps {
   onClose: () => void

@@ -1,5 +1,5 @@
 import { ZodTypeAny } from 'zod'
-import { ApiMultiSelectItem } from '@types/ApiMultiSelect'
+import { ApiMultiSelectItem } from '@types'
 
 export interface CreateProjectFormValues {
   name: string

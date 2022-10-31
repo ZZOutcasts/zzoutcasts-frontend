@@ -1,7 +1,7 @@
 import { UseFormReturnType } from '@mantine/form'
 import { CreateProjectFormValues } from '@features/createProject/types/createProject'
 import { z as zod } from 'zod'
-import { RichTextInput } from '@components/customInputs/RichTextInput'
+import { RichTextInput } from '@components/customInputs'
 
 export const DescriptionStep = ({
   form
